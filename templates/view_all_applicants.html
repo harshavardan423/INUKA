@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+
+    <title>Inuka Dashboard</title>
+    <style>
+        body{
+            background-color: #253336;
+        }
+        h2{
+            color: white;
+        }
+
+        .preserve-formatting {
+        white-space: pre-line;
+    }
+    </style>
+</head>
+<body>
+   
+    <div class="container mt-5">
+        <h2>All Applicants</h2>
+        <a class="btn btn-secondary mb-3" href="{{ url_for('jobs_dashboard') }}">Go Back</a>
+
+        <!-- Search Bar -->
+        <form class="form-inline mb-3" method="GET" action="{{ url_for('view_all_applicants') }}">
+            <input class="form-control mr-sm-2 mb-3" type="text" name="search_query" placeholder="Search by name, email, or phone">
+            <button class="btn btn-outline-light my-2 my-sm-0 -2" type="submit">Search</button>
+        </form>
+        
+
+        <div class="list-group">
+
+            <ul class="list-group">
+                {% for applicant in applicants %}
+                    <li class="list-group-item">
+                        {{ applicant.name }} - {{ applicant.previous_job }}  - {{ applicant.previous_job_location }} 
+                        {% if applicant.resume %}
+                            <a href="{{ url_for('download_resume', applicant_id=applicant.id) }}" class="btn btn-secondary btn-sm ml-2">Download Resume</a>
+                        {% else %}
+                            <span class="text-muted ml-2">No Resume</span>
+                        {% endif %}
+                        <a href="{{ url_for('view_applicant', applicant_id=applicant.id) }}" class="btn btn-info btn-sm float-right">View More</a>
+                        <a href="#" class="btn btn-danger btn-sm float-right">Delete Applicant</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

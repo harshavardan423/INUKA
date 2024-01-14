@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members</title>
+</head>
+<body>
+
+    <h1>Members</h1>
+
+    <ul>
+        {% for member in team_members %}
+            <li>
+                <strong>ID:</strong> {{ member.id }}<br>
+                <strong>Name:</strong> {{ member.name }}<br>
+                <strong>Talk:</strong> {{ member.talk }}<br>
+                <strong>Image:</strong> {{ member.image }}<br>
+                <strong>Paragraph:</strong> {{ member.member_paragraph }}<br>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

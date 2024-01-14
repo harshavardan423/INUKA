@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Job</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Create New Job</h2>
+        <form method="POST" action="{{ url_for('create_job') }}">
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            
+            <!-- Job Title Input -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <!-- Job Title Input -->
+            <div class="mb-3">
+                <label for="title_2" class="form-label">Job Title 2</label>
+                <input type="text" class="form-control" id="title_2" name="title_2" required>
+            </div>
+    
+            <!-- Job Skills Input -->
+            <div class="mb-3">
+                <label for="skills" class="form-label">Required Skills (comma-separated)</label>
+                <input type="text" class="form-control" id="skills" name="skills">
+            </div>
+    
+            <!-- Job Description Textarea -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Job Description</label>
+                <textarea class="form-control" id="description" name="description" required wrap="soft"></textarea>
+            </div>
+
+            <!-- Short Job Description Textarea -->
+            <div class="mb-3">
+                <label for="short_description" class="form-label">Short Job Description (100)</label>
+                <textarea class="form-control" id="short_description" name="short_description" required wrap="soft"></textarea>
+            </div>
+            
+    
+            <!-- Questions Section -->
+            <div class="mb-3">
+                <label for="questions" class="form-label">Questions</label>
+                <div id="questions-container">
+                    <!-- Question Input Template -->
+                    <div class="question-input mb-2">
+                        <input type="text" class="form-control" name="questions[]" placeholder="Enter a question">
+                        <input type="text" name="default_answers[]" placeholder="Default Answer">
+                        <button type="button" class="btn btn-danger btn-sm remove-question">Remove</button>
+                    </div>
+                </div>
+    
+                <!-- Add Question Button -->
+                <button type="button" class="btn btn-success btn-sm" id="add-question">Add Question</button>
+            </div>
+    
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Create Job</button>
+        </form>
+    </div>
+    
+    <script>
+        // Script to handle adding and removing questions
+document.addEventListener("DOMContentLoaded", function () {
+    const questionsContainer = document.getElementById("questions-container");
+    const addQuestionButton = document.getElementById("add-question");
+
+    addQuestionButton.addEventListener("click", function () {
+        const questionInput = document.querySelector(".question-input").cloneNode(true);
+        questionInput.querySelector("input[name='questions[]']").value = ""; // Clear question input value
+        questionInput.querySelector("input[name='default_answers[]']").value = ""; // Clear default answer input value
+        questionsContainer.appendChild(questionInput);
+    });
+
+    questionsContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-question")) {
+            event.target.closest(".question-input").remove();
+        }
+    });
+});
+
+    </script>
+    
+
+    <!-- Include Bootstrap JS and Popper.js (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

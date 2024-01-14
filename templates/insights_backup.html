@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Inuka Partners</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/templatemo-festava-live.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3//static/css/all.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyBk6SrbJ2PJZJDSGIvHdGhaIpnl8J+2qG" crossorigin="anonymous">
+
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- Maphilight Script -->
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+</head>
+<style>
+    .container h3 {
+        font-size: 44px; /* Adjust the font size as needed */
+        font-weight: lighter;
+    }
+
+    .container a.btn {
+        color: black;
+        background-color: rgb(255, 255, 255);
+        font-size: 20px; /* Adjust the font size as needed */
+        padding: 15px 20px; /* Adjust the padding as needed */
+        font-weight:normal;
+    
+    }
+
+    #background-section {
+            padding: 20px;
+            position: relative; /* Add this to make the absolute positioning work */
+         
+        }
+
+        #background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: none;
+            z-index: -1; /* Send the background image to the back */
+            opacity: 1; /* Initially set to fully visible */
+        }
+
+        .custom-container {
+            background-color: rgba(52, 52, 52, 0.358);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+
+        #map-image {
+            width: 591px; /* Replace with the original width of your image */
+            height: 360px; /* Add 'px' for the height */
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* To ensure the image is responsive within its container */
+            height: auto;
+            object-fit: cover;
+}
+
+.cloud {
+    position: absolute;
+    background: url(/static/images/cloud.png);
+    width: 100%;
+    height: 100%;
+    animation: animate 100s linear infinite;
+    object-fit: none;
+}
+@keyframes animate
+{
+    0%
+    {
+        background-position: 0px;
+    }
+    100%
+    {
+        background-position: 3033px;
+    }
+}
+#video-section {
+    position: relative;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px); /* Adjust the blur amount as needed */
+    transition: filter 0.5s ease; /* Add a smooth transition effect */
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hide the video by default */
+.background-video {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.h2 {
+    font-family:  'Montserrat', sans-serif;
+}
+
+.strong{
+    font-family:  'Montserrat', sans-serif;
+
+}
+
+.artists-image-wrap {
+        height: 500px; /* Adjust the height as per your requirement */
+        overflow: hidden;
+    }
+
+    .artists-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* This property ensures that the image covers the container while maintaining its aspect ratio */
+    }
+
+    .card {
+        border-radius: 10px;
+        background-color: #253336bd;
+        border-width: 1px;
+        border-color: rgba(255, 255, 255, 0.411);
+        margin-left: 5px;
+        overflow: hidden;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        background-color: #253336;
+    }
+
+    .card img {
+        width: 40%; /* Ensure the image takes the full width of its container */
+        height: auto;
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .card h5, .card p {
+        color: white;
+    }
+            #backgroundVideo {
+        opacity: 1;
+        transition: opacity 0.5s ease; /* Add a transition for smooth fading */
+    }
+
+
+     /* Additional custom styles */
+     .owl-carousel .owl-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item{
+        width: 400px;
+        padding: 5px;
+    }
+    
+    .owl-carousel .owl-item {
+      padding: 20px; /* Adjust padding as needed */
+      border: none; /* Remove borders for the card body */
+    }
+
+    .owl-carousel .owl-item:not(.center) .team-member-description {
+      display: none; /* Hide text for non-center items */
+    }
+
+    .owl-carousel .owl-item:not(.center) .card-img-top {
+      opacity: 0.2;
+    }
+
+    .owl-carousel .owl-item.center .team-member-description {
+      display: block; /* Show text for the center item */
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .owl-carousel .owl-item.center.active .team-member-description {
+      opacity: 1; /* Fade in text for the active center item */
+    }
+
+
+    .item .card{
+        border: none;
+        text-align: left;
+    }
+
+    .team-member-description{
+        text-align: left;
+    }
+
+
+
+
+    /* Add this to your CSS stylesheet */
+.arrows-container img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.arrows-container img:hover {
+  opacity: 0.7; /* Adjust the opacity value as needed */
+}
+
+.artist-name {
+    color: #efd181;
+    font-size: medium;
+}
+
+.artist-talk {
+    color: white;
+    font-size: larger;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+        .item {
+            width: 350px; /* Adjust the width as needed */
+            margin-right: 10px; /* Optional: Add some spacing between items */
+        }
+    }
+</style>
+
+<body>
+    
+
+    <main>
+
+        
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index copy.html">
+                    Inuka Partners
+                </a>
+
+                
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav" >
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/" style="font-weight: 600;color: var(--inuka-blue);">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  href="/about" style="font-weight: 600;color: var(--inuka-blue);">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inuka_insights" style="font-weight: 600;color: white;">Inuka Insights </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact" style="font-weight: 600;">Vacancies</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        
+     
+    
+        <section class="artists-section section-padding" style="background-color: #253336; position: relative;">
+            <h2 class="mb-4 text-center" style="color: white;padding-top: 100px;">Inuka Insights</h1>
+          <div class="grid">
+            
+          </div>
+            <div id="teamCarousel" class="owl-carousel owl-theme">
+
+         
+
+            
+            
+                
+              
+          
+              <!-- Team Member 2 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/inuka_insights/Andreas.jpeg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h3 class="artist-name">Andreas Sakellaris </h3>
+                          <h3 class="artist-talk">Helping businesses decarbonise</h3>
+                          <a href="{{ url_for('insights_member_page', member_id=2) }}">Read More</a>
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+          
+              <!-- Team Member 3 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/inuka_insights/Erik.jpg" style="size: 300px;"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h3 class="artist-name">Erik Rakhou</h3>
+                            <h3 class="artist-talk">The Future of Hydrogen</h3>
+                            <a href="{{ url_for('insights_member_page', member_id=3) }}">Read More</a>
+                          
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+          
+              <!-- Team Member 4 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/inuka_insights/Don.jpg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h3 class="artist-name">Dan Demilew </h3>
+                            <h3 class="artist-talk">Understanding Green Hydrogen</h3>
+                            <a href="{{ url_for('insights_member_page', member_id=4) }}">Read More</a>
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+
+
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/inuka_insights/Bhavik.jpg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h3 class="artist-name">Bhavik Pattni</h3>
+                            <h3 class="artist-talk">Building a Data Centre Business in Africa.</h3>                           
+                            <a href="{{ url_for('insights_member_page', member_id=5) }}">Read More</a>
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/inuka_insights/Diana.jpeg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h3 class="artist-name">Diana Mongare</h3>
+                            <h3 class="artist-talk">Getting African start-ups investment ready.</h3>
+                            <a href="{{ url_for('insights_member_page', member_id=6) }}">Read More</a>
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+
+              {% for post in insights_posts %}
+              <div class="item">
+                  <div class="artists-thumb">
+                      <div class="artists-image-wrap">
+                          <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                      </div>
+                      <div class="artists-hover">
+                          <p>
+                              <h3 class="artist-name">{{ post.member_name }}</h3>
+                              <h3 class="artist-talk">{{ post.title }}</h3>
+                              <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+               
+            <!-- Add more team members as needed -->
+
+            </div>
+            
+             <!-- Add left and right arrow icons -->
+            <div class="arrows-container" style="position: absolute; right: 10%; bottom: 20px;">
+            <img src="/static/images/buttons/left.svg" style="width: 50px;" alt="">
+            <img src="/static/images/buttons/right.svg" style="width: 50px;" alt="">
+            </div>
+          
+          
+          </section>
+                
+    
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="site-footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12">
+                        <h2 class="text-white mb-lg-0">Inuka Partners</h2>
+                    </div>
+
+                    <!-- <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex justify-content-lg-end">
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-twitter"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-apple"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-instagram"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-youtube"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-pinterest"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-4 pb-2">
+                    <h5 class="site-footer-title mb-3">Links</h5>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="index.html" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="about_us.html" class="site-footer-link">About Us</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="inuka_insights.html" class="site-footer-link">Inuka Insights</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="contact_us.html" class="site-footer-link">Vacancies</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <h5 class="site-footer-title mb-3">Contact Us</h5>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 090-080-0760" class="site-footer-link">
+                            +44 7454767528
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:hello@company.com" class="site-footer-link">
+                            contact@inukapartners.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                    <h5 class="site-footer-title mb-3">Location</h5>
+
+                    <p class="text-white d-flex mt-3 mb-2">
+                        Singapore<br>
+                        Nairobi, Kenya<br>
+                        Stellenbosch, South Africa<br>
+                        Mumbai, India
+                    </p>
+                    
+
+                    <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                        <span>Our Maps</span>
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="15.5"></circle>
+                                <line x1="10" y1="18" x2="16" y2="12"></line>
+                                <line x1="16" y1="12" x2="22" y2="18"></line>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mt-5">
+                        <p class="copyright-text">Copyright © 2036 Company</p>
+                        <!-- <p class="copyright-text">Distributed by: <a href="https://themewagon.com">ThemeWagon</a></p> -->
+                    </div>
+
+                    <div class="col-lg-8 col-12 mt-lg-5">
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Privacy Policy</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Your Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Add event listeners for hover
+    var videoSection = document.getElementById('video-section');
+    var backgroundVideo = document.querySelector('.background-video');
+
+    videoSection.addEventListener('mouseenter', function() {
+        backgroundVideo.style.opacity = 1;
+        backgroundVideo.play();
+    });
+
+    videoSection.addEventListener('mouseleave', function() {
+        backgroundVideo.style.opacity = 0;
+        backgroundVideo.pause();
+        backgroundVideo.currentTime = 0;
+    });
+</script>
+
+
+<!-- JAVASCRIPT FILES -->
+<!-- <script src="/static/js/jquery.min.js"></script> -->
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.sticky.js"></script>
+<script src="/static/js/click-scroll.js"></script>
+<script src="/static/js/custom.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popper/static/js/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2//static/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function(){
+      var teamCarousel = $("#teamCarousel");
+
+      teamCarousel.owlCarousel({
+        items: 2,
+        loop: false,
+        margin: 10,
+        nav: false,
+        dots: false,
+        center: false,
+        responsive:{
+          0:{
+            items:1
+          },
+          600:{
+            items:1
+          },
+          1000:{
+            items:3
+          }
+        }
+      });
+
+      // Custom navigation buttons
+      $(".arrows-container img:first-child").click(function(){
+        teamCarousel.trigger('prev.owl.carousel');
+        teamCarousel.trigger('prev.owl.carousel');
+        teamCarousel.trigger('prev.owl.carousel');
+      });
+
+      $(".arrows-container img:last-child").click(function(){
+        teamCarousel.trigger('next.owl.carousel');
+        teamCarousel.trigger('next.owl.carousel');
+        teamCarousel.trigger('next.owl.carousel');
+      });
+    });
+</script>
+
+
+
+  
+
+</body>
+
+</html>

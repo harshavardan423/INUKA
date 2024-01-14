@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applicants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        
+        <h2 class="mb-4">Applicants for {{ job.title }}</h2>
+        <a class="btn btn-secondary mb-3" href="{{ url_for('jobs_dashboard') }}">Go Back</a>
+
+        <ul class="list-group">
+            {% for applicant, ratio in correct_answers_ratio %}
+                <li class="list-group-item">
+                    {{ applicant.name }} - {{ applicant.email }} - {{ applicant.phone }} - {{ applicant.previous_job }} - {{ applicant.previous_job_location }} - 
+                    <div class="badge bg-secondary rounded-pill">Score {{ ratio|as_fraction }}</div>
+                    {% if applicant.resume %}
+                        <a href="{{ url_for('download_resume', applicant_id=applicant.id) }}" class="btn btn-secondary btn-sm ml-2">Download Resume</a>
+                    {% else %}
+                        <span class="text-muted ml-2">No Resume</span>
+                    {% endif %}
+                    <a href="{{ url_for('view_job_applicant', job_id=job.id, applicant_id=applicant.id) }}" class="btn btn-info btn-sm float-right">View More</a>
+                    <a href="#" class="btn btn-danger btn-sm float-right">Delete Applicant</a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        
+        
+        
+        
+        <a href="{{ url_for('jobs_dashboard') }}" class="btn btn-primary mt-3">Back to Jobs Dashboard</a>
+    </div>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+{
+  "teamMembers": [
+    {
+      "id": 1,
+      "name": "Zaina Otieno",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/ZainaOtieno.jpg",
+      "member_paragraph": "Zaina has a background in the energy and investment space with top tier investment banking on wall street and canary wharf. She then moved back to Kenya, where she was born and raised, to work with Crossboundary as part of their investment team to deploy capital for energy projects across the African continent. On the podcast we explore:",
+      "member_bullets": [
+        "Her journey into the energy investment space",
+        "The driving force behind her move back to Kenya",
+        "Adapting to the different working cultures between wall street/canary wharf and Nairobi",
+        "Working in large investment banks vs. boutique investment firms",
+        "Attracting more women into the energy and investment space",
+        "Capital raising challenges for energy projects in Africa",
+        "The most important lessons she has learnt throughout her career"
+      ],
+      "member_quote": "\" There have been challenging moments. Honestly, there were moments when I was ready to step out. Ready to quit and take a different career trajectory. There is always a voice in your head reminding you that you don’t fit but it’s important to shut that voice and remind yourself of what you bring to the table. \"",
+      "quote_attribute": "- Zaina on challenging moments she has faced being a female in the energy and investment sector",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Andreas Sakellaris",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/Andreas.jpeg",
+      "member_paragraph": "Andreas has a background negotiating and structuring corporate PPAs across the world with some of the world's biggest energy consumers. He previously worked at Bain & Company within their private equity practice before moving into the energy space. He has worked across Africa, Asia, Central, North and South America, Europe and speaks 8 languages! On the podcast we explore:",
+      "member_bullets": [
+        "Moving from management consulting into the energy sector",
+        "Whether corporates are serious about their decarbonisation targets",
+        "The potential role of carbon capture in decarbonising certain industries",
+        "The challenges (and joys) of developing projects in emerging markets",
+        "Getting energy buyers comfortable with signing long-term corporate PPAs. "
+      ],
+      "member_quote": "“There is an opportunity here to help developing countries industralise through renewables and I find it really exciting when I’m able to structure a deal that is able to help to do that to some extent. ”",
+      "quote_attribute": "— Andreas on what he enjoys most about the work that he does",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Erik Rakhou",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/Erik.jpg",
+      "member_paragraph": "Erik began his journey within the Hydrogen sector in 2017, out of personal interest and a desire to shape an industry that was at a nascent stage. Fast forward to 2023 - he has worked on over 50 clients cases within the sector with Baringa Partners & Boston Consulting Group, co-authored a book on our hydrogen future called “Touching Hydrogen Future” and chaired the World Hydrogen Leaders congress. On the podcast we explore:",
+      "member_bullets": [
+        "The motivation behind the “Touching Hydrogen Future” book",
+        "The book writing and publishing journey",
+        "Why the book took a colourless approach to hydrogen",
+        "The challenges (and joys) of developing projects in emerging markets",
+        "Solving the issue of water accessibility for GH2 projects",
+        "Key takeaways on Africa’s Hydrogen potential",
+        "The importance of governmental support"
+      ],
+      "member_quote": "“To inspire (the future hydrogen workforce) on how the future could look like in their country... You travel around the world, login to different countries and picture how it feels to be standing there in 2030/2040. It is also to give free means of reading about it before following the path.”",
+      "quote_attribute": "— Erik on the inspiration behind the \"Touching Hydrogen Future\" book",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Dan Demilew",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/Don.jpg",
+      "member_paragraph": "Dan has a background in delivering critical infrastructure projects across Europe, Middle-East, Africa and Australia. He found his way into the Green Hydrogen sector with Fortescue Future Industries, attracted by the prospect of helping a start-up scale in a new and exciting technology. Through that journey he has gone on to establish himself as an industry specialist and is the author of the Green Hydrogen Insight newsletter.  On the podcast we explore:",
+      "member_bullets": [
+        "His journey into the Green Hydrogen sector",
+        "The various colours of Hydrogen",
+        "Hydrogen use cases and the impact on reducing CO2 emissions",
+        "Busting the Hydrogen myths",
+        "Solving the issue of water accessibility for GH2 projects",
+        "Africa’s Green Hydrogen potential"
+      ],
+      "member_quote": "“Africa has this tremendous intersection of opportunities (renewable energy potential, affordable land compared to Europe and a very capable workforce) that is not too dissimilar to what the Middle-East had in the 50s and 60s. This is Africa’s opportunity. ”",
+      "quote_attribute": " — Dan on Africas Green Hydrogen Potential ",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Bhavik Pattni",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/Bhavik.jpg",
+      "member_paragraph": "Bhavik is at the forefront of the data centre boom in Africa. He started his career working in private equity before moving to Raxio where he has played a key role in helping them become one of Africa’s premier data centre companies. On the podcast we explore:",
+      "member_bullets": [
+        "The driving force behind Raxio’s growth",
+        "How DC companies can approach scaling their teams",
+        "Raising capital within the sector",
+        "Busting the Hydrogen myths",
+        "The challenges that might hinder the growth of the sector",
+        "Raxio’s ambitions moving forward"
+      ],
+      "member_quote": "“I’m very bullish about using renewable energy to power data centres. We are experimenting with newer technologies that the continent has not yet seen.”",
+      "quote_attribute": " — Bhavik on the feasibility of using renewable energy to power data centres ",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Diana Mongare",
+      "talk": "Lorem Ipsum",
+      "image": "/static/images/inuka_insights/Diana.jpeg",
+      "member_paragraph": "Diana is a rising star when it comes to investment facilitation for SMEs in East Africa. She currently works at Future Africa, where she helps their portfolio companies get investment ready and is also a founding member of the Nairobi Business Angel Network. On this podcast, we explore:",
+      "member_bullets": [
+        "The Nairobi Business Angel Network (NaiBan)",
+        "The need for a stronger local funding ecosystem",
+        "Capital raising tips for start-ups",
+        "Funding disparity between male and female founders",
+        "Keeping African talent in Africa"
+      ],
+      "member_quote": "“The summary of what could be done is as short as less mentorship (for women) and more investments. If we just move away telling them how to do it or how to raise and just give them funding.”",
+      "quote_attribute": "— Diana on bridging the funding disparity between male and female founders.",
+      "podcast_links": {
+        "buzzsprout": "https://www.google.com/",
+        "spotify": "https://www.spotify.com/",
+        "applePodcasts": "https://www.apple.com/podcasts/"
+      }
+    }
+  ]
+}

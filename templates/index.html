@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <title>Inuka Partners</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="/static/css/templatemo-festava-live.css" rel="stylesheet">
+
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- Maphilight Script -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+
+    <!--
+
+TemplateMo 583 Festava Live
+
+https://templatemo.com/tm-583-festava-live
+
+-->
+</head>
+<style>
+    .container h3 {
+        font-size: 44px; /* Adjust the font size as needed */
+        font-weight: lighter;
+    }
+
+    .container a.btn {
+        color: black;
+        background-color: rgb(255, 255, 255);
+        font-size: 20px; /* Adjust the font size as needed */
+        padding: 15px 20px; /* Adjust the padding as needed */
+        font-weight:normal;
+    
+    }
+
+    #background-section {
+            padding: 20px;
+            position: relative; /* Add this to make the absolute positioning work */
+            overflow: hidden;
+        }
+
+        #background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: none;
+            z-index: -1; 
+            opacity: 0.6; 
+            background-color: #253336;
+        }
+
+        .custom-container {
+            background-color: rgba(52, 52, 52, 0);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 5px;
+    
+        }
+
+        #map-image {
+            width: 591px; /* Replace with the original width of your image */
+            height: 360px; /* Add 'px' for the height */
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* To ensure the image is responsive within its container */
+            height: auto;
+            object-fit: cover;
+            opacity: 0.1;
+}
+
+.cloud {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    object-fit: none;
+    z-index: 2;
+    opacity: 0.1;
+    background-image: url('/static/images/cloud.png');
+    animation: animate 100s linear infinite;
+    pointer-events: none;
+    overflow: hidden;
+    background-position: center; /* Center the background image */
+}
+
+
+@keyframes animate {
+    0% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(100%); /* Adjust the value for the distance you want the cloud to move */
+    }
+}
+
+
+
+
+.card {
+    border-radius: 10px;
+    background-color: #253336bd;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.411);
+    margin-left: 5px;
+}
+
+
+.card h5,p{
+    color: white;
+}
+
+.artists-section {
+            transition: background-color 0.5s ease;
+            background-color: #253336;
+            z-index: 1;
+        }
+
+        .card:hover,
+        .section-hovered {
+            background-color: #1f383ef6;
+            /* background-image: url(video/inuka_videos/inuka_video.mp4); */
+        }
+
+.artists-section img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: -1;
+filter: blur(0.1px);
+
+}
+
+
+        .hotspot {
+    stroke: #ffff00; /* Yellow outline */
+    stroke-width: 1;
+    fill: #ffff00; /* Full yellow fill */
+  }
+
+  .hotspot:hover {
+    fill: #808080; /* Transparent grey fill on hover */
+    fill-opacity: 0.6;
+  }
+  
+
+  /* Style for highlighted poly areas */
+  area[shape="poly"] {
+        display: none; /* Hide poly areas by default */
+        stroke: #ffff00; /* Stroke color */
+        stroke-width: 1;
+        fill: #ffff00; /* Fill color */
+        fill-opacity: 0.1; /* Set fillOpacity to 0 for full transparency */
+    }
+
+    area[shape="circle"]:hover + area[shape="poly"] {
+        display: inline; /* Show poly area when hovering over the corresponding circle */
+    }
+
+    #background-image2 {
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: -1;
+            /* object-fit: none; */
+            /* filter: blur(0.1px); */
+    }
+
+    .fade-out {
+        opacity: 0;
+    }
+
+    .site-footer-title{
+        color: #ffdf6a;
+    }
+
+    .fadeup {
+    transform: translateX(-15px);
+
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+   }
+
+   .in-view {
+        transform: none;
+        opacity: 1;
+    }
+
+
+
+    
+
+
+@media only screen and (max-width: 600px) {
+
+.cloud {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 2;
+    opacity: 0.1;
+    background-image: url('/static/images/cloud.png');
+    animation: animate 100s linear infinite;
+    pointer-events: none;
+    overflow: hidden;
+    transform: translateY(500%);
+    background-position: center; /* Center the background image */
+}
+}
+    
+
+</style>
+<script>
+const observerOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    } else {
+      entry.target.classList.remove('in-view');
+    }
+  });
+}, observerOptions);
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const sections = Array.from(document.getElementsByClassName('section'));
+
+  for (let section of sections) {
+    observer.observe(section);
+  }
+});
+</script>
+<body>
+    
+
+    <main>
+
+
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    Inuka Partners
+                </a>
+
+                <!-- <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a> -->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav" >
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/" style="font-weight: 600;">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll"  href="/about" style="font-weight: 600;">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inuka_insights" style="font-weight: 600;">Inuka Insights</a>
+                        </li>
+
+            
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/contact" style="font-weight: 600;">Vacancies</a>
+                        </li>
+                    </ul>
+
+                    <!-- <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a> -->
+                </div>
+            </div>
+        </nav>
+
+
+        <section class="hero-section" id="section_1">
+            <div class="section-overlay"></div>
+
+            <div class="container d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12 mt-auto mb-5 text-start">
+                        <!-- <small>Festava Live Presents</small> -->
+            
+                        <h3 class="text-white mb-2 section fadeup">Bringing together passionate people with mission-driven businesses.</h3>
+            
+                        <!-- <a class="btn custom-btn smoothscroll" style="font-weight: 800;" href="#section_2">Let's begin</a> -->
+                    </div>
+            
+                </div>
+            </div>
+            
+
+            <div class="video-wrap">
+                <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                    <!-- <source src="/static/video/inuka_videos/inuka_video2.mp4" type="video/mp4"> -->
+                    <source src="https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705226631/nofxvfx28419fbwmxtc7.mp4" type="video/mp4">
+
+                    Your browser does not support the video tag.
+                </video>
+                
+            </div>
+        </section>
+
+        <!-- MAP SECTION  -->
+        <section class="section">
+            
+            <div id="background-section" class="container-fluid" style="background-color: #253336;z-index: 1;">
+                <div class="cloud"></div> 
+                <div id="background-image" ></div>
+                <div class="row" style="padding-top: 20px;">
+                    
+                    
+                    <div class="col-lg-7 col-md-4 col-sm-12 section fadeup">
+                        <div class="custom-container"  >
+                            
+                <!-- Image Map Generated by http://www.image-map.net/ -->
+                <img class="img-fluid" id="map-image" src="/static/images/outlines/map outlines/world_map_9.png" usemap="#image-map" style="width: 90%;">
+              
+                <map name="image-map">
+                    <area target="" alt="southafrica" title="southafrica"  coords="340,1049,10" shape="circle" 
+                    data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/southafrica2.jpg">
+                    <area alt="southafrica" shape="poly" coords="306,1074,310,1083,319,1089,323,1085,332,1086,336,1082,350,1082,355,1084,359,1081,362,1082,365,1079,371,1079,381,1074,399,1056,408,1041,417,1035,420,1021,415,1022,414,1026,408,1026,402,1022,404,1013,411,1011,411,1001,407,990,407,983,395,983,390,986,385,988,379,993,377,993,375,999,370,1002,367,1006,364,1013,356,1014,345,1010,343,1011,341,1015,335,1022,331,1022,325,1022,322,1018,325,1014,321,1007,321,1035,316,1039,310,1040,301,1039,297,1035,294,1037,303,1057,308,1065,309,1070,306,1073"  nohref="nohref" />
+                   
+                   
+
+                    
+                    <area target="" alt="kenya" title="kenya" coords="457,794,10" shape="circle"
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/kenya3.jpg" data-text="Kenya specific info">
+                    <area alt="kenya" shape="poly" coords="469,838,458,831,459,826,429,811,430,801,437,795,439,786,437,781,434,778,434,776,431,771,438,764,442,765,442,770,448,771,458,775,463,778,473,778,476,775,481,773,484,775,487,775,483,780,482,810,486,816,481,822,478,822,471,837"  nohref="nohref" />
+                        
+                    <area target="" alt="france" title="france"  coords="187,396,10" shape="circle"
+                    data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                    data-highlight-image="/static/images/france.jpg" data-text="Kenya specific info">
+                    <area  target=""   shape="poly" alt="france" title="france" href="france "  coords="153,438,158,442,167,443,172,442,176,444,180,446,184,446,187,447,187,440,197,436,205,438,212,440,222,433,216,428,216,423,215,420,218,417,216,408,210,409,221,395,226,380,199,371,183,357,178,356,175,358,175,365,174,367,165,373,165,375,155,374,151,372,149,373,151,378,151,383,146,383,134,382,127,385,129,391,137,393,147,398,151,408,157,417,152,435"  nohref="nohref" />
+                        
+                    <area target="" alt="muscat" title="muscat"  coords="620,612,10" shape="circle"
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/muscat.jpg" data-text="Kenya specific info">
+                    
+                    <area target="" alt="egypt" title="egypt"  coords="397,590,10" shape="circle"
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/egypt.jpg" data-text="Kenya specific info">
+                    <area alt ="egypt" title="egypt" shape="poly" coords="360,548,360,626,447,626,441,623,439,613,427,586,423,582,424,578,415,566,415,559,419,559,430,576,435,563,429,551,413,551,409,547,400,549,392,554,368,548"                         nohref="nohref" />
+
+                    <area target="" alt="nigeria" title="nigeria"  coords="219,728,10" shape="circle"
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/nigeria.jpg" data-text="Kenya specific info">
+                    <area alt="nigeria" shape="poly" coords="187,753,186,738,195,723,195,717,193,713,194,708,199,699,211,697,216,704,226,701,233,705,239,705,245,701,254,701,259,703,267,699,270,698,272,703,272,706,276,709,276,713,270,715,263,734,259,734,257,740,253,750,250,750,247,747,241,749,232,758,231,763,227,764,227,766,217,767,213,769,208,767,208,760,202,754,193,752,189,752"  nohref="nohref" />
+
+                    <area target="" alt="india" title="india"  coords="772,606,10" shape="circle" 
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/india.jpg" data-text="Kenya specific info">
+                    <area alt="india" shape="poly" coords="724,578,746,551,747,544,752,539,743,534,741,521,748,520,756,520,766,515,771,513,778,523,781,537,774,539,776,550,786,552,794,558,787,569,810,583,823,584,828,590,850,591,850,579,854,578,858,585,862,589,882,587,882,581,882,580,886,579,891,574,895,571,901,567,907,569,912,567,915,571,914,574,922,575,919,581,914,582,907,587,904,595,903,597,898,611,891,610,892,616,890,619,888,626,886,619,883,613,881,615,878,615,877,618,877,613,886,603,883,601,867,601,865,593,856,592,851,593,857,599,852,604,856,610,855,613,858,627,852,628,851,626,850,631,842,634,841,644,830,648,808,667,806,674,801,675,799,678,791,680,789,703,786,709,787,716,787,721,783,723,781,728,776,734,774,739,770,741,762,738,759,733,758,724,754,715,750,709,747,701,743,687,737,677,733,656,733,651,730,645,733,638,732,632,730,626,727,628,726,634,716,637,705,629,712,625,712,620,704,621,699,615,702,610,713,608,718,606,717,596,711,596,712,590,707,586,712,578,720,578,719,578"  nohref="nohref" />
+
+                    <area target="" alt="ivorycoast" title="ivorycoast"  coords="120,741,10" shape="circle"
+                   data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/ivorycoast.jpg" data-text="Kenya specific info">
+                    <area alt="ivorycoast" shape="poly" coords="104,770,106,759,97,752,97,745,100,740,104,738,102,731,101,727,104,724,108,725,114,722,117,725,121,724,128,728,139,727,144,738,140,746,138,753,141,761,142,765,125,763,111,768"  nohref="nohref" />
+                   
+                    <area target="" alt="england" title="england"  coords="155,334,10" shape="circle"
+                       data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/england.jpg" data-text="Kenya specific info">
+                    <area alt="england" shape="poly" coords="121,365,131,356,144,349,133,350,130,348,124,349,122,347,132,340,131,336,130,330,141,331,139,327,141,323,137,320,139,313,125,315,116,292,126,276,139,273,140,277,133,286,150,286,140,300,138,303,150,306,155,315,163,321,165,327,159,327,166,335,176,335,178,340,173,347,169,350,173,353,169,359,153,359,149,361,140,360,134,366,125,367"  nohref="nohref" />
+                    
+                    <area target="" alt="morocco" title="morocco"  coords="111,539,10" shape="circle"
+                        data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/morocco.jpg" data-text="Kenya specific info">
+                    <area alt="morocco" shape="poly" coords="62,578,82,568,89,557,87,553,92,541,93,534,112,525,120,508,129,515,143,514,149,517,151,532,156,540,154,542,143,542,138,545,133,546,136,551,126,555,120,560,115,560,111,562,106,563,96,570,96,579,64,580"  nohref="nohref" />
+                    
+                    <area target="" alt="singapore" title="singapore"  coords="966,778,10" shape="circle"
+                        data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/singapore.jpg" data-text="Kenya specific info">
+                    
+                        <area target="" alt="mauritius" title="mauritius"  coords="612,959,10" shape="circle"
+                   data-maphilight="{&quot;strokeColor&quot;:&quot;FFFFFF&quot;,&quot;strokeWidth&quot;:1,&quot;fillColor&quot;:&quot;FFFFFF&quot;,&quot;fillOpacity&quot;:0.6,&quot;alwaysOn&quot;:true}"
+                        data-highlight-image="/static/images/mauritius.jpg" >
+                    <!-- <area target="" alt="saudi" title="saudi" href="saudi" coords="474,384,475,402,441,413,415,426,416,418,398,416,394,422,342,336,354,331,356,316,364,313,400,332,415,333,419,340,426,340,441,364,452,372,457,382" shape="poly"> -->
+                    
+                </map>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-5 col-md-5 col-sm-12 section fadeup" id="map-text-div">
+                        <div class="custom-container" style="padding: 15px; background-color: rgb(35, 35, 35);z-index: 3  ;" >
+                            <!-- Content for the third container -->
+                            <h3 style="color: rgb(255, 255, 255);font-weight: 200;font-size:xx-large;">Inuka has made impactful placements in emerging markets across the globe</h3>
+                            
+                            <!-- <p style="color: white;">Content goes here.</p> -->
+                            <div id="text-div" style="color: white;">
+                                <!-- Initial text content here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- <section class="artists-section section-padding" style="position: relative;" >
+            <img src="/static/images/solarpanels2.jpg" id="background-image2" style="background-color:#253336;">
+            <div class="col-12 text-center">
+                <h2 class="mb-4" style="color: white;font-weight:lighter;">Our Mission</h2>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+        
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;" id="card1">
+                            <div class="card-body">
+                                <h5 class="card-title">Growth > Capacity </h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;" id="card2">
+                            <div class="card-body">
+                                <h5 class="card-title">Networks</h5>
+                                <p class="card-text">We assist new entrants in building and expanding their networks within the market. Our service includes strategic introductions, partnership facilitation, and networking events to establish a robust presence in the industry.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%;" id="card3">
+                            <div class="card-body">
+                                <h5 class="card-title">Time</h5>
+                                <p class="card-text">We offer outsourced talent management services, handling recruitment, onboarding, and talent development.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section> -->
+        
+
+    
+
+
+
+       
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="site-footer-top">
+            <div class="container">
+                <div class="row">
+
+                   
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container section fadeup">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-4 pb-2">
+                    <h5 class="site-footer-title">Links</h5>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="/index.html" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="/about_us.html" class="site-footer-link">About Us</a>
+                        </li>
+
+                       
+
+                        <li class="site-footer-link-item">
+                            <a href="inuka_insights.html" class="site-footer-link">Inuka Talks</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <!-- <a href="#" class="site-footer-link">Pricing</a> -->
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a  href="contact_us.html" class="site-footer-link">Vacancies</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <h5 class="site-footer-title mb-3">Contact Us</h5>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 090-080-0760" class="site-footer-link">
+                            +44 7454767528
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:hello@company.com" class="site-footer-link">
+                            contact@inukapartners.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                    <h5 class="site-footer-title mb-3">Location</h5>
+
+                    <p class="text-white d-flex mt-3 mb-2">
+                        Singapore<br>
+                        Nairobi, Kenya<br>
+                        Stellenbosch, South Africa<br>
+                        Mumbai, India
+                    </p>
+                    
+
+                    <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                        <span>Our Maps</span>
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="15.5"></circle>
+                                <line x1="10" y1="18" x2="16" y2="12"></line>
+                                <line x1="16" y1="12" x2="22" y2="18"></line>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mt-5">
+                        <p class="copyright-text">Copyright © 2036 Company</p>
+                        <!-- <p class="copyright-text">Distributed by: <a href="https://themewagon.com">ThemeWagon</a></p> -->
+                    </div>
+
+                    <div class="col-lg-8 col-12 mt-lg-5">
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Privacy Policy</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Your Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+
+T e m p l a t e M o
+
+-->
+
+<script src="/static/js/mapresizer.min.js"></script>
+<script>
+    imageMapResize();
+</script>
+<!-- <script>
+    $(function () {
+        $('#map-image').maphilight();
+
+        // Variable to store default text
+        var defaultText = "Hover over the area to see text.";
+
+        // Hover event for the image map area
+        $('area').hover(
+            function () {
+                var content = getContent(this);
+                var highlightImage = $(this).data('highlight-image');
+                var shapeAttribute = $(this).attr('shape');
+                var correspondingId = $(this).attr('alt');
+
+                // Fade out the current background image
+                $('#background-image').fadeOut(0, function () {
+                    // Set the new background image and fade it in
+                    $(this).css({
+                        'background-color': '#253336',
+                        'background-image': 'url(' + highlightImage + ')',
+                    }).fadeIn(300);
+                });
+
+                // Set the new background image and fade it in
+                $(this).css({
+                    'background-image': 'url(' + highlightImage + ')',
+                }).fadeIn(500);
+
+                // Fade out the current text content and update with the new content
+                $('#text-div').fadeOut(300, function () {
+                    $(this).html(content).fadeIn(300);
+                });
+
+                // Check if the hovered area has shape 'circle'
+                if (shapeAttribute === 'circle') {
+                    // Hide the circle
+                    $(this).hide();
+                    // Highlight the corresponding SVG path
+                    highlightSvgPath(correspondingId);
+                }
+            },
+            function () {
+                // Reset content and fade out the current background image
+                $('#background-image').fadeOut(300, function () {
+                    // Remove the background image
+                    $(this).css({
+                        'background-color': '#253336',
+                        'background-image': 'none',
+                    }).fadeIn(300);
+                });
+
+                // Fade out the current text content and update with the default content
+                $('#text-div').fadeOut(300, function () {
+                    $(this).html('<p>' + defaultText + '</p>').fadeIn(300);
+                });
+
+                // Show the hidden circle when the mouse leaves the area
+                $('area[shape="circle"]').show();
+                // Remove highlighting from the corresponding SVG path
+                unhighlightSvgPath();
+            }
+        );
+
+        // Function to get HTML content based on the area
+        function getContent(area) {
+            // You can customize this function to return HTML content based on the area
+            switch ($(area).attr('alt')) {
+                case 'kenya':
+                    return '<h3 style="color: yellow;font-weight: 500">Kenya</h3>' +
+                        '<p style="color: white;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+
+                // Add more cases for other areas if needed
+                default:
+                    return '<p>' + defaultText + '</p>';
+            }
+        }
+
+        // Function to highlight the corresponding SVG path
+        function highlightSvgPath(id) {
+            $('#' + id).attr({
+                'stroke': '#ffff00',
+                'stroke-width': 1,
+                'fill': '#ffff00',
+                'fill-opacity': 0.1,
+            });
+        }
+
+        // Function to remove highlighting from the corresponding SVG path
+        function unhighlightSvgPath() {
+            // Update the attributes as needed to remove highlighting
+            // For example, set 'stroke' and 'fill' to their default values
+            $('svg path').attr({
+                'stroke': 'black',
+                'stroke-width': 1,
+                'fill': 'none',
+                'fill-opacity': 1,
+            });
+        }
+    });
+</script> -->
+
+<script>
+    $(function () {
+    $('#map-image').maphilight();
+
+    // Variable to store default text
+    var defaultText = "Hover over the area to see text.";
+    var myDiv = document.getElementById('map-text-div');
+
+    // Hover event for the image map area
+    $('area').hover(
+        function () {
+
+            var content = getContent(this); // Get HTML content from a function, you can customize this function
+            var highlightImage = $(this).data('highlight-image');
+            var shapeAttribute = $(this).attr('shape');
+            
+            // Fade out the current background image
+            $('#background-image').fadeOut(0, function () {
+                // Set the new background image and fade it in
+                $(this).css({
+                    'background-color' : '#253336',
+                    'background-image': 'url(' + highlightImage + ')',
+                }).fadeIn(300);
+            });
+
+            // Set the new background image and fade it in
+            $(this).css({
+                'background-image': 'url(' + highlightImage + ')',
+            }).fadeIn(500);
+
+            // Fade out the current text content and update with the new content
+            $('#text-div').fadeOut(300, function () {
+                $(this).html(content).fadeIn(300);
+            });
+
+            // Check if the hovered area has shape 'circle'
+            if (shapeAttribute === 'circle') {
+                // Hide the circle
+                $(this).hide();
+                myDiv.style.display = '';
+
+                // Highlight the corresponding poly shape
+                var correspondingPoly = getCorrespondingPoly(this);
+                correspondingPoly.data('maphilight', {
+                    'strokeColor': 'ffff00',
+                    'strokeWidth': 0.1,
+                    'fillColor': 'ffff00',
+                    'fillOpacity': 0.1, // Set fillOpacity to 0 for full transparency
+                    'alwaysOn': true
+                }).trigger('alwaysOn.maphilight');
+            }
+            if (shapeAttribute === 'poly') {
+                    // Existing code to handle circle areas
+                    // Highlight the corresponding poly shape
+                    var correspondingPoly = getCorrespondingPoly(this);
+                    correspondingPoly.data('maphilight', {
+                        'strokeColor': 'F8CB2E',
+                        'strokeWidth': 0.1,
+                        'fillColor': '000000',
+                        'fillOpacity': 0,
+                        'alwaysOn': false
+                    }).trigger('alwaysOn.maphilight');
+                } else if (shape !== 'poly') {
+                    // Existing code for non-poly shapes
+                    // ... (your existing code)
+                }
+        },
+        function () {
+            // Reset content and fade out the current background image
+            $('#background-image').fadeOut(300, function () {
+                // Remove the background image
+                $(this).css({
+                    'background-color' : '#253336',
+                    'background-image': 'none',
+                }).fadeIn(300);
+            });
+
+
+             // Fade out the current text content and update with the default content
+            $('#text-div').fadeOut(300, function () {
+                $(this).html('<p>' +'</p>').fadeIn(300);
+            });
+           
+
+            // Show the hidden circle when mouse leaves the area
+            $('area[shape="circle"]').show();
+            // Remove highlighting from the corresponding poly shape
+            $('area[shape="poly"]').data('maphilight', {}).trigger('alwaysOn.maphilight');
+            
+        }
+    );
+
+    // Function to get HTML content based on the area
+    function getContent(area) {
+        switch ($(area).attr('alt')) {
+    case 'kenya':
+        return '<h2 style="color: #efd181; font-weight: 500">Kenya</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Development Director, East Africa</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Green Hydrogen Developer</p>' +  '<br>' +
+
+            '<p><span style="color: #efd181;">Role : </span> Associate Investment Director</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Renewable Energy Fund</p>' + '<br>' +
+
+
+            '<p><span style="color: #efd181;">Role : </span> Chief Operating Officer</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Mini Grid Association</p>';
+
+    case 'france':
+        return '<h2 style="color: #efd181; font-weight: 500;">France</h2>' +
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span> Environmental & Social Manager</p>' +
+                '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Developer</p>' ;
+
+    case 'singapore':
+        return '<h2 style="color: #efd181; font-weight: 500">Singapore</h2>' +
+                '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span>Investment Manager</p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Fund</p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span>Project Finance Manager</p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Developer</p>';
+
+    case 'southafrica':
+        return '<h2 style="color: #efd181; font-weight: 500">South Africa</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span> Development Director, Southern Africa</p>' +
+                '<p><span style="color: #efd181;">Company type :</span>Green Hydrogen Developer </p>' + '<br>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span> Head of Procurement</p>' +
+                '<p><span style="color: #efd181;">Company type :</span>  Renewable Energy IPP </p>' + '<br>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span> Asset Director</p>' +
+                '<p><span style="color: #efd181;">Company type :</span>Renewable Energy Fund </p>' + '<br>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span>Non-Executive Director</p>' +
+                '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Fund</p>' + '<br>' +
+
+                '<p style="color: white;"><span style="color: #efd181;">Role :</span> Investment Associate</p>' +
+                '<p><span style="color: #efd181;">Company type :</span>Renewable Energy Fund </p>';
+
+                
+
+    case 'muscat':
+        return '<h2 style="color: #efd181; font-weight: 500">Muscat</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Financial Analyst</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Global Energy Conglomerate</p>';
+
+    case 'egypt':
+        return '<h2 style="color: #efd181; font-weight: 500">Egypt</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span>Business Development Manager</p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Developer </p>';
+
+    case 'india':
+        return '<h3 style="color: #efd181; font-weight: 500">India</h3>' +
+        '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+
+        '<p style="color: white;"><span style="color: #efd181;">Role :</span> Investment Associate </p>' +
+        '<p><span style="color: #efd181;">Company type :</span> Investment Advisory Firm</p>';
+
+
+    case 'nigeria':
+        return '<h2 style="color: #efd181; font-weight: 500">Nigeria</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Business Operations Director </p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Energy Access Fund </p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Chief Executive Officer </p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Mini Grid Association </p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;"> Role :</span> Head of Digital Infrastructure </p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Private Equity Fund Portfolio Company</p>';
+            
+
+    case 'ivorycoast':
+        return '<h2 style="color: #efd181; font-weight: 500">Ivory Coast</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Associate </p>' +
+            '<p><span style="color: #efd181;">Company type :</span>  Financial Advisory Firm </p>';
+
+    case 'morocco':
+        return '<h2 style="color: #efd181; font-weight: 500">Morocco</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            '<p style="color: white;"><span style="color: #efd181;"> Role :</span>Senior Analyst</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Infrastructure Fund</p>';
+            
+
+    case 'england':
+        return '<h2 style="color: #efd181; font-weight: 500">England</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span>  Head of Energy Trading </p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Green Hydrogen Developer</p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Principal ESG Consultant </p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Investment Advisory Firm</p>' + '<br>' +
+
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Senior BD Manager</p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Renewable Energy Developer</p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Consulting Manager, Climate Finance</p>' +
+            '<p><span style="color: #efd181;">Company type :</span> Management Consulting Firm  </p>' + '<br>' +
+
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span>Engagement Manager, Climate Adaptation</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>  Management Consulting Firm</p>';
+
+            
+
+    case 'mauritius':
+        return '<h2 style="color: #efd181; font-weight: 500">Mauritius</h2>' +
+            '<p style="color: white; font-weight: bold;">Recent Placements</p>' +
+            '<p style="color: white;"><span style="color: #efd181;">Role :</span> Financial Account</p>' +
+            '<p><span style="color: #efd181;">Company type :</span>Renewable Energy Fund</p>';
+
+    // Add more cases for other areas if needed
+
+    default:
+        return '<p>' + defaultText + '</p>';
+}
+
+    }
+
+    // Function to get the corresponding poly area for a given circle area
+    function getCorrespondingPoly(circleArea) {
+        var correspondingPolyAlt = $(circleArea).attr('alt');
+        return $('area[alt="' + correspondingPolyAlt + '"][shape="poly"]');
+    }
+});
+
+</script>
+
+
+
+
+    <!-- JAVASCRIPT FILES -->
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.sticky.js"></script>
+    <script src="/static/js/click-scroll.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+</body>
+
+</html>

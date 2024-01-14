@@ -1,0 +1,20 @@
+<!-- delete_job.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include necessary CSS and Bootstrap CDN links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Delete Member</title>
+</head>
+<body class="bg-danger text-white">
+    <div class="container mt-5">
+        <h2>Delete Job</h2>
+        <p>Are you sure you want to remove the member "{{ member.title }}"?</p>
+        <form method="POST" action="{{ url_for('delete_member', member_id=member.id) }}">
+            <input type="submit" value="Yes, Delete" class="btn btn-danger">
+            <a href="{{ url_for('members_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

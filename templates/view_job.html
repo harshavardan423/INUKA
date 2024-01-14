@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include Bootstrap CDN links for Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <link href="/static/css/templatemo-festava-live.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+
+
+
+
+    
+    <title>Inuka Partners - Vacancies</title>
+</head>
+
+<style>
+    .button{
+        margin: 10px;
+    }
+    
+    h2{
+        font-family:  'Montserrat', sans-serif;
+        color: #efd181;
+    }
+    .preserve-formatting {
+        white-space: pre-line;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index copy.html">
+                Inuka Partners
+            </a>
+
+            <!-- <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a> -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav" >
+                <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/" style="font-weight: 600;color: var(--inuka-blue);">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"  href="/about" style="font-weight: 600;" >About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/inuka_insights" style="font-weight: 600;">Inuka Insights</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="/contact" style="font-weight: 600;color: white;">Vacancies</a>
+                    </li>
+                </ul>
+
+                <!-- <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a> -->
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>{{job.title}}</h2>
+        <p class="preserve-formatting" style="font-size: large;" >{{job.description}}</p>
+        <p style="color: white; font-size: medium;">
+            <strong style="color: white;">Required Skills :</strong>
+            <br>
+            {% if job.skills %}
+                {% for skill in job.skills.split(',') %}
+                    - {{ skill }}
+                    <br>
+                {% endfor %}
+            {% else %}
+                No skills specified
+            {% endif %}
+            <br>
+            <a href="{{ url_for('application_form', job_id=job.id) }}" class="btn" style="background-color: #efd181; color: black; border-radius: 20px; font-weight: bold;">
+                Apply
+            </a>
+        </p>
+    </div>
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+</body>
+</html>

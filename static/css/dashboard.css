@@ -1,0 +1,108 @@
+:root {
+    --white-color:                  #ffffff;
+    --primary-color:                #F8CB2E;
+    --secondary-color:              #000000;
+    --section-bg-color:             #f0f8ff;
+    --custom-btn-bg-color:          #EE5007;
+    --custom-btn-bg-hover-color:    #c01f27;
+    --dark-color:                   #000000;
+    --p-color:                      #000000;
+    --border-color:                 #7fffd4;
+    --link-hover-color:             #B22727;
+    --inuka-color:                  #253336;
+    --inuka-blue:                   #82b4c3;
+  
+    --body-font-family:             'Montserrat', sans-serif;
+  
+    --h1-font-size:                 74px;
+    --h2-font-size:                 46px;
+    --h3-font-size:                 32px;
+    --h4-font-size:                 28px;
+    --h5-font-size:                 24px;
+    --h6-font-size:                 22px;
+    --p-font-size:                  18px;
+    --btn-font-size:                14px;
+    --copyright-font-size:          16px;
+  
+    --border-radius-large:          100px;
+    --border-radius-medium:         20px;
+    --border-radius-small:          10px;
+  
+    --font-weight-light:            300;
+    --font-weight-normal:           400;
+    --font-weight-bold:             700;
+  }
+  
+  body{
+    background-color: #253336;
+}
+h2{
+    color: #F8CB2E;
+    font-family:  'Montserrat', sans-serif;
+}
+
+label{
+    color: white;
+}
+
+li{
+    color: white;
+}
+
+p{
+    color: white;
+    font-family:  'Montserrat', sans-serif;
+}
+
+h1{
+    color: white;
+    font-family:  'Montserrat', sans-serif;
+}
+
+h3{
+    color: #F8CB2E;
+    font-family:  'Montserrat', sans-serif;
+}
+
+h3,h5,h4 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.job-details {
+    margin-top: 20px;
+}
+
+.question-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.answer-list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.card {
+
+background-color: #00000038;
+padding: 10px;
+border-radius: 10px;
+border-width: 2px;
+width: fit-content;
+}
+
+.list-group-item{
+    background-color: rgba(24, 24, 24, 0.235);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+.btn-warning {
+    background-color: var(--primary-color);
+    color: black;
+}

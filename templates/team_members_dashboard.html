@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include Bootstrap CDN links for Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+
+
+    <title>Team Members Dashboard</title>
+    <style>
+        .member-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .member-actions {
+            margin-top: 5px;
+        }
+
+        .btn-edit {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Team Members Dashboard</h2>
+        <a class="btn btn-secondary mb-3" href="{{ url_for('dashboard') }}">Go Back</a>
+
+        <ul class="list-unstyled">
+            {% for team_member in team_members %}
+                <li class="member-item">
+                    <div>
+                        <strong>{{ team_member.member_name }}</strong>
+                    </div>
+                    <div class="member-actions">
+                        <!-- Use a form for delete -->
+                        <form method="POST" action="{{ url_for('delete_team_member', member_id=team_member.id) }}" style="display:inline;">
+                            <!-- Include CSRF token if using Flask-WTF -->
+                            <button type="submit" class="btn btn-link text-danger">Delete</button>
+                        </form>
+                        <a class="btn btn-warning btn-edit" href="{{ url_for('edit_team_member', member_id=team_member.id) }}">Edit</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a class="btn btn-success" href="{{ url_for('create_team_member') }}">Create New Member</a>
+    </div>
+</body>
+
+</html>

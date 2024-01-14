@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Inuka Partners</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/templatemo-festava-live.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyBk6SrbJ2PJZJDSGIvHdGhaIpnl8J+2qG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap">
+
+    <!-- <script src="static//static/js/fadein_section"></script> -->
+    <!-- jQuery Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- Maphilight Script -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+</head>
+<style>
+    .container h3 {
+        font-size: 44px; /* Adjust the font size as needed */
+        font-weight: lighter;
+    }
+
+    .container a.btn {
+        color: black;
+        background-color: rgb(255, 255, 255);
+        font-size: 20px; /* Adjust the font size as needed */
+        padding: 15px 20px; /* Adjust the padding as needed */
+        font-weight:normal;
+    
+    }
+
+    #background-section {
+            padding: 20px;
+            position: relative; /* Add this to make the absolute positioning work */
+         
+        }
+
+        #background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: none;
+            z-index: -1; /* Send the background image to the back */
+            opacity: 1; /* Initially set to fully visible */
+        }
+
+        .custom-container {
+            background-color: rgba(52, 52, 52, 0.358);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+
+        #map-image {
+            width: 591px; /* Replace with the original width of your image */
+            height: 360px; /* Add 'px' for the height */
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* To ensure the image is responsive within its container */
+            height: auto;
+            object-fit: cover;
+}
+
+.cloud {
+    position: absolute;
+    background: url(/static/images/cloud.png);
+    width: 100%;
+    height: 100%;
+    animation: animate 100s linear infinite;
+    object-fit: none;
+}
+@keyframes animate
+{
+    0%
+    {
+        background-position: 0px;
+    }
+    100%
+    {
+        background-position: 3033px;
+    }
+}
+#video-section {
+    position: relative;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px); /* Adjust the blur amount as needed */
+    transition: filter 0.5s ease; /* Add a smooth transition effect */
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hide the video by default */
+.background-video {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.h2 {
+    font-family:  'Montserrat', sans-serif;
+}
+
+.strong{
+    font-family:  'Montserrat', sans-serif;
+
+}
+
+.artists-image-wrap {
+        height: 500px; /* Adjust the height as per your requirement */
+        overflow: hidden;
+    }
+
+    .artists-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* This property ensures that the image covers the container while maintaining its aspect ratio */
+    }
+
+    .card {
+    border-radius: 10px;
+    background-color: #253336bd;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.411);
+    margin-left: 5px;
+    height: auto;
+    overflow: scroll; /* Add this line for scroll */
+    overflow-y: scroll; /* Vertical scroll */
+    overflow-x: hidden; /* Hide horizontal scroll if not needed */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+
+    .card:hover {
+        background-color: #253336;
+        transform: scale(108%);
+    }
+
+    .card img {
+        width: 40%; /* Ensure the image takes the full width of its container */
+        height: auto;
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .card h5, .card p {
+        color: white;
+    }
+            #backgroundVideo {
+        opacity: 1;
+        transition: opacity 0.5s ease; /* Add a transition for smooth fading */
+    }
+
+
+     /* Additional custom styles */
+     .owl-carousel .owl-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .item{
+        width: 400px;
+        padding: 5px;
+    }
+    
+    .owl-carousel .owl-item {
+      padding: 20px; /* Adjust padding as needed */
+      border: none; /* Remove borders for the card body */
+    }
+
+    .owl-carousel .owl-item:not(.center) .team-member-description {
+      display: none; /* Hide text for non-center items */
+    }
+
+    .owl-carousel .owl-item:not(.center) .card-img-top {
+      opacity: 0.2;
+    }
+
+    .owl-carousel .owl-item.center .team-member-description {
+      display: block; /* Show text for the center item */
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .owl-carousel .owl-item.center.active .team-member-description {
+      opacity: 1; /* Fade in text for the active center item */
+    }
+
+
+    .item .card{
+        border: none;
+        text-align: left;
+    }
+
+    .team-member-description{
+        text-align: left;
+    }
+
+    /* Add this to your CSS stylesheet */
+.arrows-container img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.arrows-container img:hover {
+  opacity: 0.7; /* Adjust the opacity value as needed */
+}
+
+
+
+
+
+    .services-section {
+  height: fit-content;
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.card2 {
+    flex: 0 0 calc(33.3333% - 20px); /* Adjust the width and margin as needed */
+    margin: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0px;
+  padding: 0px;
+  height: auto;
+  background-color: #253336; /* Set to transparent to allow video to be visible */
+  
+}
+
+.partition {
+  padding-top: 100px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 700px;
+  /* background: #253336; */
+}
+
+.partition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.partition:hover::before {
+  transform: translateY(0);
+}
+
+
+        .partition h2 {
+            text-align: center;
+            margin: 0;
+            transition: transform 0.3s ease;
+            color: white;
+            font-weight:900;
+            transform: translateY(500%);
+        }
+
+        
+
+        .partition p {
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    transform: translateY(20%);
+    transition: opacity 0.4s ease-in-out, transform 0.1s ease; /* Combine them */
+    color: #ffffff;
+}
+
+.partition-text{
+    height: 10px;
+    overflow: hidden;
+}
+
+
+
+        .partition:hover h2 {
+            transform: translateY(0%);
+        }
+
+   
+
+        .partition:hover p {
+            opacity: 1;
+            transform: translateY(-10%);
+        }
+
+
+        @media only screen and (max-width: 600px) {
+    .item {
+        width: 350px;
+        margin-right: 10px;
+    }
+
+    .partition h2 {
+            text-align: center;
+            margin: 0;
+            transition: transform 0.3s ease;
+            color: white;
+            font-weight:900;
+            transform: translateY(500%);
+        }
+
+    .services-container h1 {
+        text-align: start;
+        color: pink;
+    }
+
+    .partition:hover h2 {
+        transform: translateY(100%);
+    }
+
+    .partition:hover p {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+   
+}
+
+
+        
+</style>
+
+<body>
+    
+<script>
+const observerOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    } else {
+      entry.target.classList.remove('in-view');
+    }
+  });
+}, observerOptions);
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const sections = Array.from(document.getElementsByClassName('section'));
+
+  for (let section of sections) {
+    observer.observe(section);
+  }
+});
+</script>
+
+    <main>
+
+   
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/index">
+                    Inuka Partners
+                </a>
+
+                <!-- <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a> -->
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav" >
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/" style="font-weight: 600;color: var(--inuka-blue);">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"  href="/about" style="font-weight: 600;color: white;">About Us</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inuka_insights" style="font-weight: 600;">Inuka Insights</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact" style="font-weight: 600;">Vacancies</a>
+                        </li>
+                    </ul>
+
+                    <!-- <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a> -->
+                </div>
+            </div>
+        </nav>
+
+
+        <section class="hero-section" id="section_1">
+            <div class="section-overlay"></div>
+
+            <div class="container d-flex justify-content-start align-items-center">
+                <div class="row">
+                    <div class="col-12 mt-auto mb-5 text-start">
+            
+                        <h3 class="text-white mb-2 section fadeup" style="font-weight: 100;">Bringing together passionate people with mission-driven businesses.</h3>
+            
+                        <!-- <a class="btn custom-btn smoothscroll" href="#section_2" style="font-weight: 800 ;">Let's begin</a> -->
+                    </div>
+            
+                    <!-- <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
+                        <div class="date-wrap">
+                            <h5 class="text-white">
+                                <i class="custom-icon bi-clock me-2"></i>
+                                10 - 12<sup>th</sup>, Dec 2023
+                            </h5>
+                        </div>
+            
+                        <div class="location-wrap mx-auto py-3 py-lg-0">
+                            <h5 class="text-white">
+                                <i class="custom-icon bi-geo-alt me-2"></i>
+                                National Center, United States
+                            </h5>
+                        </div>
+            
+                        <div class="social-share">
+                            <ul class="social-icon d-flex align-items-center justify-content-center">
+                                <span class="text-white me-3">Share:</span>
+            
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-facebook"></span>
+                                    </a>
+                                </li>
+            
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-twitter"></span>
+                                    </a>
+                                </li>
+            
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link">
+                                        <span class="bi-instagram"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            
+
+            <div class="video-wrap">
+                <video autoplay="" loop="" muted="" class="custom-video" poster="">
+                    <!-- <source src="/static/video/inuka_videos/about_us_page.mp4" type="video/mp4"> -->
+                    <source src="https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705226868/efbz6wtlhwjvmaqeu9zt.mp4" type="video/mp4">
+
+
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        
+        <!-- <section class="artists-section section-padding" style="position: relative;background-color: var(--inuka-color);">
+        
+            <div class="container">
+                <div class="row justify-content-center">
+
+                    <div class="col-12 text-center">
+                        <h2 class="mb-4" style="color: white;">Our Team</h1>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        <div class="artists-thumb">
+                            <div class="artists-image-wrap">
+                                <img src="/static/images/Shaun_Mogul.jpg"
+                                    class="artists-image img-fluid">
+                            </div>
+
+                            <div class="artists-hover">
+                                <p>
+                                    <h2 style="color: white;">Co-Founder & Director</h2>
+                                    <strong style="color: white;">Shaun has dedicated his career towards working in emerging markets across Africa, Asia and Middle-East to help overcome key barriers that hinder economic and social development.
+                                        <br>
+                                        <br>
+                                        Shaun previously worked at a headhunting firm where he led their EMEA practice. His role focused on expanding the client base of the business in emerging markets, while managing the team.
+                                        <br>
+                                        <br>
+                                        Prior to that, Shaun worked with Arsenal Football Club in Uganda where he designed and led multiple initiatives focused on delivering social impact projects through sport. 
+                                        <br>
+                                        <br>
+                                        Driven by the belief of the potential that emerging markets hold, Shaun co-founded Inuka to address one of the key constraints when it comes to the development of economies - helping businesses find top tier talent.</strong>
+                                   
+                                </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12">
+                        <div class="artists-thumb">
+                            <div class="artists-image-wrap">
+                                <img src="/static/images/adit_mehta.jpeg"
+                                    class="artists-image img-fluid">
+                            </div>
+
+                            <div class="artists-hover">
+                                <p>
+                                    <h2 style="color: white;">Co-Founder & Director</h2>
+                                    <strong style="color: white;">Adit has a background spanning across business development in the renewable energy sector and recruitment for the energy and infrastructure sector in Africa. His passion for energy and talent in  emerging geographies was the inspiration for Inuka. 
+<br>
+<br>
+                                        Adit previously worked as a Business Development Director for CrossBoundary Energy where he developed IPP projects for private off-takers across Africa. Prior to joining CrossBoundary Energy, Adit worked with a renewable energy headhunting firm where he started and led their EMEA energy practice. Adit also had a year long stint with Smart Power India by the Rockefeller Foundation where he worked on demand generation and micro enterprise development in rural India. 
+                                        <br>
+<br>
+                                        Adit has a Bachelors of Arts in Politics and International Relations from the University of Kent. He is an Indian who has lived and worked across Kenya, India, the UK and Singapore. </strong>
+                                   
+                                </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12">
+                        <div class="artists-thumb">
+                            <div class="artists-image-wrap">
+                                <img src="/static/images/tvisha_kapoor.jpg" style="size: 300px;"
+                                    class="artists-image img-fluid">
+                            </div>
+
+                            <div class="artists-hover">
+                                <p>
+
+                                    <h2 style="color: white;">Associate</h2>
+
+                                    <strong style="color: white;">Tvisha is an experienced marketing professional with a background in psychology and hands-on knowledge in both Digital Marketing and Social Media Marketing.
+<br>
+<br>
+                                        Tvisha previously worked as a Brand Manager at Hashtag Marketing where she led various digital brand strategies, incorporating effective communication and social media marketing plans to enhance customer outreach. She excelled in managing and generating engaging content for clients, resulting in significant digital engagement across multiple products and services.
+                                        <br>
+                                        <br>               
+                                        Prior to that, she worked as a marketing and social media lead where she spearheaded social media marketing across multiple platforms with a primary focus on product marketing. She developed the pre-launch digital strategy by curating content towards a certain demographic and launched the brand in the Indian market.
+                                        <br>
+                                        <br>            
+                                        Tvisha completed her Bachelor of Arts and Humanities, Liberal Arts at Jindal Global University in Sonipat, India. She pursued linguistics and research in Japan, and holds a Master's degree in Clinical Psychology. Currently based in India, she frequently travels between the US, Singapore and her home country.</strong>
+                                   
+                                </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-12">
+                        <div class="artists-thumb">
+                            <div class="artists-image-wrap">
+                                <img src="/static/images/melissa_ngige.jpeg"
+                                    class="artists-image img-fluid">
+                            </div>
+
+                            <div class="artists-hover">
+                                <p>
+                                    <h2 style="color: white;">Associate</h2>
+                                    <strong style="color: white;">Shiko is highly skilled in human resources, with a strong academic background in HR, Cultural Studies, and Social Anthropology. She also brings practical experience in strategy and the Hospitality industry.
+<br>
+<br>
+                                        Shiko previously served as a Talent, Learning, and Organisational Capabilities Graduate at a prominent IT consulting firm in London. In this role, she contributed significantly to the design and execution of key learning programs and led a pivotal people manager trainee development plan, enhancing the competencies of over 300 managers. She also spearheaded successful initiatives in diversity and inclusion, recognition, and learning.
+                                        <br>
+                                        <br>      
+                                        She holds a master’s degree in Human Resource Management and Organisations from the London School of Economics, with a CIPD (Level 7) accreditation. Her academic background also includes a Bachelor of Arts in Cultural Studies and Social Anthropology from the University of Kent.</strong>
+                                   
+                                </p>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                
+
+                </div>
+            </div>
+        </section> -->
+
+
+        <section class="artists-section section-padding " style="background-color: #253336;position: relative;">
+            <h2 class="mb-4 text-center section fadeup" style="color: white;">Our Team</h1>
+          
+            <div id="teamCarousel" class="owl-carousel owl-theme section fadeup ">
+
+                {% for member in members%}
+                <div class="item">
+                    <div class="artists-thumb">
+                        <div class="artists-image-wrap">
+                            <img src="data:image/jpeg;base64,{{ member.profile_image|b64encode }}"
+                                class="artists-image img-fluid">
+                        </div>
+    
+                        <div class="artists-hover">
+                            <p>
+                                <h2 style="color: #253336;">{{member.member_heading}}</h2>
+                                <h3 style="color: #efd181;">{{member.member_name}}</h3>
+                                <strong class = "preserve-formatting" style="color: white;"> {{member.text}}</strong>
+                               
+                            </p>
+    
+                            
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              <!-- Team Member 1 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/Shaun_Mogul.jpg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h2 style="color: #253336;">Co-Founder & Director</h2>
+                            <h3 style="color: #efd181;">Shaun Mogul</h3>
+                            <strong style="color: white;">Shaun has dedicated his career towards working in emerging markets across Africa, Asia and Middle-East to help overcome key barriers that hinder economic and social development.
+                                <br>
+                                <br>
+                                Shaun previously worked at a headhunting firm where he led their EMEA practice. His role focused on expanding the client base of the business in emerging markets, while managing the team.
+                                <br>
+                                <br>
+                                Prior to that, Shaun worked with Arsenal Football Club in Uganda where he designed and led multiple initiatives focused on delivering social impact projects through sport. 
+                                <br>
+                                <br>
+                                Driven by the belief of the potential that emerging markets hold, Shaun co-founded Inuka to address one of the key constraints when it comes to the development of economies - helping businesses find top tier talent.</strong>
+                           
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+          
+             
+          
+              <!-- Team Member 3 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/tvisha_kapoor.jpg" style="size: 300px;"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+
+                            <h2 style="color: #253336;">Associate</h2>
+                            <h3 style="color: #efd181;">Tvisha Kapoor</h3>
+
+                            <strong style="color: white;">Tvisha is an experienced marketing professional with a background in psychology and hands-on knowledge in both Digital Marketing and Social Media Marketing.
+<br>
+<br>
+                                Tvisha previously worked as a Brand Manager at Hashtag Marketing where she led various digital brand strategies, incorporating effective communication and social media marketing plans to enhance customer outreach. She excelled in managing and generating engaging content for clients, resulting in significant digital engagement across multiple products and services.
+                                <br>
+                                <br>               
+                                Prior to that, she worked as a marketing and social media lead where she spearheaded social media marketing across multiple platforms with a primary focus on product marketing. She developed the pre-launch digital strategy by curating content towards a certain demographic and launched the brand in the Indian market.
+                                <br>
+                                <br>            
+                                Tvisha completed her Bachelor of Arts and Humanities, Liberal Arts at Jindal Global University in Sonipat, India. She pursued linguistics and research in Japan, and holds a Master's degree in Clinical Psychology. Currently based in India, she frequently travels between the US, Singapore and her home country.</strong>
+                           
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+          
+              <!-- Team Member 4 -->
+              <div class="item">
+                <div class="artists-thumb">
+                    <div class="artists-image-wrap">
+                        <img src="/static/images/melissa_ngige.jpeg"
+                            class="artists-image img-fluid">
+                    </div>
+
+                    <div class="artists-hover">
+                        <p>
+                            <h2 style="color: #253336;">Associate</h2>
+                            <h3 style="color: #efd181;">Melissa Ngige</h3>
+                            <strong style="color: white;">Shiko is highly skilled in human resources, with a strong academic background in HR, Cultural Studies, and Social Anthropology. She also brings practical experience in strategy and the Hospitality industry.
+<br>
+<br>
+                                Shiko previously served as a Talent, Learning, and Organisational Capabilities Graduate at a prominent IT consulting firm in London. In this role, she contributed significantly to the design and execution of key learning programs and led a pivotal people manager trainee development plan, enhancing the competencies of over 300 managers. She also spearheaded successful initiatives in diversity and inclusion, recognition, and learning.
+                                <br>
+                                <br>      
+                                She holds a master’s degree in Human Resource Management and Organisations from the London School of Economics, with a CIPD (Level 7) accreditation. Her academic background also includes a Bachelor of Arts in Cultural Studies and Social Anthropology from the University of Kent.</strong>
+                           
+                        </p>
+
+                        
+                    </div>
+                </div>
+              </div>
+               
+              <!-- Add more team members as needed -->
+            </div>
+             <!-- Add left and right arrow icons -->
+             <div class="arrows-container" style="position: absolute; right: 10%;bottom: 20px;">
+            <img src="/static/images/buttons/left.svg" style="width: 50px;" alt="">
+            <img src="/static/images/buttons/right.svg" style="width: 50px;" alt="">
+            </div>
+          
+          
+          </section>
+        
+    
+
+        <section class="artists-section section-padding" style="position: relative; background-color: #253336; z-index: 1;">
+            <div id="backgroundContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+                <!-- Default background image -->
+                <img id="backgroundImage" src="/static/images/our_sectors_bg.jpg" alt="Default Background Image" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5);">
+                <!-- Video element -->
+                <video id="backgroundVideo" autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: blur(0.5px); filter: brightness(0.5);">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="col-12 text-center section fadeup ">
+                <h2 class="mb-4" style="color: white; font-weight: lighter;">Our Sectors</h2>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- Card 1 -->
+                    <div class="col-md-4 mb-4 section fadeup ">
+                        <!-- <div class="card" style="width: 100%;" id="card1" onmouseover="changeVideo('/static/video/inuka_videos/windmills.mp4')" onmouseout="resetVideo()"> -->
+                        <div class="card" style="width: 100%;" id="card1" onmouseover="changeVideo('/static/video/inuka_videos/windmills.mp4')" onmouseout="resetVideo()">
+
+                            <div class="card-body text-center">
+                                <h5>Renewable Energy</h5>
+                                <p class="card-text">Emerging markets' power infrastructure lags, creating an opportunity for rapid adoption of solar, wind, hydro, and other renewables. Inuka collaborates across the value chain to attract top-tier talent for impactful businesses in these sectors.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="col-md-4 mb-4 section fadeup ">
+                        <!-- <div class="card" style="width: 100%;" id="card2" onmouseover="changeVideo('/static/video/inuka_videos/blue_water.mp4')" onmouseout="resetVideo()"> -->
+                        <div class="card" style="width: 100%;" id="card2" onmouseover="changeVideo('https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705227011/lhcmilbrlqczrutfn7u7.mp4')" onmouseout="resetVideo()">
+
+                            
+                            <div class="card-body text-center">
+                                <h5>Green Hydrogen</h5>
+                                <p class="card-text">Crucial in emerging markets, this sector attracts investment, fosters economic growth, and facilitates development. Success depends on skilled professionals who understand the financial landscape and nuances of emerging markets. Inuka plays a key role in matching candidates with the right skills and cultural fit for these roles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="col-md-4 mb-4 section fadeup ">
+                        <!-- <div class="card" style="width: 100%;" id="card3" onmouseover="changeVideo('/static/video/inuka_videos/growth.mp4')" onmouseout="resetVideo()"> -->
+                        <div class="card" style="width: 100%;" id="card3" onmouseover="changeVideo('https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705227346/jguyj3fucwlghdtssb2j.mp4')" onmouseout="resetVideo()">
+
+                            <div class="card-body text-center">
+                                <h5>Principal Investment & Investment Advisory</h5>
+                                <p class="card-text">This sector serves as a catalyst for driving financial stability and fostering growth. The success of these activities heavily depends on having skilled professionals who understand the intricacies of both the financial landscape and the specific nuances of emerging markets. Inuka plays a key role in matching candidates with the right skills, experience, and cultural fit to the demands of Principal Investment and Investment Advisory roles in emerging markets.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+       
+        <section class="services-section ">
+            <div class="video-container">
+                <video id="backgroundVideo" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.8;">
+                    <!-- <source src="/static/video/inuka_videos/our_services.mp4" type="video/mp4"> -->
+                    <source src="https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705227196/sgl77mgibfefqk557lyn.mp4" type="video/mp4">
+
+                    Your browser does not support the video tag.
+                </video>
+                <div class="services-container section fadeup " style="background-color: rgba(0, 0, 0, 0.545); position: relative;">
+                    <!-- Heading positioned absolutely -->
+                    <h1 style="position: absolute; padding-top: 25px; left: 50%; transform: translateX(-50%); color: white;font-size: 45px;font-weight: 300;">Our Services</h1>
+        
+                    <div class="partition ">
+                        
+                        <br>
+                        <h2 class="section fadeup " style="font-size: large;">Contingent Search <h2><i class="fa-solid fa-magnifying-glass"></i></h2> </h2>
+                        <div class="partition-text">
+                            <p>
+                                Inuka collaborates with you to pinpoint and secure top-tier talent with the expertise necessary to meet your objectives and create a meaningful impact. We specialise in identifying and securing top talent on a flexible basis, ensuring a responsive approach to your workforce requirements. We aim to enhance your team with skilled professionals, offering a dynamic and adaptable staffing solution for your evolving business needs.
+                            </p>
+                        </div>
+                        
+                    </div>
+                    <div class="partition">
+                       
+                        <br>
+                        <h2 class="section fadeup " style="font-size: large;">Retained Search  <h2><i class="fa-solid fa-filter"></i></h2> </h2>
+                        <p>
+                            We offer exclusive and dedicated services to secure top-tier talent for critical positions at your firm. Our approach involves a deep understanding of your organisational needs, ensuring a thorough and strategic search process. By retaining our services, you gain access to our extensive network and expertise, resulting in a customised recruitment strategy. We prioritise precision and excellence, and are committed to delivering long-term value by identifying and placing candidates who align seamlessly with your company's goals and culture.
+                        </p>
+                    </div>
+                    <div class="partition">
+                        
+                        <br>
+                        <h2 class="section fadeup " style="font-size: large;">Board Services <h2><i class="fa-solid fa-people-group"></i></h2> </h2>
+                        <p>
+                            Inuka is dedicated to discovering individuals who will fortify your board and elevate your senior team. We bring innovative perspectives, complementary skills, and a diverse range of experiences at the executive level. Our commitment lies in identifying candidates who can bring added strength and depth to your leadership, ensuring that your top-tier executives are well equipped to navigate challenges and drive success.
+                        </p>
+                    </div>
+                    <div class="partition">
+                        
+                        <br>
+                        <h2 style="font-size: large;">Salary Benchmarking <h2><i class="fa-solid fa-coins"></i></h2> </h2>
+                        <p>
+                            Our approach to salary benchmarking is rooted in a commitment to providing comprehensive insights that empower your organisation. We deliver accurate and up-to-date salary data to help you make informed decisions in aligning your compensation structures with industry standards. By conducting thorough salary benchmarking analyses, we aim to ensure that your organisation remains competitive in attracting and retaining top talent.
+                        </p>
+                    </div>
+                    <!-- Add more partitions as needed -->
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+            
+            
+       
+            
+        
+        <script>
+            function changeVideo(newSource) {
+                var backgroundContainer = document.getElementById('backgroundContainer');
+                var backgroundImage = document.getElementById('backgroundImage');
+                var backgroundVideo = document.getElementById('backgroundVideo');
+        
+                // Fade out the background image
+                backgroundImage.style.opacity = 0;
+        
+                // Set a timeout to switch to the video source and fade in the video
+                setTimeout(function () {
+                    backgroundImage.style.display = 'none';
+                    backgroundVideo.style.display = 'block';
+        
+                    // Set video source and play
+                    document.getElementById('videoSource').src = newSource;
+                    backgroundVideo.load();
+                    backgroundVideo.play();
+        
+                    // Fade in the video
+                    fadeIn(backgroundVideo);
+                }, 200); // Set the timeout to match the transition duration
+            }
+        
+            function resetVideo() {
+                var backgroundContainer = document.getElementById('backgroundContainer');
+                var backgroundImage = document.getElementById('backgroundImage');
+                var backgroundVideo = document.getElementById('backgroundVideo');
+        
+                // Fade out the video
+                backgroundVideo.style.opacity = 0;
+        
+                // Set a timeout to switch to the background image source and fade in the image
+                setTimeout(function () {
+                    backgroundImage.style.display = 'block';
+                    backgroundVideo.style.display = 'none';
+                    document.getElementById('videoSource').src = '';
+        
+                    // Fade in the background image
+                    fadeIn(backgroundImage);
+                }, 200); // Set the timeout to match the transition duration
+            }
+        
+            function fadeIn(element) {
+                var opacity = 0;
+                element.style.opacity = opacity;
+                element.style.display = 'block';
+                var fadeInInterval = setInterval(function () {
+                    if (opacity < 1) {
+                        opacity += 0.1;
+                        element.style.opacity = opacity;
+                    } else {
+                        clearInterval(fadeInInterval);
+                    }
+                }, 50);
+            }
+        </script>
+        
+    
+        
+        
+        
+        
+
+
+        <!-- <section class="schedule-section section-padding" id="section_4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 text-center">
+                        <h2 class="text-white mb-4">Event Schedule</h1>
+
+                            <div class="table-responsive">
+                                <table class="schedule-table table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Date</th>
+
+                                            <th scope="col">Wednesday</th>
+
+                                            <th scope="col">Thursday</th>
+
+                                            <th scope="col">Friday</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Day 1</th>
+
+                                            <td class="table-background-image-wrap pop-background-image">
+                                                <h3>Pop Night</h3>
+
+                                                <p class="mb-2">5:00 - 7:00 PM</p>
+
+                                                <p>By Adele</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #F3DCD4"></td>
+
+                                            <td class="table-background-image-wrap rock-background-image">
+                                                <h3>Rock & Roll</h3>
+
+                                                <p class="mb-2">7:00 - 11:00 PM</p>
+
+                                                <p>By Rihana</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Day 2</th>
+
+                                            <td style="background-color: #ECC9C7"></td>
+
+                                            <td>
+                                                <h3>DJ Night</h3>
+
+                                                <p class="mb-2">6:30 - 9:30 PM</p>
+
+                                                <p>By Rihana</p>
+                                            </td>
+
+                                            <td style="background-color: #D9E3DA"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">Day 3</th>
+
+                                            <td class="table-background-image-wrap country-background-image">
+                                                <h3>Country Music</h3>
+
+                                                <p class="mb-2">4:30 - 7:30 PM</p>
+
+                                                <p>By Rihana</p>
+
+                                                <div class="section-overlay"></div>
+                                            </td>
+
+                                            <td style="background-color: #D1CFC0"></td>
+
+                                            <td>
+                                                <h3>Free Styles</h3>
+
+                                                <p class="mb-2">6:00 - 10:00 PM</p>
+
+                                                <p>By Members</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
+        <!-- <section class="pricing-section section-padding section-bg" id="section_5">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h2 class="text-center mb-4">Plans, you' love</h2>
+                    </div>
+
+                    <div class="col-lg-6 col-12">
+                        <div class="pricing-thumb">
+                            <div class="d-flex">
+                                <div>
+                                    <h3><small>Early Bird</small> $120</h3>
+
+                                    <p>Including good things:</p>
+                                </div>
+
+                                <p class="pricing-tag ms-auto">Save up to <span>50%</span></h2>
+                            </div>
+
+                            <ul class="pricing-list mt-3">
+                                <li class="pricing-list-item">platform for potential customers</li>
+
+                                <li class="pricing-list-item">digital experience</li>
+
+                                <li class="pricing-list-item">high-quality sound</li>
+
+                                <li class="pricing-list-item">standard content</li>
+                            </ul>
+
+                            <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
+                                <span>Buy Ticket</span>
+                                <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="16" cy="16" r="15.5"></circle>
+                                        <line x1="10" y1="18" x2="16" y2="12"></line>
+                                        <line x1="16" y1="12" x2="22" y2="18"></line>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                        <div class="pricing-thumb">
+                            <div class="d-flex">
+                                <div>
+                                    <h3><small>Standard</small> $240</h3>
+
+                                    <p>What makes a premium festava?</p>
+                                </div>
+                            </div>
+
+                            <ul class="pricing-list mt-3">
+                                <li class="pricing-list-item">platform for potential customers</li>
+
+                                <li class="pricing-list-item">digital experience</li>
+
+                                <li class="pricing-list-item">high-quality sound</li>
+
+                                <li class="pricing-list-item">premium content</li>
+
+                                <li class="pricing-list-item">live chat support</li>
+                            </ul>
+
+                            <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
+                                <span>Buy Ticket</span>
+                                <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="16" cy="16" r="15.5"></circle>
+                                        <line x1="10" y1="18" x2="16" y2="12"></line>
+                                        <line x1="16" y1="12" x2="22" y2="18"></line>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+
+
+        <!-- <section class="contact-section section-padding">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <h2 class="text-center mb-4">Interested? Let's talk</h2>
+
+                        <nav class="d-flex justify-content-center">
+                            <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
+                                role="tablist">
+                                <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-ContactForm" type="button" role="tab"
+                                    aria-controls="nav-ContactForm" aria-selected="false">
+                                    <h5>Contact Form</h5>
+                                </button>
+
+                                <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-ContactMap" type="button" role="tab"
+                                    aria-controls="nav-ContactMap" aria-selected="false">
+                                    <h5>Google Maps</h5>
+                                </button>
+                            </div>
+                        </nav>
+
+                        <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel"
+                                aria-labelledby="nav-ContactForm-tab">
+                                <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post"
+                                    role="form">
+                                    <div class="contact-form-body">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <input type="text" name="contact-name" id="contact-name"
+                                                    class="form-control" placeholder="Full name" required>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <input type="email" name="contact-email" id="contact-email"
+                                                    pattern="[^ @]*@[^ @]*" class="form-control"
+                                                    placeholder="Email address" required>
+                                            </div>
+                                        </div>
+
+                                        <input type="text" name="contact-company" id="contact-company"
+                                            class="form-control" placeholder="Company" required>
+
+                                        <textarea name="contact-message" rows="3" class="form-control"
+                                            id="contact-message" placeholder="Message"></textarea>
+
+                                        <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                            <button type="submit" class="form-control">Send message</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel"
+                                aria-labelledby="nav-ContactMap-tab">
+                                <iframe class="google-map"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29974.469402870927!2d120.94861466021855!3d14.106066818082482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite%2C%20Philippines!5e1!3m2!1sen!2smy!4v1670344209509!5m2!1sen!2smy"
+                                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section> -->
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="site-footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-12">
+                        <h2 class="text-white mb-lg-0">Inuka Partners</h2>
+                    </div>
+
+                    <!-- <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
+                        <ul class="social-icon d-flex justify-content-lg-end">
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-twitter"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-apple"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-instagram"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-youtube"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="#" class="social-icon-link">
+                                    <span class="bi-pinterest"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-4 pb-2">
+                    <h5 class="site-footer-title mb-3">Links</h5>
+
+                    <ul class="site-footer-links">
+                        <li class="site-footer-link-item">
+                            <a href="index.html" class="site-footer-link">Home</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="about_us.html" class="site-footer-link">About Us</a>
+                        </li>
+
+                        <li class="site-footer-link-item">
+                            <a href="inuka_insights.html" class="site-footer-link">Inuka Insights</a>
+                        </li>
+                        
+
+                        <li class="site-footer-link-item">
+                            <a href="contact_us.html" class="site-footer-link">Vacancies</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                    <h5 class="site-footer-title mb-3">Contact Us</h5>
+
+                    <p class="text-white d-flex mb-1">
+                        <a href="tel: 090-080-0760" class="site-footer-link">
+                            +44 7454767528
+                        </a>
+                    </p>
+
+                    <p class="text-white d-flex">
+                        <a href="mailto:hello@company.com" class="site-footer-link">
+                            contact@inukapartners.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
+                    <h5 class="site-footer-title mb-3">Location</h5>
+
+                    <p class="text-white d-flex mt-3 mb-2">
+                        Singapore<br>
+                        Nairobi, Kenya<br>
+                        Stellenbosch, South Africa<br>
+                        Mumbai, India
+                    </p>
+                    
+
+                    <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                        <span>Our Maps</span>
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="15.5"></circle>
+                                <line x1="10" y1="18" x2="16" y2="12"></line>
+                                <line x1="16" y1="12" x2="22" y2="18"></line>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mt-5">
+                        <p class="copyright-text">Copyright © 2036 Company</p>
+                        <!-- <p class="copyright-text">Distributed by: <a href="https://themewagon.com">ThemeWagon</a></p> -->
+                    </div>
+
+                    <div class="col-lg-8 col-12 mt-lg-5">
+                        <ul class="site-footer-links">
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Privacy Policy</a>
+                            </li>
+
+                            <li class="site-footer-link-item">
+                                <a href="#" class="site-footer-link">Your Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+
+T e m p l a t e M o
+
+-->
+<script>
+    // Add event listeners for hover
+    var videoSection = document.getElementById('video-section');
+    var backgroundVideo = document.querySelector('.background-video');
+
+    videoSection.addEventListener('mouseenter', function() {
+        backgroundVideo.style.opacity = 1;
+        backgroundVideo.play();
+    });
+
+    videoSection.addEventListener('mouseleave', function() {
+        backgroundVideo.style.opacity = 0;
+        backgroundVideo.pause();
+        backgroundVideo.currentTime = 0;
+    });
+</script>
+
+<script src="static//static/js/mapresizer.min.js"></script>
+<script>
+    imageMapResize();
+</script>
+<script>
+    $(function () {
+        $('#map-image').maphilight();
+
+        // Variable to store default text
+        var defaultText = "Hover over the area to see text.";
+
+        // Hover event for the image map area
+        $('area').hover(
+            function () {
+                var content = getContent(this); // Get HTML content from a function, you can customize this function
+                var highlightImage = $(this).data('highlight-image');
+
+                // Fade out the current background image
+                $('#background-image').fadeOut(300, function () {
+                    // Set the new background image and fade it in
+                    $(this).css({
+                        'background-image': 'url(' + highlightImage + ')',
+                    }).fadeIn(300);
+                });
+
+                // Fade out the current text content and update with the new content
+                $('#text-div').fadeOut(300, function () {
+                    $(this).html(content).fadeIn(300);
+                });
+            },
+            function () {
+                // Reset content and fade out the current background image
+                $('#background-image').fadeOut(300, function () {
+                    // Set the default background image and fade it in
+                    $(this).css({
+                        'background-image': 'url(/static/images/Background1.jpg)',
+                    }).fadeIn(300);
+                });
+
+                // Fade out the current text content and update with the default content
+                $('#text-div').fadeOut(300, function () {
+                    $(this).html('<p>' + defaultText + '</p>').fadeIn(300);
+                });
+            }
+        );
+
+        // Function to get HTML content based on the area
+        function getContent(area) {
+            // You can customize this function to return HTML content based on the area
+            switch ($(area).attr('alt')) {
+                case 'kenya':
+                    return '<h2 style="color: yellow;">Kenya</h2>' +
+                           '<p style="color: white;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                           
+                case 'saudi':
+                    return '<h2 style="color: yellow;">Saudi</h2>' +
+                           '<p style="color: white;">Saudi Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                           
+                case 'singapore':
+                    return '<h2 style="color: yellow;">Singapore</h2>' +
+                           '<p style="color: white;">Singapore Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                           
+                case 'southafrica':
+                    return '<h2 style="color: yellow;">South Africa</h2>' +
+                           '<p style="color: white;">South Africa Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                           
+                // Add more cases for other areas if needed
+                default:
+                    return '<p>' + defaultText + '</p>';
+            }
+        }
+    });
+</script>
+
+    <!-- JAVASCRIPT FILES -->
+    <!-- <script src="/static/js/jquery.min.js"></script> -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.sticky.js"></script>
+    <script src="/static/js/click-scroll.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popper/static/js/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2//static/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function(){
+  var teamCarousel = $("#teamCarousel");
+
+  teamCarousel.owlCarousel({
+    items: 4,
+    loop: false,
+    margin: 10, // Adjust the margin as needed
+    nav: false,
+    dots: false,
+    center: false, // Change to false to disable centering
+    responsive:{
+      0:{
+        items:1
+      },
+      600:{
+        items:1
+      },
+      1000:{
+        items:3
+      }
+    }
+  });
+
+  // Custom navigation buttons
+  $(".arrows-container img:first-child").click(function(){
+    teamCarousel.trigger('prev.owl.carousel');
+  });
+
+  $(".arrows-container img:last-child").click(function(){
+    teamCarousel.trigger('next.owl.carousel');
+  });
+});
+
+  </script>
+  
+
+</body>
+
+</html>

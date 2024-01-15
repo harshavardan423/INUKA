@@ -1,5 +1,5 @@
 from flask import Flask
-from models import db
+from .models import db  # Use a relative import
 import json
 import secrets
 
@@ -12,10 +12,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key  # Set a strong and secure secret key
 db.init_app(app)
 
-
-
 # Import your routes after initializing the app
-import routes
+from . import routes  # Use a relative import
 
 # Create tables when the application starts
 with app.app_context():

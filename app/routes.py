@@ -1,8 +1,8 @@
 from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash
 from flask_wtf.csrf import generate_csrf
 import json
-from models import db, InsightsPost, Job, Applicant,TeamMember,Question,Answer
-from app import app
+from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answer
+from . import app
 import os
 from werkzeug.utils import secure_filename
 from base64 import b64encode

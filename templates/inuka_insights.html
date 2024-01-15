@@ -339,43 +339,54 @@ window.addEventListener('DOMContentLoaded', (event) => {
         <section class="artists-section section-padding" style="background-color: #253336; position: relative;">
             <h2 class="mb-4 text-center section fadeup" style="color: white; padding-top: 100px;">Inuka Insights</h2>
         
-            
-            <div class="row">
-                
-
-               
-
-                
-        {% for post in insights_posts|reverse %}
-    <div class="col-md-4 mb-4 section fadeup">
-        <div class="item">
-            <div class="artists-thumb">
-                <div class="artists-image-wrap">
-                    <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+            <div id="carouselExample" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for batch in insights_posts|batch(6) %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="row">
+                            {% for post in batch %}
+                            <div class="col-md-4 mb-4 section fadeup">
+                                <div class="item">
+                                    <div class="artists-thumb">
+                                        <div class="artists-image-wrap">
+                                            <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                                        </div>
+                                        <div class="artists-hover">
+                                            <p>
+                                                <h3 class="artist-name">{{ post.member_name }}</h3>
+                                                <h3 class="artist-talk">{{ post.title }}</h3>
+                                                <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
                 </div>
-                <div class="artists-hover">
-                    <p>
-                        <h3 class="artist-name">{{ post.member_name }}</h3>
-                        <h3 class="artist-talk">{{ post.title }}</h3>
-                        <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
-                    </p>
-                </div>
-            </div>
-            
-        </div>
-        
+                <!-- Add left and right arrow icons -->
+        <!-- Add left and right arrow icons without anchor tags -->
+<div class="arrows-container" style="position: absolute; right: 10%;">
+    <img src="/static/images/buttons/left.svg" style="width: 50px; cursor: pointer;" alt="Previous" onclick="prevSlide()">
+    <img src="/static/images/buttons/right.svg" style="width: 50px; cursor: pointer;" alt="Next" onclick="nextSlide()">
+</div>
 
-        
-    </div>
-    
-{% endfor %}
+<script>
+    function prevSlide() {
+        $('#carouselExample').carousel('prev');
+    }
 
+    function nextSlide() {
+        $('#carouselExample').carousel('next');
+    }
+</script>
+
+
+                
             </div>
-             <!-- Add left and right arrow icons -->
-                        <!-- <div class="arrows-container" style="position: absolute; right: 10%;">
-                          <img src="/static/images/buttons/left.svg" style="width: 50px;" alt="">
-                          <img src="/static/images/buttons/right.svg" style="width: 50px;" alt="">
-                          </div> -->
         </section>
         
         

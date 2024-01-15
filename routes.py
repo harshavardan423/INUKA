@@ -38,6 +38,7 @@ login_manager = LoginManager(app)
 hardcoded_username = "admin"
 hardcoded_password = "inuka_admin"
 
+
 # A hardcoded user for demonstration purposes
 # class User(UserMixin):
 #     def __init__(self, id, username, password):

@@ -39,6 +39,7 @@
 
 </head>
 <style>
+   
     .container h3 {
         font-size: 44px; /* Adjust the font size as needed */
         font-weight: lighter;
@@ -196,6 +197,8 @@
         width: 400px;
         padding: 5px;
     }
+
+    
     
     .owl-carousel .owl-item {
       padding: 20px; /* Adjust padding as needed */
@@ -254,10 +257,9 @@
 
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
         .item {
-            width: 350px; /* Adjust the width as needed */
-            margin-right: 10px; /* Optional: Add some spacing between items */
+            width: 90%; /* Adjust the width as needed */
         }
     }
 
@@ -339,38 +341,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
         <section class="artists-section section-padding" style="background-color: #253336; position: relative;">
             <h2 class="mb-4 text-center section fadeup" style="color: white; padding-top: 100px;">Inuka Insights</h2>
         
+            <div class="container">
+                <div class="row justify-content-center">
+ 
+                    {% for post in insights_posts|reverse %}
+                <div class="col-md-4 section fadeup">
+                    <div class="item">
+                        <div class="artists-thumb">
+                            <div class="artists-image-wrap">
+                                <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                            </div>
+                            <div class="artists-hover">
+                                <p>
+                                    <h3 class="artist-name">{{ post.member_name }}</h3>
+                                    <h3 class="artist-talk">{{ post.title }}</h3>
+                                    <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
             
-            <div class="row">
-                
-
-               
-
-                
-        {% for post in insights_posts|reverse %}
-    <div class="col-md-4 mb-4 section fadeup">
-        <div class="item">
-            <div class="artists-thumb">
-                <div class="artists-image-wrap">
-                    <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                    
                 </div>
-                <div class="artists-hover">
-                    <p>
-                        <h3 class="artist-name">{{ post.member_name }}</h3>
-                        <h3 class="artist-talk">{{ post.title }}</h3>
-                        <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
-                    </p>
-                </div>
+                
+            {% endfor %}
+            
+                        </div>
             </div>
             
-        </div>
-        
-
-        
-    </div>
-    
-{% endfor %}
-
-            </div>
+            
              <!-- Add left and right arrow icons -->
                         <!-- <div class="arrows-container" style="position: absolute; right: 10%;">
                           <img src="/static/images/buttons/left.svg" style="width: 50px;" alt="">

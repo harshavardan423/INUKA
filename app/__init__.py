@@ -2,13 +2,12 @@ from flask import Flask
 from .models import db  # Use a relative import
 import json
 import secrets
-import pymysql
 
 # Generate a random hex string of 24 bytes (48 characters)
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://1zipdl5dptewfsjz6aju:pscale_pw_HXpKGoPoSTO5pjoDtCcHU6910NFUadJiPWL8Zoxrgus@aws.connect.psdb.cloud:3306/inuka'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://3pblvd00fkw5xc8rfaqo:pscale_pw_40vLoNeSm86bFd32bjl76M1Y5KtByhTSkETg0vkSoEm@aws.connect.psdb.cloud:3306/inuka'
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

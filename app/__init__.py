@@ -2,12 +2,17 @@ from flask import Flask
 from .models import db  # Use a relative import
 import json
 import secrets
+import os
+
+# Replace [USERNAME] and [PASSWORD] with your actual environment variable names
+username = os.environ.get("DB_USERNAME")
+password = os.environ.get("DB_PASSWORD")
 
 # Generate a random hex string of 24 bytes (48 characters)
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://akvyzl883kk07srefozp:pscale_pw_bhvHJ5MzsuP34u5oXRqiFrXVmiGt8sEzUtZsGdWHF0a@aws.connect.psdb.cloud:3306/inuka'
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

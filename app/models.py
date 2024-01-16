@@ -4,9 +4,26 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import LargeBinary
 from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
+import os
+
+# Replace [USERNAME] and [PASSWORD] with your actual environment variable names
+username = os.environ.get("DB_USERNAME")
+password = os.environ.get("DB_PASSWORD")
+
+print("USERNAME : "  + username)
+print("PASSWORD : "  + password)
+
+
+# Check if username and password are provided
+if username is None or password is None:
+    raise ValueError("Database username and password are required.")
+
+# Construct the connection string
+connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
+
 
 from sqlalchemy import create_engine
-connection_string = "mysql+mysqlconnector://akvyzl883kk07srefozp:pscale_pw_bhvHJ5MzsuP34u5oXRqiFrXVmiGt8sEzUtZsGdWHF0a@aws.connect.psdb.cloud:3306/inuka"
+connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
 engine = create_engine(connection_string, echo=True)
 

@@ -4,14 +4,14 @@ import json
 import secrets
 
 from sqlalchemy import create_engine
-connection_string = 'mysql+mysqlconnector://ln4rz58a9w9k4tgskpk9:pscale_pw_qnpToSj5Rthm3MLtXMrBk9BOnYzcz0ngXiz2qaQSvWH@aws.connect.psdb.cloud:3306/inuka'
+connection_string = 'mysql+mysqlconnector://ki8o4plwcdmd0c4c3u90:pscale_pw_kUn5XRHvTX9r1COK1PABA1Gq2fJcIA9hBhJuGSSxrDo@aws.connect.psdb.cloud:3306/inuka'
 
 
 # Generate a random hex string of 24 bytes (48 characters)
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://ln4rz58a9w9k4tgskpk9:pscale_pw_qnpToSj5Rthm3MLtXMrBk9BOnYzcz0ngXiz2qaQSvWH@aws.connect.psdb.cloud:3306/inuka'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://ki8o4plwcdmd0c4c3u90:pscale_pw_kUn5XRHvTX9r1COK1PABA1Gq2fJcIA9hBhJuGSSxrDo@aws.connect.psdb.cloud:3306/inuka'
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

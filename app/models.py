@@ -19,11 +19,11 @@ if username is None or password is None:
     raise ValueError("Database username and password are required.")
 
 # Construct the connection string
-connection_string = f"mysql+mysqlconnector://ti8fq4kusofd3y5k51yt:pscale_pw_eovCT3Kaht49Ln2NLSQZj07ayPhFtz8g2kHMSKAWY2M@aws.connect.psdb.cloud:3306/inuka"
+connection_string = f"mysql+mysqlconnector://hrn4p67m0kskadxhhapz:pscale_pw_i3WUKNcUTo2rKBqhk1W3R0idOnPO5qKgEJbyRYrAnua@aws.connect.psdb.cloud:3306/inuka"
 
 
 from sqlalchemy import create_engine
-# connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
+connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
 engine = create_engine(connection_string, echo=True)
 
@@ -91,16 +91,16 @@ class Answer(db.Model):
 
 
 
-# with engine.connect() as connection:
+with engine.connect() as connection:
     # connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
     # connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
 
-    # connection.execute(text("DROP TABLE answer"))
-    # connection.execute(text("DROP TABLE applicant"))
-    # connection.execute(text("DROP TABLE insights_post"))
-    # connection.execute(text("DROP TABLE job"))
-    # connection.execute(text("DROP TABLE question"))
-    # connection.execute(text("DROP TABLE team_member"))
+    connection.execute(text("DROP TABLE answer"))
+    connection.execute(text("DROP TABLE applicant"))
+    connection.execute(text("DROP TABLE insights_post"))
+    connection.execute(text("DROP TABLE job"))
+    connection.execute(text("DROP TABLE question"))
+    connection.execute(text("DROP TABLE team_member"))
 
     # connection.execute(text("DROP TABLE example"))
     # connection.execute(text("DROP TABLE newtable"))

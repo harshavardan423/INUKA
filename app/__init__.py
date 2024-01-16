@@ -7,7 +7,7 @@ import secrets
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://s93lvdgilc09ysjxvpfu:pscale_pw_rwDc6jbpEATVbFKd8KjSh3ilEckfPAMNEbwy3FVAt9h@aws.connect.psdb.cloud:3306/inuka'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://0e1bvq9q1eadavamn77l:pscale_pw_xfZVLiIHpRlr9dEC1MzB07lyShfW7m564WXdjyhNbWA@aws.connect.psdb.cloud:3306/inuka'
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

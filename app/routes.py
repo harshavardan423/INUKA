@@ -168,24 +168,23 @@ def dashboard():
 @login_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
-    
-    with Session(engine) as session:
-        if search_query:
-            # Perform a search based on the query
-            jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
-        else:
-            # If no search query, fetch all jobs
-            jobs = Job.query.all()
-        
-        # Retrieve the count of applicants for each job
-        job_applicants_count = (
-            session.query(Applicant.job_id, func.count(Applicant.id))
-            .group_by(Applicant.job_id)
-            .all()
-        )
-        
-        # Create a dictionary to store the count of applicants for each job
-        job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
+
+    if search_query:
+        # Perform a search based on the query
+        jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
+    else:
+        # If no search query, fetch all jobs
+        jobs = Job.query.all()
+
+    # Retrieve the count of applicants for each job
+    job_applicants_count = (
+        db.session.query(Applicant.job_id, func.count(Applicant.id))
+        .group_by(Applicant.job_id)
+        .all()
+    )
+
+    # Create a dictionary to store the count of applicants for each job
+    job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
     return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
     

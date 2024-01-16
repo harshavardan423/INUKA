@@ -5,10 +5,8 @@ from sqlalchemy import LargeBinary
 from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
 
-from sqlalchemy import create_engine
-connection_string = "mysql+mysqlconnector://ln4rz58a9w9k4tgskpk9:pscale_pw_qnpToSj5Rthm3MLtXMrBk9BOnYzcz0ngXiz2qaQSvWH@aws.connect.psdb.cloud:3306/inuka"
+
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
-engine = create_engine(connection_string,echo=True)
 
 db = SQLAlchemy()
 

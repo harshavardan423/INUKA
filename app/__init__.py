@@ -3,6 +3,10 @@ from .models import db  # Use a relative import
 import json
 import secrets
 
+from sqlalchemy import create_engine
+connection_string = 'mysql+mysqlconnector://ln4rz58a9w9k4tgskpk9:pscale_pw_qnpToSj5Rthm3MLtXMrBk9BOnYzcz0ngXiz2qaQSvWH@aws.connect.psdb.cloud:3306/inuka'
+
+
 # Generate a random hex string of 24 bytes (48 characters)
 secret_key = secrets.token_hex(24)
 
@@ -10,8 +14,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://ln4rz58a9w9k4tgskpk9:pscale_pw_qnpToSj5Rthm3MLtXMrBk9BOnYzcz0ngXiz2qaQSvWH@aws.connect.psdb.cloud:3306/inuka'
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key  # Set a strong and secure secret key
+engine = create_engine(connection_string,echo=True)
 db.init_app(app)
 
 # Import your routes after initializing the app

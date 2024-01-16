@@ -39,6 +39,7 @@
 
 </head>
 <style>
+   
     .container h3 {
         font-size: 44px; /* Adjust the font size as needed */
         font-weight: lighter;
@@ -144,7 +145,7 @@
 }
 
 .artists-image-wrap {
-        height: 500px; /* Adjust the height as per your requirement */
+        height: 400px; /* Adjust the height as per your requirement */
         overflow: hidden;
     }
 
@@ -152,30 +153,21 @@
         width: 100%;
         height: 100%;
         object-fit: cover; /* This property ensures that the image covers the container while maintaining its aspect ratio */
+        object-position: 80% 10%;
     }
 
     .card {
-    border-radius: 10px;
-    background-color: #253336bd;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.411);
-    margin-left: 5px;
-    height: auto;
-    overflow: scroll; /* Add this line for scroll */
-    overflow-y: scroll; /* Vertical scroll */
-    overflow-x: hidden; /* Hide horizontal scroll if not needed */
-    transition: all 0.3s ease-in-out;
-}
-
-/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-.card::-webkit-scrollbar {
-    display: none;
-}
-
+        border-radius: 10px;
+        background-color: #253336bd;
+        border-width: 1px;
+        border-color: rgba(255, 255, 255, 0.411);
+        margin-left: 5px;
+        overflow: hidden;
+        transition: background-color 0.3s ease-in-out;
+    }
 
     .card:hover {
         background-color: #253336;
-        transform: scale(108%);
     }
 
     .card img {
@@ -201,9 +193,12 @@
     }
 
     .item{
+        margin: 10px;
         width: 400px;
         padding: 5px;
     }
+
+    
     
     .owl-carousel .owl-item {
       padding: 20px; /* Adjust padding as needed */
@@ -238,6 +233,9 @@
         text-align: left;
     }
 
+
+
+
     /* Add this to your CSS stylesheet */
 .arrows-container img {
   transition: opacity 0.3s ease-in-out;
@@ -247,150 +245,28 @@
   opacity: 0.7; /* Adjust the opacity value as needed */
 }
 
-
-
-
-
-    .services-section {
-  height: fit-content;
+.artist-name {
+    color: #efd181;
+    font-size: medium;
 }
 
-.video-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.video-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-.card2 {
-    flex: 0 0 calc(33.3333% - 20px); /* Adjust the width and margin as needed */
-    margin: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-}
-
-.services-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0px;
-  padding: 0px;
-  height: auto;
-  background-color: #253336; /* Set to transparent to allow video to be visible */
-  
-}
-
-.partition {
-  padding-top: 100px;
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
-  height: 700px;
-  z-index: 0;
-  /* background: #253336; */
-}
-
-.partition::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
-
-.partition:hover::before {
-  transform: translateY(0);
+.artist-talk {
+    color: white;
+    font-size: larger;
 }
 
 
-        .partition h2 {
-            text-align: center;
-            margin: 0;
-            transition: transform 0.3s ease;
-            color: white;
-            font-weight:900;
-            transform: translateY(500%);
+
+@media only screen and (max-width: 600px) {
+        .item {
+            width: 90%; /* Adjust the width as needed */
         }
-
-        
-
-        .partition p {
-    margin: 0;
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    box-sizing: border-box;
-    transform: translateY(20%);
-    transition: opacity 0.4s ease-in-out, transform 0.1s ease; /* Combine them */
-    color: #ffffff;
-}
-
-.partition-text{
-    height: 10px;
-    overflow: hidden;
-}
-
-
-
-        .partition:hover h2 {
-            transform: translateY(0%);
-        }
-
-   
-
-        .partition:hover p {
-            opacity: 1;
-            transform: translateY(-10%);
-        }
-
-
-        @media only screen and (max-width: 600px) {
-    .item {
-        width: 100%;
     }
 
-    .partition h2 {
-            text-align: center;
-            margin: 0;
-            transition: transform 0.3s ease;
-            color: white;
-            font-weight:900;
-            transform: translateY(500%);
-        }
-
-    .services-container h1 {
-        text-align: start;
-        color: pink;
-    }
-
-    .partition:hover h2 {
-        transform: translateY(100%);
-    }
-
-    .partition:hover p {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-
-   
-}
 
 
-        
+    
+
 </style>
 
 <script>
@@ -468,31 +344,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
             <h2 class="mb-4 text-center section fadeup" style="color: white; padding-top: 100px;">Inuka Insights</h2>
         
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center section fadeup ">
  
                     {% for post in insights_posts|reverse %}
-                <div class="col-md-4 section fadeup">
                     <div class="item">
                         <div class="artists-thumb">
                             <div class="artists-image-wrap">
-                                <img src="{{post.image}}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                                <img src="{{ post.image }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
                             </div>
+                
                             <div class="artists-hover">
                                 <p>
-                                    <h2 style="color: #ffffff;">{{ post.title }}</h2>
-                                    <h3 style="color: #efd181;">{{ post.member_name }}</h3>
+                                    <h2 style="color: #ffffff;font-size: x-large;font-weight: bold;">{{ post.title }}</h2>
+                                    <h3 style="color: #efd181;font-size: x-large;font-weight: bold;">{{ post.member_name }}</h3>
                                     <a href="{{ url_for('insights_member_page', member_id=post.id) }}">Read More</a>
                                 </p>
                             </div>
                         </div>
-                        
                     </div>
-                    
-            
-                    
-                </div>
+                {% endfor %}
                 
-            {% endfor %}
             
                         </div>
             </div>

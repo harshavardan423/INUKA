@@ -19,7 +19,7 @@ if username is None or password is None:
     raise ValueError("Database username and password are required.")
 
 # Construct the connection string
-connection_string = f"mysql+mysqlconnector://z3zapn5lfgybzpcb8s6m:pscale_pw_eE0raZasZysISVQkL9PsPyTI7gZKIDGK0mn2H4XPCMt@aws.connect.psdb.cloud:3306/inuka"
+connection_string = f"mysql+mysqlconnector://dj6i4mzw9m8fgyoot4eg:pscale_pw_VyUu9oyp8CZYoXPpY9VuF1RnRzXHMQeza8aPK9lg3MB@aws.connect.psdb.cloud:3306/inuka"
 
 
 from sqlalchemy import create_engine

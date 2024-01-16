@@ -96,18 +96,18 @@ class Answer(db.Model):
 
 
 # with engine.connect() as connection:
-    # connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
-    # connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
+#     connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
+#     connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
 
-    # connection.execute(text("DROP TABLE answer"))
-    # connection.execute(text("DROP TABLE applicant"))
-    # connection.execute(text("DROP TABLE insights_post"))
-    # connection.execute(text("DROP TABLE job"))
-    # connection.execute(text("DROP TABLE question"))
-    # connection.execute(text("DROP TABLE team_member"))
+#     connection.execute(text("DROP TABLE answer"))
+#     connection.execute(text("DROP TABLE applicant"))
+#     connection.execute(text("DROP TABLE insights_post"))
+#     connection.execute(text("DROP TABLE job"))
+#     connection.execute(text("DROP TABLE question"))
+#     connection.execute(text("DROP TABLE team_member"))
 
-    # connection.execute(text("DROP TABLE example"))
-    # connection.execute(text("DROP TABLE newtable"))
+#     connection.execute(text("DROP TABLE example"))
+#     connection.execute(text("DROP TABLE newtable"))
 
 
     

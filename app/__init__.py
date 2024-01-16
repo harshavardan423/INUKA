@@ -7,7 +7,7 @@ import secrets
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://77f6dbc0ls9w8mc946u4:pscale_pw_KE82D3rYYmDpL1mawGAw61BN9VvMpj2tHsGSiHJWmde@aws.connect.psdb.cloud:3306/inuka'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://s93lvdgilc09ysjxvpfu:pscale_pw_rwDc6jbpEATVbFKd8KjSh3ilEckfPAMNEbwy3FVAt9h@aws.connect.psdb.cloud:3306/inuka'
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -20,8 +20,8 @@ from . import routes  # Use a relative import
 
 
 # Create tables when the application starts
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 
 

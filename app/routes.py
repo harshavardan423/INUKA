@@ -127,7 +127,8 @@ def inuka_insights():
 
 @app.route('/contact')
 def contact():
-    jobs = Job.query.all()
+    with Session(engine) as session:
+        jobs = Job.query.all()
     return render_template('contact_us.html', jobs = jobs)
 
 @app.route('/insights_member_page.html/<int:member_id>')

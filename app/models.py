@@ -7,8 +7,11 @@ from sqlalchemy import text
 import os
 
 # Replace [USERNAME] and [PASSWORD] with your actual environment variable names
-username = os.environ.get("DB_USERNAME")
-password = os.environ.get("DB_PASSWORD")
+host= os.getenv("DB_HOST")
+username = os.getenv("DB_USERNAME")
+password = os.getenv("DB_PASSWORD")
+db=os.getenv("DB_NAME")
+
 
 print("USERNAME : "  + username)
 print("PASSWORD : "  + password)

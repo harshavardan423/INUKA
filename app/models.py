@@ -28,7 +28,9 @@ connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.p
 from sqlalchemy import create_engine
 # connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
-engine = create_engine(connection_string, echo=True)
+# engine = create_engine(connection_string, echo=True)
+engine = create_engine('sqlite:///inuka_db.sqlite3')
+
 print(engine)
 
 db = SQLAlchemy()

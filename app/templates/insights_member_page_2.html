@@ -251,6 +251,31 @@
             /* Add any other styling you want for the quote font here */
         }
 </style>
+<script>
+const observerOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    } else {
+      entry.target.classList.remove('in-view');
+    }
+  });
+}, observerOptions);
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const sections = Array.from(document.getElementsByClassName('section'));
+
+  for (let section of sections) {
+    observer.observe(section);
+  }
+});
+</script>
 
 <body>
     
@@ -303,16 +328,16 @@
     
         <section class="artists-section section-padding" style="background-color: #253336;">
             <div class="container">
-                <h2 class="mb-4 text-center" style="color: white; padding-top: 100px;">Inuka Insights</h2>
+                <h2 class="mb-4 text-center section fadeup" style="color: white; padding-top: 100px;">Inuka Insights</h2>
         
-                <div class="row align-items-center">
+                <div class="row align-items-center ">
                     <div class="col-md-6 order-md-2 text-center">
                         <!-- Image in the center -->
-                        <img src="{{member.profile_image}}" alt="{{ member.name }} Image" id="member_image" class="img-fluid rounded" style="width: 350px;">
+                        <img src="{{member.image}}" alt="{{ member.name }} Image" id="member_image" class="img-fluid rounded section fadeup" style="width: 350px;">
                     </div>
                     <div class="col-md-6 order-md-1">
                         <!-- Name centered under the image on all screen sizes -->
-                        <div id="member-info" class="text-center text-md-start mt-md-0 mt-3">
+                        <div id="member-info" class="text-center text-md-start mt-md-0 mt-3 section fadeup">
                             <h1 style="color: #efd181;" id="member_name">{{ member.title }} </h1>
                         </div>
                     </div>

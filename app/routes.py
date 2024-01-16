@@ -859,4 +859,3 @@ def job(job_id):
         db.session.delete(job)
         db.session.commit()
         return jsonify({'message': 'Job deleted successfully'})
-

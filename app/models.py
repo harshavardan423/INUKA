@@ -8,7 +8,7 @@ from sqlalchemy import text
 from sqlalchemy import create_engine
 connection_string = "mysql+mysqlconnector://s93lvdgilc09ysjxvpfu:pscale_pw_rwDc6jbpEATVbFKd8KjSh3ilEckfPAMNEbwy3FVAt9h@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
-engine = create_engine(connection_string, echo=True)
+engine = create_engine()
 
 db = SQLAlchemy()
 

@@ -8,6 +8,5 @@ gunicorn==21.2.0
 whitenoise==6.6.0
 Werkzeug==2.3.7
 python-dotenv==0.21.1
-mysqlclient==2.1.0
-
-
+MySQL-python==1.2.5
+mysql-connector-python==8.2.0

@@ -6,7 +6,7 @@ from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
 
 from sqlalchemy import create_engine
-connection_string = "mysql+mysqlconnector://9lauj143ltmlgadagl1e:pscale_pw_xA3J7wRGbAkmbazkWPIXP1u7PtqsSQ163m1JQXz2RbB@aws.connect.psdb.cloud:3306/inuka"
+connection_string = "mysql+mysqlconnector://tu7gm3a39210y9tdbdw2:pscale_pw_A50cnMty0I1bkHsKwHrmPSGiuqluCHFfl6xZhyNgpBv@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
 engine = create_engine(connection_string, echo=True)
 

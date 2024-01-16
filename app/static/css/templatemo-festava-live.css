@@ -1133,3 +1133,8 @@ main {
 section {
   scroll-snap-align: center;
 }
+
+.navbar-brand {
+  color: #efd181;
+  font-family: 'Montserrat', sans-serif;
+}

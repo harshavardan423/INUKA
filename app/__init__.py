@@ -12,7 +12,7 @@ password = os.environ.get("DB_PASSWORD")
 secret_key = secrets.token_hex(24)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://tk77gwrcldsuov2jt0sq:pscale_pw_mEEFEHCcYSwvJZRhITrIqm9IOSSlryD0moVocktZt8t@aws.connect.psdb.cloud:3306/inuka"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"ti8fq4kusofd3y5k51yt:pscale_pw_eovCT3Kaht49Ln2NLSQZj07ayPhFtz8g2kHMSKAWY2M@aws.connect.psdb.cloud:3306/inuka"
 # 'mysql+pymysql://your_planetscale_username:your_planetscale_password@your_planetscale_host:3306/inuka'
 # 'sqlite:///inuka_db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

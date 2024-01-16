@@ -6,7 +6,7 @@ from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
 
 from sqlalchemy import create_engine
-connection_string = "mysql+mysqlconnector://i21saz1mdom16497ptq2:pscale_pw_lSbteXixsVdAYaWSrCUVLkrIJPoz4WeK4iCU7WLPh28@aws.connect.psdb.cloud:3306/inuka"
+connection_string = "mysql+mysqlconnector://sqtfsn1kasike5v72fjz:pscale_pw_s3nuv6SQ49gj3IG8IA9ec3vcs14uRzEYB2uzUlj6TlY@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
 engine = create_engine(connection_string, echo=True)
 
@@ -71,6 +71,7 @@ class Answer(db.Model):
     applicant_id = db.Column(db.String(255))
     question_id = db.Column(db.String(255))
     answer_text = db.Column(db.String(255))
+
 
 
 # with engine.connect() as connection:

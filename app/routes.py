@@ -116,12 +116,19 @@ def about():
     members = TeamMember.query.all()
     return render_template('about_us.html', members = members)
 
+
 @app.route('/inuka_insights')
 def inuka_insights():
-    # Assuming you have a query to get Inuka posts, adjust it based on your model and database structure
-    inuka_posts = InsightsPost.query.all()
+    try:
+        # Assuming you have a query to get Inuka posts, adjust it based on your model and database structure
+        inuka_posts = InsightsPost.query.all()
 
-    return render_template('inuka_insights.html', insights_posts=inuka_posts)
+        return render_template('inuka_insights.html', insights_posts=inuka_posts)
+    except Exception as e:
+        # Log the exception for debugging
+        print(f"An error occurred: {str(e)}")
+        # Return a generic error page or handle it as per your application's requirements
+        return render_template('error.html'), 500
 
 
 

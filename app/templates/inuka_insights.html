@@ -349,7 +349,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     <div class="item">
                         <div class="artists-thumb">
                             <div class="artists-image-wrap">
-                                <img src="data:image/jpeg;base64,{{ post.image|b64encode }}" class="artists-image img-fluid" alt="{{ post.member_name }}">
+                                <img src="{{post.image}}" class="artists-image img-fluid" alt="{{ post.member_name }}">
                             </div>
                             <div class="artists-hover">
                                 <p>

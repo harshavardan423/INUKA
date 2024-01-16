@@ -69,6 +69,11 @@ h3,h5,h4 {
     font-family: 'Montserrat', sans-serif;
 }
 
+.navbar-brand{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .job-details {
     margin-top: 20px;
 }

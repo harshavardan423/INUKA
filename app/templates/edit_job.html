@@ -55,7 +55,7 @@
             <div class="mb-3">
                 <h3 style="color: white;">Questions</h3>
                 <div id="existing-questions-container">
-                    {% for question in job.questions %}
+                    {% for question in questions %}
                         <div class="existing-question-input mb-2">
                             <input type="text" class="form-control" name="existing_questions[]" value="{{ question.text }}" required>
                             <input type="text" class="form-control" name="existing_default_answers[]" value="{{ question.default_answer }}" placeholder="Enter default answer" required>

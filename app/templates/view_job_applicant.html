@@ -16,7 +16,13 @@
         color: white;
     }
 </style>
-
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            Inuka Partners
+        </a>
+    </div>
+</nav>
 <body>
 
     <div class="container mt-5">
@@ -26,10 +32,11 @@
         <h3>{{ applicant.phone }}</h3>
 
         {% if applicant.resume %}
-                        <a href="{{ url_for('download_resume', applicant_id=applicant.id) }}" class="btn btn-secondary btn-sm ml-2">CV</a>
-                    {% else %}
-                        <span class="text-muted ml-2">No Resume</span>
+            <a href="{{ url_for('download_resume', applicant_id=applicant.id) }}" class="btn btn-secondary btn-sm ml-2">CV</a>
+        {% else %}
+            <span class="text-muted ml-2">No Resume</span>
         {% endif %}
+
 
         <h2 class="mt-5">Job Questions and Answers</h2>
 <ul>

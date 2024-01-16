@@ -40,11 +40,12 @@
                 <input type="text" class="form-control" id="quote" name="quote" value="{{ insights_post.quote }}" required>
             </div>
             <!-- Add file input for image -->
+<!-- Add file input for image -->
 <div class="mb-3">
     <label for="image" class="form-label">Image</label>
     <input type="file" class="form-control" id="image" name="image">
     {% if insights_post.image %}
-        <img src="data:image/jpeg;base64,{{ insights_post.image|b64encode }}" alt="Current Image" class="img-thumbnail mt-2" style="max-width: 200px;">
+        <img src="{{insights_post.image}}" alt="Current Image" class="img-thumbnail mt-2" style="max-width: 200px;">
     {% else %}
         <p>No current image</p>
     {% endif %}

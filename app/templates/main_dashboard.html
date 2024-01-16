@@ -5,25 +5,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/dashboard.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Inuka Dashboard</title>
-
 </head>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            Inuka Partners
+        </a>
+    </div>
+</nav>
 <body>
-   
     <div class="container mt-5">
-        <h2>Inuka Dashboard</h2>
+        <h2 class="text-center">Inuka Dashboard</h2>
         <div class="list-group">
             <a href="{{ url_for('jobs_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center text-white">Jobs</a>
-            <a href="{{ url_for('team_members_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center  text-white">Team Members</a>
+            <a href="{{ url_for('team_members_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center text-white">Team Members</a>
             <a href="{{ url_for('insights_posts_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center text-white">Posts</a>
         </div>
-        <a href="{{ url_for('logout') }}"class="btn btn-secondary mt-3" >Log out</a>
-
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary mt-3 btn-block">Log out</a>
     </div>
-
-    
 
     <!-- Include Bootstrap JS and Popper.js (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

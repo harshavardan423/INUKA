@@ -296,6 +296,7 @@
   box-sizing: border-box;
   overflow: hidden;
   height: 700px;
+  z-index: 0;
   /* background: #253336; */
 }
 
@@ -659,118 +660,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
           
             <div id="teamCarousel" class="owl-carousel owl-theme section fadeup ">
 
-                {% for member in members%}
+                {% for member in members %}
                 <div class="item">
                     <div class="artists-thumb">
                         <div class="artists-image-wrap">
-                            <img src="data:image/jpeg;base64,{{ member.profile_image|b64encode }}"
-                                class="artists-image img-fluid">
+                            <img src="{{ member.profile_image }}" class="artists-image img-fluid">
                         </div>
-    
+
                         <div class="artists-hover">
                             <p>
-                                <h2 style="color: #253336;">{{member.member_heading}}</h2>
-                                <h3 style="color: #efd181;">{{member.member_name}}</h3>
-                                <strong class = "preserve-formatting" style="color: white;"> {{member.text}}</strong>
-                               
+                                <h2 style="color: #253336;">{{ member.member_heading }}</h2>
+                                <h3 style="color: #efd181;">{{ member.member_name }}</h3>
+                                <strong class="preserve-formatting" style="color: white;">{{ member.text }}</strong>
                             </p>
-    
-                            
                         </div>
                     </div>
-                  </div>
-                {% endfor %}
-              <!-- Team Member 1 -->
-              <div class="item">
-                <div class="artists-thumb">
-                    <div class="artists-image-wrap">
-                        <img src="/static/images/Shaun_Mogul.jpg"
-                            class="artists-image img-fluid">
-                    </div>
-
-                    <div class="artists-hover">
-                        <p>
-                            <h2 style="color: #253336;">Co-Founder & Director</h2>
-                            <h3 style="color: #efd181;">Shaun Mogul</h3>
-                            <strong style="color: white;">Shaun has dedicated his career towards working in emerging markets across Africa, Asia and Middle-East to help overcome key barriers that hinder economic and social development.
-                                <br>
-                                <br>
-                                Shaun previously worked at a headhunting firm where he led their EMEA practice. His role focused on expanding the client base of the business in emerging markets, while managing the team.
-                                <br>
-                                <br>
-                                Prior to that, Shaun worked with Arsenal Football Club in Uganda where he designed and led multiple initiatives focused on delivering social impact projects through sport. 
-                                <br>
-                                <br>
-                                Driven by the belief of the potential that emerging markets hold, Shaun co-founded Inuka to address one of the key constraints when it comes to the development of economies - helping businesses find top tier talent.</strong>
-                           
-                        </p>
-
-                        
-                    </div>
                 </div>
-              </div>
-          
-             
-          
-              <!-- Team Member 3 -->
-              <div class="item">
-                <div class="artists-thumb">
-                    <div class="artists-image-wrap">
-                        <img src="/static/images/tvisha_kapoor.jpg" style="size: 300px;"
-                            class="artists-image img-fluid">
-                    </div>
-
-                    <div class="artists-hover">
-                        <p>
-
-                            <h2 style="color: #253336;">Associate</h2>
-                            <h3 style="color: #efd181;">Tvisha Kapoor</h3>
-
-                            <strong style="color: white;">Tvisha is an experienced marketing professional with a background in psychology and hands-on knowledge in both Digital Marketing and Social Media Marketing.
-<br>
-<br>
-                                Tvisha previously worked as a Brand Manager at Hashtag Marketing where she led various digital brand strategies, incorporating effective communication and social media marketing plans to enhance customer outreach. She excelled in managing and generating engaging content for clients, resulting in significant digital engagement across multiple products and services.
-                                <br>
-                                <br>               
-                                Prior to that, she worked as a marketing and social media lead where she spearheaded social media marketing across multiple platforms with a primary focus on product marketing. She developed the pre-launch digital strategy by curating content towards a certain demographic and launched the brand in the Indian market.
-                                <br>
-                                <br>            
-                                Tvisha completed her Bachelor of Arts and Humanities, Liberal Arts at Jindal Global University in Sonipat, India. She pursued linguistics and research in Japan, and holds a Master's degree in Clinical Psychology. Currently based in India, she frequently travels between the US, Singapore and her home country.</strong>
-                           
-                        </p>
-
-                        
-                    </div>
-                </div>
-              </div>
-          
-              <!-- Team Member 4 -->
-              <div class="item">
-                <div class="artists-thumb">
-                    <div class="artists-image-wrap">
-                        <img src="/static/images/melissa_ngige.jpeg"
-                            class="artists-image img-fluid">
-                    </div>
-
-                    <div class="artists-hover">
-                        <p>
-                            <h2 style="color: #253336;">Associate</h2>
-                            <h3 style="color: #efd181;">Melissa Ngige</h3>
-                            <strong style="color: white;">Shiko is highly skilled in human resources, with a strong academic background in HR, Cultural Studies, and Social Anthropology. She also brings practical experience in strategy and the Hospitality industry.
-<br>
-<br>
-                                Shiko previously served as a Talent, Learning, and Organisational Capabilities Graduate at a prominent IT consulting firm in London. In this role, she contributed significantly to the design and execution of key learning programs and led a pivotal people manager trainee development plan, enhancing the competencies of over 300 managers. She also spearheaded successful initiatives in diversity and inclusion, recognition, and learning.
-                                <br>
-                                <br>      
-                                She holds a master’s degree in Human Resource Management and Organisations from the London School of Economics, with a CIPD (Level 7) accreditation. Her academic background also includes a Bachelor of Arts in Cultural Studies and Social Anthropology from the University of Kent.</strong>
-                           
-                        </p>
-
-                        
-                    </div>
-                </div>
-              </div>
-               
+            {% endfor %}           
               <!-- Add more team members as needed -->
             </div>
              <!-- Add left and right arrow icons -->
@@ -851,9 +757,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 </video>
                 <div class="services-container section fadeup " style="background-color: rgba(0, 0, 0, 0.545); position: relative;">
                     <!-- Heading positioned absolutely -->
-                    <h1 style="position: absolute; padding-top: 25px; left: 50%; transform: translateX(-50%); color: white;font-size: 45px;font-weight: 300;">Our Services</h1>
+<h1 style="position: absolute; padding-top: 25px; left: 50%; transform: translateX(-50%); color: white; font-size: 45px; font-weight: 300; z-index: 1000;">Our Services</h1>
+
+<!-- Rest of your HTML remains unchanged -->
         
-                    <div class="partition ">
+                    <div class="partition">
                         
                         <br>
                         <h2 class="section fadeup " style="font-size: large;">Contingent Search <h2><i class="fa-solid fa-magnifying-glass"></i></h2> </h2>

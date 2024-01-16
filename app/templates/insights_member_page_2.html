@@ -308,7 +308,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-6 order-md-2 text-center">
                         <!-- Image in the center -->
-                        <img src="data:image/jpeg;base64,{{ member.image|b64encode }}" alt="{{ member.name }} Image" id="member_image" class="img-fluid rounded" style="width: 350px;">
+                        <img src="{{member.profile_image}}" alt="{{ member.name }} Image" id="member_image" class="img-fluid rounded" style="width: 350px;">
                     </div>
                     <div class="col-md-6 order-md-1">
                         <!-- Name centered under the image on all screen sizes -->

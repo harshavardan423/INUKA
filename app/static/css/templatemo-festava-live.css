@@ -1122,3 +1122,14 @@ video {
       transform: none;
       opacity: 1;
   }
+
+
+main {
+  scroll-snap-type: y mandatory; /* Enable vertical scroll snapping for the main element */
+  scroll-padding: 20px; /* Adjust padding if needed */
+}
+
+
+section {
+  scroll-snap-align: center;
+}

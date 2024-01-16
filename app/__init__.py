@@ -2,7 +2,6 @@ from flask import Flask
 from .models import db  # Use a relative import
 import json
 import secrets
-import pymysql
 
 # Generate a random hex string of 24 bytes (48 characters)
 secret_key = secrets.token_hex(24)

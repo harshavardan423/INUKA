@@ -394,7 +394,7 @@
 
 
 .fadeup {
-  transform: translateX(20px);
+  transform: translateX(-20px);
   opacity: 0;
   transition-property: transform, opacity;
   transition-duration: 0.4s;
@@ -405,21 +405,6 @@
       transform: none;
       opacity: 1;
   }
-
-  .fadedown {
-  transform: translateY(-20px);
-  opacity: 0;
-  transition-property: transform, opacity;
-  transition-duration: 0.4s;
-  transition-timing-function: linear;
- }
-
- .in-view {
-      transform: none;
-      opacity: 1;
-  }
-
-
 
 
 
@@ -431,7 +416,7 @@
 <script>
 const observerOptions = {
   root: null,
-  threshold: 0.3,
+  threshold: 0,
   rootMargin: '0px 0px -50px 0px'
 };
 
@@ -685,14 +670,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         </section> -->
 
 
-        <section class="artists-section section-padding " style="background-color: #253336;position: relative;">
-            <h2 class="mb-4 text-center section fadeup " style="color: white;">Our Team</h1>
+        <section class="artists-section section-padding " style="background-color: #253336;position: relative;overflow: ;">
+            <h2 class="mb-4 text-center section fadeup" style="color: white;">Our Team</h1>
           
-            <div id="teamCarousel" class="owl-carousel owl-theme  ">
+            <div id="teamCarousel" class="owl-carousel owl-theme section fadeup ">
 
                 {% for member in members %}
                 <div class=".">
-                    <div class="artists-thumb section fadeup">
+                    <div class="artists-thumb">
                         <div class="artists-image-wrap">
                             <img src="{{ member.profile_image }}" class="artists-image img-fluid">
                         </div>
@@ -730,13 +715,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     Your browser does not support the video tag.
                 </video>
             </div>
-            <div class="col-12 text-center  ">
-                <h2 class="mb-4 section fadeup" style="color: white; font-weight: lighter;">Our Sectors</h2>
+            <div class="col-12 text-center section fadeup ">
+                <h2 class="mb-4" style="color: white; font-weight: lighter;">Our Sectors</h2>
             </div>
             <div class="container">
                 <div class="row justify-content-center">
                     <!-- Card 1 -->
-                    <div class="col-md-4 mb-4  section fadeup">
+                    <div class="col-md-4 mb-4 section fadeup ">
                         <!-- <div class="card" style="width: 100%;" id="card1" onmouseover="changeVideo('/static/video/inuka_videos/windmills.mp4')" onmouseout="resetVideo()"> -->
                         <div class="card" style="width: 100%;" id="card1" onmouseover="changeVideo('/static/video/inuka_videos/windmills.mp4')" onmouseout="resetVideo()">
 
@@ -748,7 +733,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         </div>
                     </div>
                     <!-- Card 2 -->
-                    <div class="col-md-4 mb-4  section fadeup">
+                    <div class="col-md-4 mb-4 section fadeup ">
                         <!-- <div class="card" style="width: 100%;" id="card2" onmouseover="changeVideo('/static/video/inuka_videos/blue_water.mp4')" onmouseout="resetVideo()"> -->
                         <div class="card" style="width: 100%;" id="card2" onmouseover="changeVideo('https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705227011/lhcmilbrlqczrutfn7u7.mp4')" onmouseout="resetVideo()">
 
@@ -760,7 +745,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         </div>
                     </div>
                     <!-- Card 3 -->
-                    <div class="col-md-4 mb-4  section fadeup">
+                    <div class="col-md-4 mb-4 section fadeup ">
                         <!-- <div class="card" style="width: 100%;" id="card3" onmouseover="changeVideo('/static/video/inuka_videos/growth.mp4')" onmouseout="resetVideo()"> -->
                         <div class="card" style="width: 100%;" id="card3" onmouseover="changeVideo('https://res.cloudinary.com/dhkcm3uf7/video/upload/v1705227346/jguyj3fucwlghdtssb2j.mp4')" onmouseout="resetVideo()">
 
@@ -785,16 +770,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     Your browser does not support the video tag.
                 </video>
-                <div class="services-container  " style="background-color: rgba(0, 0, 0, 0.545); position: relative;">
+                <div class="services-container section fadeup " style="background-color: rgba(0, 0, 0, 0.545); position: relative;">
                     <!-- Heading positioned absolutely -->
-<h1 class="section fadedown" style="position: absolute; padding-top: 25px; left: 50%; transform: translateX(-50%); color: white; font-size: 45px; font-weight: 300; z-index: 1000;">Our Services</h1>
+<h1 style="position: absolute; padding-top: 25px; left: 50%; transform: translateX(-50%); color: white; font-size: 45px; font-weight: 300; z-index: 1000;">Our Services</h1>
 
 <!-- Rest of your HTML remains unchanged -->
         
-                    <div class="partition section fadedown">
+                    <div class="partition">
                         
                         <br>
-                        <h2  style="font-size: large;">Contingent Search <h2><i class="fa-solid fa-magnifying-glass"></i></h2> </h2>
+                        <h2 class="section fadeup " style="font-size: large;">Contingent Search <h2><i class="fa-solid fa-magnifying-glass"></i></h2> </h2>
                         <div class="partition-text">
                             <p>
                                 Inuka collaborates with you to pinpoint and secure top-tier talent with the expertise necessary to meet your objectives and create a meaningful impact. We specialise in identifying and securing top talent on a flexible basis, ensuring a responsive approach to your workforce requirements. We aim to enhance your team with skilled professionals, offering a dynamic and adaptable staffing solution for your evolving business needs.
@@ -802,23 +787,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         </div>
                         
                     </div>
-                    <div class="partition section fadedown">
+                    <div class="partition">
                        
                         <br>
-                        <h2 class=" " style="font-size: large;">Retained Search  <h2><i class="fa-solid fa-filter"></i></h2> </h2>
+                        <h2 class="section fadeup " style="font-size: large;">Retained Search  <h2><i class="fa-solid fa-filter"></i></h2> </h2>
                         <p>
                             We offer exclusive and dedicated services to secure top-tier talent for critical positions at your firm. Our approach involves a deep understanding of your organisational needs, ensuring a thorough and strategic search process. By retaining our services, you gain access to our extensive network and expertise, resulting in a customised recruitment strategy. We prioritise precision and excellence, and are committed to delivering long-term value by identifying and placing candidates who align seamlessly with your company's goals and culture.
                         </p>
                     </div>
-                    <div class="partition section fadedown">
+                    <div class="partition">
                         
                         <br>
-                        <h2 class=" " style="font-size: large;">Board Services <h2><i class="fa-solid fa-people-group"></i></h2> </h2>
+                        <h2 class="section fadeup " style="font-size: large;">Board Services <h2><i class="fa-solid fa-people-group"></i></h2> </h2>
                         <p>
                             Inuka is dedicated to discovering individuals who will fortify your board and elevate your senior team. We bring innovative perspectives, complementary skills, and a diverse range of experiences at the executive level. Our commitment lies in identifying candidates who can bring added strength and depth to your leadership, ensuring that your top-tier executives are well equipped to navigate challenges and drive success.
                         </p>
                     </div>
-                    <div class="partition section fadedown">
+                    <div class="partition">
                         
                         <br>
                         <h2 style="font-size: large;">Salary Benchmarking <h2><i class="fa-solid fa-coins"></i></h2> </h2>
@@ -1204,7 +1189,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             </div>
         </div>
 
-        <div class="container ">
+        <div class="container section fadeup">
             <div class="row">
 
                 <div class="col-lg-6 col-12 mb-4 pb-2">

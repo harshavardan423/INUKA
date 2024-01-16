@@ -269,35 +269,47 @@ filter: blur(0.1px);
 
 }
 
+.fadeup {
+  transform: translateX(-20px);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+ }
+
+ .in-view {
+      transform: none;
+      opacity: 1;
+  }
 
     
 
 </style>
 <script>
-const observerOptions = {
-  root: null,
-  threshold: 0,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-    } else {
-      entry.target.classList.remove('in-view');
-    }
-  });
-}, observerOptions);
-
-window.addEventListener('DOMContentLoaded', (event) => {
-  const sections = Array.from(document.getElementsByClassName('section'));
-
-  for (let section of sections) {
-    observer.observe(section);
-  }
-});
-</script>
+    const observerOptions = {
+      root: null,
+      threshold: 0.4,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        } else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    }, observerOptions);
+    
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const sections = Array.from(document.getElementsByClassName('section'));
+    
+      for (let section of sections) {
+        observer.observe(section);
+      }
+    });
+    </script>
 <body>
     
 

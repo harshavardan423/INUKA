@@ -7,8 +7,10 @@ from sqlalchemy import text
 import os
 
 # Replace [USERNAME] and [PASSWORD] with your actual environment variable names
-username = os.environ.get("DB_USERNAME")
-password = os.environ.get("DB_PASSWORD")
+username = os.getenv("DB_USERNAME")
+password =os.getenv("DB_PASSWORD")
+
+
 
 print("USERNAME : "  + username)
 print("PASSWORD : "  + password)
@@ -19,13 +21,15 @@ if username is None or password is None:
     raise ValueError("Database username and password are required.")
 
 # Construct the connection string
-# connection_string = f"mysql+mysqlconnector://z3zapn5lfgybzpcb8s6m:pscale_pw_eE0raZasZysISVQkL9PsPyTI7gZKIDGK0mn2H4XPCMt@aws.connect.psdb.cloud:3306/inuka"
+# connection_string = f"mysql+mysqlconnector://ntnyxfpk93r3x5mx1xxe:pscale_pw_HaMe4lc90TgrjxOHW1D0eqGXRSy9yXIBzk09zhJ7rGR@aws.connect.psdb.cloud:3306/inuka"
+connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
 
 
-# from sqlalchemy import create_engine
+from sqlalchemy import create_engine
 # connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
 # "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
-# engine = create_engine(connection_string, echo=True)
+engine = create_engine(connection_string, echo=True)
+print(engine)
 
 db = SQLAlchemy()
 
@@ -92,18 +96,18 @@ class Answer(db.Model):
 
 
 # with engine.connect() as connection:
-    # connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
-    # connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
+#     connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
+#     connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
 
-    # connection.execute(text("DROP TABLE answer"))
-    # connection.execute(text("DROP TABLE applicant"))
-    # connection.execute(text("DROP TABLE insights_post"))
-    # connection.execute(text("DROP TABLE job"))
-    # connection.execute(text("DROP TABLE question"))
-    # connection.execute(text("DROP TABLE team_member"))
+#     connection.execute(text("DROP TABLE answer"))
+#     connection.execute(text("DROP TABLE applicant"))
+#     connection.execute(text("DROP TABLE insights_post"))
+#     connection.execute(text("DROP TABLE job"))
+#     connection.execute(text("DROP TABLE question"))
+#     connection.execute(text("DROP TABLE team_member"))
 
-    # connection.execute(text("DROP TABLE example"))
-    # connection.execute(text("DROP TABLE newtable"))
+#     connection.execute(text("DROP TABLE example"))
+#     connection.execute(text("DROP TABLE newtable"))
 
 
     

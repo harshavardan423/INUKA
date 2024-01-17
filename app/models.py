@@ -6,11 +6,16 @@ from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
 import os
 from sqlalchemy import create_engine
+from sqlalchemy.exc import ProgrammingError
 
 
 # Replace [USERNAME] and [PASSWORD] with your actual environment variable names
 username = os.getenv("DB_USERNAME")
 password =os.getenv("DB_PASSWORD")
+
+print("USERNAME : "  + username)
+print("PASSWORD : "  + password)
+
 
 # Check if username and password are provided
 if username is None or password is None:
@@ -20,14 +25,13 @@ if username is None or password is None:
 if os.getenv("DEBUG") == "TRUE":
     # Use SQLite for development/debugging
     engine = create_engine('sqlite:///inuka_db.sqlite3')
+    print("DB : DEV")
 else:
     # Use MySQL for production
     connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
     engine = create_engine(connection_string, echo=True)
+    print("DB : PROD")
 
-
-print("USERNAME : "  + username)
-print("PASSWORD : "  + password)
 print(engine)
 
 db = SQLAlchemy()
@@ -94,19 +98,25 @@ class Answer(db.Model):
 
 
 
-# with engine.connect() as connection:
-#     connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
-#     connection.execute(text("CREATE TABLE newtable (id INTEGER, name VARCHAR(20))"))
+# try :
+#     with engine.connect() as connection:
+#         connection.execute(text("CREATE TABLE example (id INTEGER, name VARCHAR(20))"))
+#         connection.execute(text("CREATE TABLE newtable_2 (id INTEGER, name VARCHAR(20))"))
 
-#     connection.execute(text("DROP TABLE answer"))
-#     connection.execute(text("DROP TABLE applicant"))
-#     connection.execute(text("DROP TABLE insights_post"))
-#     connection.execute(text("DROP TABLE job"))
-#     connection.execute(text("DROP TABLE question"))
-#     connection.execute(text("DROP TABLE team_member"))
+#         connection.execute(text("DROP TABLE answer"))
+#         connection.execute(text("DROP TABLE applicant"))
+#         connection.execute(text("DROP TABLE insights_post"))
+#         connection.execute(text("DROP TABLE job"))
+#         connection.execute(text("DROP TABLE question"))
+#         connection.execute(text("DROP TABLE team_member"))
+#         print("DELETED TABLES")
 
 #     connection.execute(text("DROP TABLE example"))
 #     connection.execute(text("DROP TABLE newtable"))
+# except ProgrammingError as e:
+#     print(f"An error occurred: {e}")
+
+
 
 
     

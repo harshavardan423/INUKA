@@ -163,22 +163,33 @@
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.411);
     /* margin-left: 5px; */
-    height: auto;
-    overflow: scroll; /* Add this line for scroll */
-    overflow-y: scroll; /* Vertical scroll */
-    overflow-x: hidden; /* Hide horizontal scroll if not needed */
+    height: 400px;
+    
     transition: all 0.3s ease-in-out;
 }
 
+
+.sector_text_container{
+    height: 300px;
+    overflow: scroll; /* Add this line for scroll */
+    overflow-y: scroll; /* Vertical scroll */
+    overflow-x: hidden; /* Hide horizontal scroll if not needed */
+
+}
 /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
 .card::-webkit-scrollbar {
     display: none;
 }
 
 
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.sector_text_container::-webkit-scrollbar {
+    display: none;
+}
+
     .card:hover {
         background-color: #253336;
-        transform: scale(108%);
+        transform: scale(102%);
     }
 
     .card img {
@@ -727,8 +738,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             <div class="card-body text-center">
                                 <h5>Renewable Energy</h5>
-                                <p class="card-text">Emerging markets' power infrastructure lags, creating an opportunity for rapid adoption of solar, wind, hydro, and other renewables. Inuka collaborates across the value chain to attract top-tier talent for impactful businesses in these sectors.
-                                </p>
+                                <div class="sector_text_container">
+                                    <p class="card-text">Emerging markets' power infrastructure lags, creating an opportunity for rapid adoption of solar, wind, hydro, and other renewables. Inuka collaborates across the value chain to attract top-tier talent for impactful businesses in these sectors.
+                                    </p>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -740,7 +754,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             
                             <div class="card-body text-center">
                                 <h5>Green Hydrogen</h5>
-                                <p class="card-text">Green hydrogen is a versatile and decarbonising fuel derived from water and clean electricity through electrolysis. This emission-free solution holds promise for traditionally fossil fuel-dependent sectors such as transportation, heavy industry, and long-term energy storage. Despite being in its early stages, this revolutionary technology is attracting substantial investments and research, signalling its potential to play a pivotal role in the global energy transition. Inuka actively engages with the talent needed to drive these advancements across emerging markets.</p>
+                                <div class="sector_text_container">
+                                    <p class="card-text">Green hydrogen is a versatile and decarbonising fuel derived from water and clean electricity through electrolysis. This emission-free solution holds promise for traditionally fossil fuel-dependent sectors such as transportation, heavy industry, and long-term energy storage. Despite being in its early stages, this revolutionary technology is attracting substantial investments and research, signalling its potential to play a pivotal role in the global energy transition. Inuka actively engages with the talent needed to drive these advancements across emerging markets.</p>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -751,7 +768,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             <div class="card-body text-center">
                                 <h5>Principal Investment & Investment Advisory</h5>
-                                <p class="card-text">The Principal Investment and Investment Advisory sector is particularly crucial in emerging markets due to the unique challenges and opportunities presented by these dynamic economies.This sector serves as a catalyst for driving financial stability and fostering growth. The success of these activities heavily depends on having skilled professionals who understand the intricacies of both the financial landscape and the specific nuances of emerging markets. Inuka plays a key role in matching candidates with the right skills, experience, and cultural fit to the demands of Principal Investment and Investment Advisory roles in emerging markets.</p>
+                                <div class="sector_text_container">
+                                    <p class="card-text">The Principal Investment and Investment Advisory sector is particularly crucial in emerging markets due to the unique challenges and opportunities presented by these dynamic economies.This sector serves as a catalyst for driving financial stability and fostering growth. The success of these activities heavily depends on having skilled professionals who understand the intricacies of both the financial landscape and the specific nuances of emerging markets. Inuka plays a key role in matching candidates with the right skills, experience, and cultural fit to the demands of Principal Investment and Investment Advisory roles in emerging markets.</p>
+
+                                </div>
                             </div>
                         </div>
                     </div>

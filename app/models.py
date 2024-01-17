@@ -5,32 +5,29 @@ from sqlalchemy import LargeBinary
 from sqlalchemy.dialects.postgresql import BYTEA
 from sqlalchemy import text
 import os
+from sqlalchemy import create_engine
+
 
 # Replace [USERNAME] and [PASSWORD] with your actual environment variable names
 username = os.getenv("DB_USERNAME")
 password =os.getenv("DB_PASSWORD")
-
-
-
-print("USERNAME : "  + username)
-print("PASSWORD : "  + password)
-
 
 # Check if username and password are provided
 if username is None or password is None:
     raise ValueError("Database username and password are required.")
 
 # Construct the connection string
-# connection_string = f"mysql+mysqlconnector://ntnyxfpk93r3x5mx1xxe:pscale_pw_HaMe4lc90TgrjxOHW1D0eqGXRSy9yXIBzk09zhJ7rGR@aws.connect.psdb.cloud:3306/inuka"
-connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
+if os.getenv("DEBUG") == "TRUE":
+    # Use SQLite for development/debugging
+    engine = create_engine('sqlite:///inuka_db.sqlite3')
+else:
+    # Use MySQL for production
+    connection_string = f"mysql+mysqlconnector://{username}:{password}@aws.connect.psdb.cloud:3306/inuka"
+    engine = create_engine(connection_string, echo=True)
 
 
-from sqlalchemy import create_engine
-# connection_string = "mysql+mysqlconnector://[USERNAME]:[PASSWORD]@aws.connect.psdb.cloud:3306/inuka"
-# "mysql+mysqlconnector://ca0e8ywnnxof110pu46x:pscale_pw_TalLclSTAsu0ikmws676YNXISJMO3BF2uj4XFsFXXoI@aws.connect.psdb.cloud:3306/sqlalchemy"
-# engine = create_engine(connection_string, echo=True)
-engine = create_engine('sqlite:///inuka_db.sqlite3')
-
+print("USERNAME : "  + username)
+print("PASSWORD : "  + password)
 print(engine)
 
 db = SQLAlchemy()

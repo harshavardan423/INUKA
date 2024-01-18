@@ -30,25 +30,19 @@ def as_fraction(ratio):
 
 app.jinja_env.filters['as_fraction'] = as_fraction
 
-# app.config['SESSION_TYPE'] = 'filesystem'
-# app.config['SESSION_PERMANENT'] = False
-# app.config['SESSION_USE_SIGNER'] = True
+# Register a custom filter function for base64 encoding
+def b64encode_filter(data):
+    return b64encode(data).decode('utf-8')
+
+app.jinja_env.filters['b64encode'] = b64encode_filter
 
 
 login_manager = LoginManager(app)
-# login_manager.login_view = 'login'
 
 # Hardcoded user credentials (replace with your actual authentication mechanism)
 # Hardcoded username and password
 hardcoded_username = "admin"
 hardcoded_password = "inuka_admin"
-
-# A hardcoded user for demonstration purposes
-# class User(UserMixin):
-#     def __init__(self, id, username, password):
-#         self.id = id
-#         self.username = username
-#         self.password = password
 
 # Hardcoded user for testing purposes
 class User(UserMixin):
@@ -57,7 +51,6 @@ class User(UserMixin):
         self.username = username
         self.password = password
 # Replace these values with your actual credentials
-# hardcoded_user = User(id=1, username='admin', password='inuka_admin')
         
 # Create a single user with hardcoded credentials
 user = User(1, hardcoded_username, hardcoded_password)
@@ -68,6 +61,8 @@ user = User(1, hardcoded_username, hardcoded_password)
 def load_user(user_id):
     return user if int(user_id) == user.id else None
 
+
+
 # Handle unauthorized access by redirecting to the login page
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -76,16 +71,11 @@ def unauthorized():
 with open('insights_member_data.json', 'r', encoding='utf-8') as json_file:
     insights_members = json.load(json_file)
 
-# Register a custom filter function for base64 encoding
-def b64encode_filter(data):
-    return b64encode(data).decode('utf-8')
-
-app.jinja_env.filters['b64encode'] = b64encode_filter
-
-
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -95,16 +85,12 @@ def login():
     return render_template('login.html')
 
 
-
-
-
 # Logout route
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
-
 
 
 @app.route('/')

@@ -36,6 +36,8 @@ print(engine)
 
 db = SQLAlchemy()
 
+
+
 class InsightsPost(db.Model):
     __tablename__ = 'insights_post'
 

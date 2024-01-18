@@ -117,32 +117,44 @@
                 }
             });
     
-            // Function to create a new question input
             function createQuestionInput() {
-                const questionInput = document.createElement("div");
-                questionInput.className = "question-input mb-2";
-    
-                const inputElement = document.createElement("input");
-                inputElement.type = "text";
-                inputElement.className = "form-control";
-                inputElement.name = `new_questions_${questionIndex}[]`;
-                inputElement.placeholder = "Enter a new question";
-    
-                const removeButton = document.createElement("button");
-                removeButton.type = "button";
-                removeButton.className = "btn btn-danger btn-sm remove-question";
-                removeButton.textContent = "Remove";
-    
-                questionInput.appendChild(inputElement);
-                questionInput.appendChild(removeButton);
-    
-                // Attach event listener for removal
-                removeButton.addEventListener("click", function () {
-                    questionInput.remove();
-                });
-    
-                return questionInput;
-            }
+    const questionInput = document.createElement("div");
+    questionInput.className = "question-input mb-2";
+
+    // Create input for the question
+    const questionInputElement = document.createElement("input");
+    questionInputElement.type = "text";
+    questionInputElement.className = "form-control";
+    questionInputElement.name = `new_questions_${questionIndex}[]`;
+    questionInputElement.placeholder = "Enter a new question";
+
+    // Create input for the default answer
+    const defaultAnswerInputElement = document.createElement("input");
+    defaultAnswerInputElement.type = "text";
+    defaultAnswerInputElement.className = "form-control";
+    defaultAnswerInputElement.name = `new_default_answers_${questionIndex}[]`;
+    defaultAnswerInputElement.placeholder = "Enter default answer";
+    defaultAnswerInputElement.required = true;
+
+    // Create remove button
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "btn btn-danger btn-sm remove-question";
+    removeButton.textContent = "Remove";
+
+    // Append elements to question input container
+    questionInput.appendChild(questionInputElement);
+    questionInput.appendChild(defaultAnswerInputElement);
+    questionInput.appendChild(removeButton);
+
+    // Attach event listener for removal
+    removeButton.addEventListener("click", function () {
+        questionInput.remove();
+    });
+
+    return questionInput;
+}
+
         });
     </script>
     

@@ -31,10 +31,7 @@ from . import routes  # Use a relative import
 # Create tables when the application starts
 with app.app_context():
     db.create_all()
-     # Example of creating a user in the database
-    admin_user = User(username='admin', password='inuka_admin')
-    db.session.add(admin_user)
-    db.session.commit()
+    
     
     
     

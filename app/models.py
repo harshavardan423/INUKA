@@ -39,62 +39,62 @@ db = SQLAlchemy()
 class InsightsPost(db.Model):
     __tablename__ = 'insights_post'
 
-    id = db.Column(db.String(255), primary_key=True)
-    member_name = db.Column(db.String(255))
+    id = db.Column(db.String(500), primary_key=True)
+    member_name = db.Column(db.String(500))
     links = db.Column(db.String(500))
     spotify_link = db.Column(db.String(500))
     apple_music_link = db.Column(db.String(500))
     title = db.Column(db.Text)
     description = db.Column(db.Text)
-    quote = db.Column(db.String(255))
-    image = db.Column(db.String(255))
+    quote = db.Column(db.String(500))
+    image = db.Column(db.String(500))
 
 class TeamMember(db.Model):
     __tablename__ = 'team_member'
 
-    id = db.Column(db.String(255), primary_key=True)
-    member_name = db.Column(db.String(255))
-    member_heading = db.Column(db.String(255))
-    text = db.Column(db.String(500))
-    profile_image = db.Column(db.String(255))
+    id = db.Column(db.String(500), primary_key=True)
+    member_name = db.Column(db.String(500))
+    member_heading = db.Column(db.String(500))
+    text = db.Column(db.String(2000))
+    profile_image = db.Column(db.String(500))
 
 class Job(db.Model):
     __tablename__ = 'job'
 
-    id = db.Column(db.String(255), primary_key=True)
-    title = db.Column(db.String(50))
-    title_2 = db.Column(db.String(50))
-    description = db.Column(db.String(255))
-    short_description = db.Column(db.String(100))
+    id = db.Column(db.String(500), primary_key=True)
+    title = db.Column(db.String(100))
+    title_2 = db.Column(db.String(100))
+    description = db.Column(db.String(500))
+    short_description = db.Column(db.String(200))
     skills = db.Column(db.String(500))
 
 class Question(db.Model):
     __tablename__ = 'question'
 
-    id = db.Column(db.String(255), primary_key=True)
-    text = db.Column(db.String(255))
+    id = db.Column(db.String(500), primary_key=True)
+    text = db.Column(db.String(500))
     default_answer = db.Column(db.String(50))
-    job_id = db.Column(db.String(255))
+    job_id = db.Column(db.String(500))
 
 class Applicant(db.Model):
     __tablename__ = 'applicant'
     
-    id = db.Column(db.String(255), primary_key=True)
-    name = db.Column(db.String(255))
-    email = db.Column(db.String(255))
+    id = db.Column(db.String(500), primary_key=True)
+    name = db.Column(db.String(500))
+    email = db.Column(db.String(500))
     phone = db.Column(db.String(20))
-    resume = db.Column(db.String(255))
-    job_id = db.Column(db.String(255))
-    previous_job = db.Column(db.String(255))
-    previous_job_location = db.Column(db.String(255))
+    resume = db.Column(db.String(500))
+    job_id = db.Column(db.String(500))
+    previous_job = db.Column(db.String(500))
+    previous_job_location = db.Column(db.String(500))
 
 class Answer(db.Model):
     __tablename__ = 'answer'
     
-    id = db.Column(db.String(255), primary_key=True)
-    applicant_id = db.Column(db.String(255))
-    question_id = db.Column(db.String(255))
-    answer_text = db.Column(db.String(255))
+    id = db.Column(db.String(500), primary_key=True)
+    applicant_id = db.Column(db.String(500))
+    question_id = db.Column(db.String(500))
+    answer_text = db.Column(db.String(500))
 
 
 

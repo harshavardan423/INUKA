@@ -130,8 +130,9 @@ def insights_member_page(member_id):
 # @login_required
 def dashboard():
     print("Reached the dashboard route")
-    print(f"Current User: {current_user.username}")
     if current_user.is_authenticated:
+        print(f"Current User: {current_user.username}")
+
     # Add any additional debug statements as needed
 
         return render_template('main_dashboard.html')

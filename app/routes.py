@@ -138,27 +138,26 @@ def dashboard():
 @app.route('/dashboard/jobs')
 # @login_required
 def jobs_dashboard():
-    if current_user.is_authenticated:
-        search_query = request.args.get('search_query', '')
+    search_query = request.args.get('search_query', '')
 
-        if search_query:
-            # Perform a search based on the query
-            jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
-        else:
-            # If no search query, fetch all jobs
-            jobs = Job.query.all()
+    if search_query:
+        # Perform a search based on the query
+        jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
+    else:
+        # If no search query, fetch all jobs
+        jobs = Job.query.all()
 
-        # Retrieve the count of applicants for each job
-        job_applicants_count = (
-            db.session.query(Applicant.job_id, func.count(Applicant.id))
-            .group_by(Applicant.job_id)
-            .all()
-        )
+    # Retrieve the count of applicants for each job
+    job_applicants_count = (
+        db.session.query(Applicant.job_id, func.count(Applicant.id))
+        .group_by(Applicant.job_id)
+        .all()
+    )
 
-        # Create a dictionary to store the count of applicants for each job
-        job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
+    # Create a dictionary to store the count of applicants for each job
+    job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
-        return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
+    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
     
 
 
@@ -207,42 +206,41 @@ def jobs_dashboard():
 #     print("Dummy Question ID:", dummy_question.id)
 
 @app.route('/create_job', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def create_job():
-    if current_user.is_authenticated:
 
-        if request.method == 'POST':
-            job_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+    if request.method == 'POST':
+        job_id = f"{int(time.time())}{random.randint(1000, 9999)}"
 
-            # Get data from the form
-            title = request.form.get('title')
-            title_2 = request.form.get('title_2')
-            skills = request.form.get('skills')
-            description = request.form.get('description')
-            short_description = request.form.get('short_description')
+        # Get data from the form
+        title = request.form.get('title')
+        title_2 = request.form.get('title_2')
+        skills = request.form.get('skills')
+        description = request.form.get('description')
+        short_description = request.form.get('short_description')
 
-            questions = request.form.getlist('questions[]')  # Get a list of questions from the form
-            default_answers = request.form.getlist('default_answers[]')  # Get a list of default answers from the form
-            with Session(engine) as session:
+        questions = request.form.getlist('questions[]')  # Get a list of questions from the form
+        default_answers = request.form.getlist('default_answers[]')  # Get a list of default answers from the form
+        with Session(engine) as session:
 
-                # Create a new job
-                new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description,id=job_id)
-                db.session.add(new_job)
-                db.session.commit()
+            # Create a new job
+            new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description,id=job_id)
+            db.session.add(new_job)
+            db.session.commit()
 
-                question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
-                # Save questions and default answers to the database
-                for question_text, default_answer_text in zip(questions, default_answers):
-                    new_question = Question(text=question_text, job_id=job_id,default_answer=default_answer_text,id=question_id)
-                    db.session.add(new_question)
+            question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+            # Save questions and default answers to the database
+            for question_text, default_answer_text in zip(questions, default_answers):
+                new_question = Question(text=question_text, job_id=job_id,default_answer=default_answer_text,id=question_id)
+                db.session.add(new_question)
 
-                db.session.commit()
+            db.session.commit()
 
-            # Redirect to the jobs dashboard or any other desired page
-            return redirect(url_for('jobs_dashboard'))
+        # Redirect to the jobs dashboard or any other desired page
+        return redirect(url_for('jobs_dashboard'))
 
-        # Render the create job form for GET requests
-        return render_template('create_job.html')
+    # Render the create job form for GET requests
+    return render_template('create_job.html')
 
 
 @app.route('/edit_job/<string:job_id>', methods=['GET', 'POST'])

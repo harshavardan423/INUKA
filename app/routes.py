@@ -1,7 +1,7 @@
 from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash
 from flask_wtf.csrf import generate_csrf
 import json
-from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
+from .models import db,User, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
 from . import app
 import os
 from werkzeug.utils import secure_filename
@@ -39,27 +39,14 @@ app.jinja_env.filters['b64encode'] = b64encode_filter
 
 login_manager = LoginManager(app)
 
-# Hardcoded user credentials (replace with your actual authentication mechanism)
-# Hardcoded username and password
-hardcoded_username = "admin"
-hardcoded_password = "inuka_admin"
-
-# Hardcoded user for testing purposes
-class User(UserMixin):
-    def __init__(self, user_id, username, password):
-        self.id = user_id
-        self.username = username
-        self.password = password
-# Replace these values with your actual credentials
-        
-# Create a single user with hardcoded credentials
-user = User(1, hardcoded_username, hardcoded_password)
 
 
-# Login manager configuration
+# User loader function
 @login_manager.user_loader
 def load_user(user_id):
-    return user if int(user_id) == user.id else None
+    # Replace this with your actual user lookup logic
+    return User.query.get(int(user_id))
+
 
 
 
@@ -67,9 +54,6 @@ def load_user(user_id):
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for('login'))
-
-with open('insights_member_data.json', 'r', encoding='utf-8') as json_file:
-    insights_members = json.load(json_file)
 
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
@@ -79,7 +63,9 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == hardcoded_username and password == hardcoded_password:
+        user = User.query.filter_by(username=username).first()
+
+        if user and user.password == password:
             login_user(user)
             return redirect(url_for('dashboard'))
     return render_template('login.html')

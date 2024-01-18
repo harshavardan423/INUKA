@@ -136,6 +136,7 @@ def dashboard():
     # Add any additional debug statements as needed
 
         return render_template('main_dashboard.html')
+    return "User not authenticated"
 
 
 @app.route('/dashboard/jobs')

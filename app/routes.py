@@ -1,7 +1,7 @@
 from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash
 from flask_wtf.csrf import generate_csrf
 import json
-from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
+from .models import db,User, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
 from . import app
 import os
 from werkzeug.utils import secure_filename
@@ -30,52 +30,6 @@ def as_fraction(ratio):
 
 app.jinja_env.filters['as_fraction'] = as_fraction
 
-# app.config['SESSION_TYPE'] = 'filesystem'
-# app.config['SESSION_PERMANENT'] = False
-# app.config['SESSION_USE_SIGNER'] = True
-
-
-login_manager = LoginManager(app)
-# login_manager.login_view = 'login'
-
-# Hardcoded user credentials (replace with your actual authentication mechanism)
-# Hardcoded username and password
-hardcoded_username = "admin"
-hardcoded_password = "inuka_admin"
-
-# A hardcoded user for demonstration purposes
-# class User(UserMixin):
-#     def __init__(self, id, username, password):
-#         self.id = id
-#         self.username = username
-#         self.password = password
-
-# Hardcoded user for testing purposes
-class User(UserMixin):
-    def __init__(self, user_id, username, password):
-        self.id = user_id
-        self.username = username
-        self.password = password
-# Replace these values with your actual credentials
-# hardcoded_user = User(id=1, username='admin', password='inuka_admin')
-        
-# Create a single user with hardcoded credentials
-user = User(1, hardcoded_username, hardcoded_password)
-
-
-# Login manager configuration
-@login_manager.user_loader
-def load_user(user_id):
-    return user if int(user_id) == user.id else None
-
-# Handle unauthorized access by redirecting to the login page
-@login_manager.unauthorized_handler
-def unauthorized():
-    return redirect(url_for('login'))
-
-with open('insights_member_data.json', 'r', encoding='utf-8') as json_file:
-    insights_members = json.load(json_file)
-
 # Register a custom filter function for base64 encoding
 def b64encode_filter(data):
     return b64encode(data).decode('utf-8')
@@ -83,19 +37,37 @@ def b64encode_filter(data):
 app.jinja_env.filters['b64encode'] = b64encode_filter
 
 
+login_manager = LoginManager(app)
+
+# Initialize Flask-Login
+login_manager.init_app(app)
+
+
+# User loader function
+@login_manager.user_loader
+def load_user(user_id):
+    # Replace this with your actual user lookup logic
+    return User.query.get(int(user_id))
+
+# Handle unauthorized access by redirecting to the login page
+@login_manager.unauthorized_handler
+def unauthorized():
+    return redirect(url_for('login'))
+
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == hardcoded_username and password == hardcoded_password:
+        user = User.query.filter_by(username=username).first()
+
+        if user and user.password == password:
             login_user(user)
             return redirect(url_for('dashboard'))
     return render_template('login.html')
-
-
-
 
 
 # Logout route

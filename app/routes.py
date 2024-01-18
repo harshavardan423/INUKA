@@ -57,8 +57,6 @@ def unauthorized():
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
-    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -67,6 +65,7 @@ def login():
         if user and user.password == password:
             login_user(user)
             return redirect(url_for('dashboard'))
+
     return render_template('login.html')
 
 
@@ -126,39 +125,40 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-@login_required
+# @login_required
 def dashboard():
     print("Reached the dashboard route")
     print(f"Current User: {current_user.username}")
-
+    if current_user.is_authenticated:
     # Add any additional debug statements as needed
 
-    return render_template('main_dashboard.html')
+        return render_template('main_dashboard.html')
 
 
 @app.route('/dashboard/jobs')
-@login_required
+# @login_required
 def jobs_dashboard():
-    search_query = request.args.get('search_query', '')
+    if current_user.is_authenticated:
+        search_query = request.args.get('search_query', '')
 
-    if search_query:
-        # Perform a search based on the query
-        jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
-    else:
-        # If no search query, fetch all jobs
-        jobs = Job.query.all()
+        if search_query:
+            # Perform a search based on the query
+            jobs = Job.query.filter(Job.title.ilike(f'%{search_query}%')).all()
+        else:
+            # If no search query, fetch all jobs
+            jobs = Job.query.all()
 
-    # Retrieve the count of applicants for each job
-    job_applicants_count = (
-        db.session.query(Applicant.job_id, func.count(Applicant.id))
-        .group_by(Applicant.job_id)
-        .all()
-    )
+        # Retrieve the count of applicants for each job
+        job_applicants_count = (
+            db.session.query(Applicant.job_id, func.count(Applicant.id))
+            .group_by(Applicant.job_id)
+            .all()
+        )
 
-    # Create a dictionary to store the count of applicants for each job
-    job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
+        # Create a dictionary to store the count of applicants for each job
+        job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
-    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
+        return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
     
 
 
@@ -207,40 +207,42 @@ def jobs_dashboard():
 #     print("Dummy Question ID:", dummy_question.id)
 
 @app.route('/create_job', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def create_job():
-    if request.method == 'POST':
-        job_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+    if current_user.is_authenticated:
 
-        # Get data from the form
-        title = request.form.get('title')
-        title_2 = request.form.get('title_2')
-        skills = request.form.get('skills')
-        description = request.form.get('description')
-        short_description = request.form.get('short_description')
+        if request.method == 'POST':
+            job_id = f"{int(time.time())}{random.randint(1000, 9999)}"
 
-        questions = request.form.getlist('questions[]')  # Get a list of questions from the form
-        default_answers = request.form.getlist('default_answers[]')  # Get a list of default answers from the form
-        with Session(engine) as session:
+            # Get data from the form
+            title = request.form.get('title')
+            title_2 = request.form.get('title_2')
+            skills = request.form.get('skills')
+            description = request.form.get('description')
+            short_description = request.form.get('short_description')
 
-            # Create a new job
-            new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description,id=job_id)
-            db.session.add(new_job)
-            db.session.commit()
+            questions = request.form.getlist('questions[]')  # Get a list of questions from the form
+            default_answers = request.form.getlist('default_answers[]')  # Get a list of default answers from the form
+            with Session(engine) as session:
 
-            question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
-            # Save questions and default answers to the database
-            for question_text, default_answer_text in zip(questions, default_answers):
-                new_question = Question(text=question_text, job_id=job_id,default_answer=default_answer_text,id=question_id)
-                db.session.add(new_question)
+                # Create a new job
+                new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description,id=job_id)
+                db.session.add(new_job)
+                db.session.commit()
 
-            db.session.commit()
+                question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+                # Save questions and default answers to the database
+                for question_text, default_answer_text in zip(questions, default_answers):
+                    new_question = Question(text=question_text, job_id=job_id,default_answer=default_answer_text,id=question_id)
+                    db.session.add(new_question)
 
-        # Redirect to the jobs dashboard or any other desired page
-        return redirect(url_for('jobs_dashboard'))
+                db.session.commit()
 
-    # Render the create job form for GET requests
-    return render_template('create_job.html')
+            # Redirect to the jobs dashboard or any other desired page
+            return redirect(url_for('jobs_dashboard'))
+
+        # Render the create job form for GET requests
+        return render_template('create_job.html')
 
 
 @app.route('/edit_job/<string:job_id>', methods=['GET', 'POST'])

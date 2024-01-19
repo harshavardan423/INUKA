@@ -43,13 +43,14 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    active_sessions = db.Column(PickleType, default=set)
+    is_active = db.Column(db.Boolean, default=False)
 
-    def add_active_session(self, session_id):
-        self.active_sessions.add(session_id)
+    def activate_user(self):
+        self.is_active = True
 
-    def remove_active_session(self, session_id):
-        self.active_sessions.discard(session_id)
+    def deactivate_user(self):
+        self.is_active = False
+
 
 class InsightsPost(db.Model):
     __tablename__ = 'insights_post'

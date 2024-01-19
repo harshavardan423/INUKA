@@ -66,14 +66,16 @@ def login():
             password = request.form['password']
             user = User.query.filter_by(username=username).first()
 
-            if user and user.password == password:
+            if user.username == username and user.password == password:
                 login_user(user)
 
                 # Storing user information in session
                 session['user_id'] = user.id
+                
 
                 # Add the session ID to the user's active sessions
                 user.add_active_session(session['_id'])
+                user.activate_user()
 
                 return redirect(url_for('dashboard'))
 
@@ -86,6 +88,7 @@ def login():
 def logout():
 
     logout_user()
+    current_user.deactivate_user()
     return redirect(url_for('login'))
 
 
@@ -136,17 +139,21 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-@login_required
+# @login_required
 def dashboard():
     sid = request.args.get('sid')
     print("Reached the dashboard route")
-    
-    # Check if the current session ID is in the user's active sessions
-    print(f"Current User: {current_user.username}")
 
-    # Add any additional debug statements as needed
+    # Check if the current user is active
+    if current_user.is_active:
+        print(f"Current User: {current_user.username} is active")
 
-    return render_template('main_dashboard.html', sid=sid, user=current_user)
+        # Add any additional logic for an active user
+
+        return render_template('main_dashboard.html', sid=sid, user=current_user)
+    else:
+        flash("Your account is not active.")
+        return redirect(url_for('logout'))  # Redirect to logout or another appropriate route
     
 
 @app.route('/dashboard/jobs')

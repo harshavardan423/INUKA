@@ -72,7 +72,8 @@ def login():
                         login_user(user)
 
                         # Add the session ID to the user's active sessions
-                        user.activate_user()
+                        user.is_active = True
+                        db.session.commit()
 
                         return redirect(url_for('dashboard'))
 
@@ -83,10 +84,11 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-
-    current_user.deactivate_user()
-    logout_user()
-    return redirect(url_for('login'))
+    with Session(engine) as session:
+        current_user.is_active = False
+        db.session.commit()
+        logout_user()
+        return redirect(url_for('login'))
 
 
 @app.route('/')

@@ -45,11 +45,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100), nullable=False)
     is_active = db.Column(db.Boolean, default=False)
 
-    def activate_user(self):
-        self.is_active = True
-
-    def deactivate_user(self):
-        self.is_active = False
+   
 
 
 class InsightsPost(db.Model):

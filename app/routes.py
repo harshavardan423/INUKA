@@ -72,6 +72,9 @@ def login():
                 # Storing user information in session
                 session['user_id'] = user.id
 
+                # Add the session ID to the user's active sessions
+                user.add_active_session(session['_id'])
+
                 return redirect(url_for('dashboard'))
 
         return render_template('login.html')
@@ -137,14 +140,14 @@ def insights_member_page(member_id):
 def dashboard():
     sid = request.args.get('sid')
     print("Reached the dashboard route")
-    if current_user.is_authenticated:
-        print(f"Current User: {current_user.username}")
+    
+    # Check if the current session ID is in the user's active sessions
+    print(f"Current User: {current_user.username}")
 
     # Add any additional debug statements as needed
 
-        return render_template('main_dashboard.html',sid=sid,user=current_user)
-    return "User not authenticated"
-
+    return render_template('main_dashboard.html', sid=sid, user=current_user)
+    
 
 @app.route('/dashboard/jobs')
 @login_required

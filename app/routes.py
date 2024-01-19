@@ -71,6 +71,7 @@ def login():
             if user and user.password == password:
        
                 login_user(user)
+                print("LOGGED IN USER : " + user)
 
                 return redirect(url_for('dashboard',user=user))
 
@@ -82,7 +83,8 @@ def login():
 @login_required
 def logout():
 
-    logout_user()
+    logout_user(current_user)
+    print("LOGGED OUT CURRENT USER")
     return redirect(url_for('login'))
 
 

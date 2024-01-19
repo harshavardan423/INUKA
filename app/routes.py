@@ -142,10 +142,10 @@ def insights_member_page(member_id):
 def dashboard():
     with Session(engine) as session:
         sid = request.args.get('sid')
-        print("Reached the dashboard route")
+        print(f"{current_user.username} Reached the dashboard route")
 
         # Check if the current user is active
-        if current_user.is_active:
+        if current_user.is_active or current_user.is_active == "1":
             print(f"Current User: {current_user.username} is active")
 
             # Add any additional logic for an active user

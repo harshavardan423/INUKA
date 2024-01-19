@@ -85,9 +85,9 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-
-    logout_user()
+    
     current_user.deactivate_user()
+    logout_user()
     return redirect(url_for('login'))
 
 
@@ -152,7 +152,7 @@ def dashboard():
         return render_template('main_dashboard.html', sid=sid, user=current_user)
     else:
         flash("Your account is not active.")
-        return redirect(url_for('logout'))  # Redirect to logout or another appropriate route
+        return redirect(url_for('login'))  # Redirect to logout or another appropriate route
     
 
 @app.route('/dashboard/jobs')

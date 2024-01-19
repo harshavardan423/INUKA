@@ -19,6 +19,7 @@ from functools import wraps
 from flask import abort
 
 
+
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -86,13 +87,13 @@ def login():
                 user = User.query.filter_by(username=username).first()
 
                 if user and user.password == password:
-                    # login_user(user)
+                    login_user(user)
 
                     # Add the session ID to the user's active sessions
                     user.is_active = True
                     db.session.commit()
 
-                    print(f"User {user.username} logged in successfully.")
+                    print(f"User {current_user.username} logged in successfully.")
 
                     return redirect(url_for('dashboard'))
 
@@ -159,14 +160,14 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-@admin_required
+@login_required
 def dashboard():
     with Session(engine) as session:
         
         user = User.query.filter_by(id=1).first()
         # Check if the current user is active
-        if user.is_active == 1:
-            print(f"Current User: {user.username} is active")
+        if current_user.is_authenticated:
+            print(f"Current User: {current_user.username} is active")
 
             # Add any additional logic for an active user
 
@@ -177,7 +178,7 @@ def dashboard():
     
 
 @app.route('/dashboard/jobs')
-@admin_required
+@login_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
 

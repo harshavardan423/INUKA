@@ -15,6 +15,23 @@ import random
 import cloudinary
 import cloudinary.uploader 
 import cloudinary.api
+from functools import wraps
+from flask import abort
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Check if the user is logged in
+        user = User.query.filter_by(id=1).first()
+        # Check if the current user is active
+        if not user.is_active == 1:
+            return abort(401)  # Unauthorized
+
+
+        return f(*args, **kwargs)
+
+    return decorated_function
 
 
 cloudinary.config( 
@@ -84,7 +101,7 @@ def login():
 
 
 @app.route('/logout')
-# @login_required
+# @admin_required
 def logout():
     with Session(engine) as session:
         user = User.query.filter_by(id=1).first()
@@ -142,11 +159,10 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-# @login_required
+@admin_required
 def dashboard():
     with Session(engine) as session:
-        # sid = request.args.get('sid')
-        # print(f"{current_user.username} Reached the dashboard route")
+        
         user = User.query.filter_by(id=1).first()
         # Check if the current user is active
         if user.is_active == 1:
@@ -161,7 +177,7 @@ def dashboard():
     
 
 @app.route('/dashboard/jobs')
-@login_required
+@admin_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
 
@@ -231,7 +247,7 @@ def jobs_dashboard():
 #     print("Dummy Question ID:", dummy_question.id)
 
 @app.route('/create_job', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def create_job():
 
     if request.method == 'POST':
@@ -269,7 +285,7 @@ def create_job():
 
 
 @app.route('/edit_job/<string:job_id>', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def edit_job(job_id):
     job = Job.query.get(job_id)
     
@@ -331,7 +347,7 @@ def edit_job(job_id):
 
 # Route to delete a job
 @app.route('/delete_job/<int:job_id>', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def delete_job(job_id):
 
     job = Job.query.get(job_id)
@@ -409,7 +425,7 @@ def view_job(job_id):
 
 
 @app.route('/view_applicants/<int:job_id>')
-@login_required
+@admin_required
 def view_applicants(job_id):
     with Session(engine) as session:
         job = Job.query.get(job_id)
@@ -438,7 +454,7 @@ def view_applicants(job_id):
 
 
 @app.route('/view_job_applicant/<int:job_id>/<int:applicant_id>')
-@login_required
+@admin_required
 def view_job_applicant(job_id, applicant_id):
     job = Job.query.get(job_id)
     applicant = Applicant.query.get(applicant_id)
@@ -451,7 +467,7 @@ def view_job_applicant(job_id, applicant_id):
     return render_template('view_job_applicant.html', job=job, applicant=applicant, job_questions=job_questions, applicant_answers=applicant_answers)
 
 @app.route('/view_applicant/<int:applicant_id>')
-@login_required
+@admin_required
 def view_applicant(applicant_id):
     applicant = Applicant.query.get(applicant_id)
 
@@ -464,7 +480,7 @@ def view_applicant(applicant_id):
     return render_template('view_applicant.html', applicant=applicant, jobs_applied=jobs_applied, answers=answers)
 
 @app.route('/view_all_applicants')
-@login_required
+@admin_required
 def view_all_applicants():
     search_query = request.args.get('search_query', '')
     
@@ -486,7 +502,7 @@ def view_all_applicants():
 
 
 @app.route('/download_resume/<int:applicant_id>')
-@login_required
+@admin_required
 def download_resume(applicant_id):
     applicant = Applicant.query.get(applicant_id)
 
@@ -499,14 +515,14 @@ def download_resume(applicant_id):
     
 # Route to render the members dashboard page
 @app.route('/dashboard/team_members')
-@login_required
+@admin_required
 def team_members_dashboard():
     team_members = TeamMember.query.all()
     return render_template('team_members_dashboard.html', team_members=team_members)
 
 
 @app.route('/create_team_member', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def create_team_member():
     if request.method == 'POST':
         with Session(engine) as session:
@@ -554,7 +570,7 @@ def create_team_member():
 # Assuming you already have the TeamMember model defined
 
 @app.route('/edit_team_member/<int:member_id>', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def edit_team_member(member_id):
     with Session(engine) as session:
         team_member = TeamMember.query.get(member_id)
@@ -591,7 +607,7 @@ def edit_team_member(member_id):
 
 # Route to delete a team member
 @app.route('/delete_team_member/<int:member_id>', methods=['POST'])
-@login_required
+@admin_required
 def delete_team_member(member_id):
     member = TeamMember.query.get(member_id)
     with Session(engine) as session :
@@ -608,7 +624,7 @@ def delete_team_member(member_id):
 
 # Route to render the Insights posts dashboard page
 @app.route('/dashboard/insights_posts')
-@login_required
+@admin_required
 def insights_posts_dashboard():
     insights_posts = InsightsPost.query.all()
     return render_template('insights_posts_dashboard.html', insights_posts=insights_posts)
@@ -616,7 +632,7 @@ def insights_posts_dashboard():
 
 
 @app.route('/create_insights_post', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def create_insights_post():
     with Session(engine) as session :
         if request.method == 'POST':
@@ -691,7 +707,7 @@ def create_insights_post():
 #     return render_template('create_insights_post.html')
 
 @app.route('/edit_insights_post/<int:post_id>', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def edit_insights_post(post_id):
     with Session(engine) as session :
         insights_post = InsightsPost.query.get_or_404(post_id)
@@ -732,7 +748,7 @@ def edit_insights_post(post_id):
 
 # Route to delete an Insights post
 @app.route('/delete_insights_post/<int:post_id>', methods=['POST'])
-@login_required
+@admin_required
 def delete_insights_post(post_id):
     insights_post = InsightsPost.query.get(post_id)
     db.session.delete(insights_post)
@@ -744,7 +760,7 @@ def delete_insights_post(post_id):
 
 # Create, Read, Update, Delete (CRUD) operations for TeamMember
 @app.route('/team_members', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def team_members():
     if request.method == 'GET':
         members_list = TeamMember.query.all()
@@ -759,7 +775,7 @@ def team_members():
 
 
 @app.route('/team_members/<int:member_id>', methods=['GET', 'PUT', 'DELETE'])
-@login_required
+@admin_required
 def team_member(member_id):
     member = TeamMember.query.get(member_id)
 
@@ -785,7 +801,7 @@ def team_member(member_id):
 
 # Create, Read, Update, Delete (CRUD) operations for InsightsPost
 @app.route('/insights_posts', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def insights_posts():
     if request.method == 'GET':
         posts = InsightsPost.query.all()
@@ -800,7 +816,7 @@ def insights_posts():
 
 
 @app.route('/insights_posts/<int:post_id>', methods=['GET', 'PUT', 'DELETE'])
-@login_required
+@admin_required
 def insights_post(post_id):
     post = InsightsPost.query.get(post_id)
 
@@ -824,7 +840,7 @@ def insights_post(post_id):
     
 # CRUD operations for Jobs
 @app.route('/jobs', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def jobs():
     if request.method == 'GET':
         jobs_list = Job.query.all()
@@ -839,7 +855,7 @@ def jobs():
 
 
 @app.route('/jobs/<int:job_id>', methods=['GET', 'PUT', 'DELETE'])
-@login_required
+@admin_required
 def job(job_id):
     job = Job.query.get(job_id)
 

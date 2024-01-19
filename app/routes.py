@@ -83,7 +83,7 @@ def login():
 @login_required
 def logout():
 
-    logout_user(current_user)
+    logout_user()
     print("LOGGED OUT CURRENT USER")
     return redirect(url_for('login'))
 

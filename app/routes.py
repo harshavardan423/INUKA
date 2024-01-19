@@ -84,7 +84,7 @@ def login():
 
 
 @app.route('/logout')
-@login_required
+# @login_required
 def logout():
     with Session(engine) as session:
         user = User.query.filter_by(id=1).first()

@@ -159,7 +159,7 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-@admin_required
+@login_required
 def dashboard():
     with Session(engine) as session:
         
@@ -177,7 +177,7 @@ def dashboard():
     
 
 @app.route('/dashboard/jobs')
-@admin_required
+@login_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
 

@@ -145,16 +145,16 @@ def insights_member_page(member_id):
 # @login_required
 def dashboard():
     with Session(engine) as session:
-        sid = request.args.get('sid')
-        print(f"{current_user.username} Reached the dashboard route")
-
+        # sid = request.args.get('sid')
+        # print(f"{current_user.username} Reached the dashboard route")
+        user = User.query.filter_by(id=1).first()
         # Check if the current user is active
-        if current_user.is_active or current_user.is_active == "1":
-            print(f"Current User: {current_user.username} is active")
+        if user.is_active == 1:
+            print(f"Current User: {user.username} is active")
 
             # Add any additional logic for an active user
 
-            return render_template('main_dashboard.html', sid=sid, user=current_user)
+            return render_template('main_dashboard.html', user=user)
         # else:
         #     flash("Your account is not active.")
         #     return redirect(url_for('login'))  # Redirect to logout or another appropriate route

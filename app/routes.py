@@ -69,11 +69,13 @@ def login():
             user = User.query.filter_by(username=username).first()
 
             if user and user.password == password:
-       
+                print("User and password are correct.")
                 login_user(user)
-                print("LOGGED IN USER : " + user)
+                print("User logged in successfully.")
+                return redirect(url_for('dashboard', user=user))
+            else:
+                print("Incorrect username or password.")
 
-                return redirect(url_for('dashboard',user=user))
 
         return render_template('login.html')
     return redirect(url_for('dashboard'))

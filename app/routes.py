@@ -156,9 +156,9 @@ def dashboard():
             # Add any additional logic for an active user
 
             return render_template('main_dashboard.html', sid=sid, user=current_user)
-        else:
-            flash("Your account is not active.")
-            return redirect(url_for('login'))  # Redirect to logout or another appropriate route
+        # else:
+        #     flash("Your account is not active.")
+        #     return redirect(url_for('login'))  # Redirect to logout or another appropriate route
     
 
 @app.route('/dashboard/jobs')

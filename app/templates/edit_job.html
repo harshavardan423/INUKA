@@ -65,7 +65,6 @@
                 </div>
             </div>
     
-           <!-- Questions Section -->
             <div class="mb-3">
                 <label for="questions" class="form-label">Add Questions</label>
                 <div id="questions-container">
@@ -77,74 +76,72 @@
                     </div>
                     <!-- Additional Questions (if any) will be added here -->
                 </div>
-
-    
+            
                 <!-- Add Question Button -->
                 <button type="button" class="btn btn-success btn-sm" id="add-question">Add Question</button>
             </div>
-    
+
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Update Job</button>
             <a href="{{ url_for('jobs_dashboard') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const questionsContainer = document.getElementById("questions-container");
-            const existingQuestionsContainer = document.getElementById("existing-questions-container");
-            const addQuestionButton = document.getElementById("add-question");
-    
-            let questionIndex = 1; // Track the index for new questions
-    
-            addQuestionButton.addEventListener("click", function () {
-                const questionInput = createQuestionInput();
-                questionsContainer.appendChild(questionInput);
-                questionIndex++;
-            });
-    
-            // Handle removal for existing questions
-            existingQuestionsContainer.addEventListener("click", function (event) {
-                if (event.target.classList.contains("remove-question")) {
-                    event.target.closest(".existing-question-input").remove();
-                }
-            });
-    
-            // Handle removal for new questions
-            questionsContainer.addEventListener("click", function (event) {
-                if (event.target.classList.contains("remove-question")) {
-                    event.target.closest(".question-input").remove();
-                }
-            });
-    
-            // Function to create a new question input
-            function createQuestionInput() {
-                const questionInput = document.createElement("div");
-                questionInput.className = "question-input mb-2";
-    
-                const inputElement = document.createElement("input");
-                inputElement.type = "text";
-                inputElement.className = "form-control";
-                inputElement.name = `new_questions_${questionIndex}[]`;
-                inputElement.placeholder = "Enter a new question";
-    
-                const removeButton = document.createElement("button");
-                removeButton.type = "button";
-                removeButton.className = "btn btn-danger btn-sm remove-question";
-                removeButton.textContent = "Remove";
-    
-                questionInput.appendChild(inputElement);
-                questionInput.appendChild(removeButton);
-    
-                // Attach event listener for removal
-                removeButton.addEventListener("click", function () {
-                    questionInput.remove();
-                });
-    
-                return questionInput;
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const questionsContainer = document.getElementById("questions-container");
+        const addQuestionButton = document.getElementById("add-question");
+
+        let questionIndex = 1; // Track the index for new questions
+
+        addQuestionButton.addEventListener("click", function () {
+            const questionInput = createQuestionInput();
+            questionsContainer.appendChild(questionInput);
+            questionIndex++;
+        });
+
+        // Handle removal for new questions
+        questionsContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("remove-question")) {
+                event.target.closest(".question-input").remove();
             }
         });
-    </script>
+
+        // Function to create a new question input
+        function createQuestionInput() {
+            const questionInput = document.createElement("div");
+            questionInput.className = "question-input mb-2";
+
+            const questionInputElement = document.createElement("input");
+            questionInputElement.type = "text";
+            questionInputElement.className = "form-control";
+            questionInputElement.name = `new_questions_${questionIndex}[]`;
+            questionInputElement.placeholder = "Enter a new question";
+
+            const defaultAnswerInputElement = document.createElement("input");
+            defaultAnswerInputElement.type = "text";
+            defaultAnswerInputElement.className = "form-control";
+            defaultAnswerInputElement.name = `new_default_answers_${questionIndex}[]`;
+            defaultAnswerInputElement.placeholder = "Enter default answer";
+            defaultAnswerInputElement.required = true;
+
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "btn btn-danger btn-sm remove-question";
+            removeButton.textContent = "Remove";
+
+            questionInput.appendChild(questionInputElement);
+            questionInput.appendChild(defaultAnswerInputElement);
+            questionInput.appendChild(removeButton);
+
+            // Attach event listener for removal
+            removeButton.addEventListener("click", function () {
+                questionInput.remove();
+            });
+
+            return questionInput;
+        }
+    });
+</script>
     
 
     

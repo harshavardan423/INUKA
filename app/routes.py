@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash
+from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash,session
 from flask_wtf.csrf import generate_csrf
 import json
 from .models import db,User, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
@@ -16,6 +16,8 @@ import cloudinary
 import cloudinary.uploader 
 import cloudinary.api
 
+
+
           
 cloudinary.config( 
   cloud_name = "dhkcm3uf7", 
@@ -23,6 +25,8 @@ cloudinary.config(
   api_secret = "dFKTMhOH76tleFb2N4sAGludOrE" 
 )
 
+# Example data store to keep track of active sessions
+active_sessions_per_user = {}
 
 def as_fraction(ratio):
     from fractions import Fraction
@@ -42,16 +46,17 @@ login_manager = LoginManager(app)
 # Initialize Flask-Login
 login_manager.init_app(app)
 
-
 # User loader function
 @login_manager.user_loader
 def load_user(user_id):
     # Replace this with your actual user lookup logic
     return User.query.get(int(user_id))
 
+
 # Handle unauthorized access by redirecting to the login page
 @login_manager.unauthorized_handler
 def unauthorized():
+    flash('You must be logged in to access this page.', 'warning')
     return redirect(url_for('login'))
 
 # Login route
@@ -64,20 +69,21 @@ def login():
             user = User.query.filter_by(username=username).first()
 
             if user and user.password == password:
+       
                 login_user(user)
-                return redirect(url_for('dashboard'))
+
+                return redirect(url_for('dashboard',user=user))
 
         return render_template('login.html')
     return redirect(url_for('dashboard'))
 
 
-# Logout route
 @app.route('/logout')
 @login_required
 def logout():
+
     logout_user()
     return redirect(url_for('login'))
-
 
 
 @app.route('/')
@@ -129,18 +135,19 @@ def insights_member_page(member_id):
 @app.route('/dashboard')
 # @login_required
 def dashboard():
+    sid = request.args.get('sid')
     print("Reached the dashboard route")
     if current_user.is_authenticated:
         print(f"Current User: {current_user.username}")
 
     # Add any additional debug statements as needed
 
-        return render_template('main_dashboard.html')
+        return render_template('main_dashboard.html',sid=sid,user=current_user)
     return "User not authenticated"
 
 
 @app.route('/dashboard/jobs')
-# @login_required
+@login_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
 
@@ -161,7 +168,7 @@ def jobs_dashboard():
     # Create a dictionary to store the count of applicants for each job
     job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
-    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict)
+    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict,user=current_user)
     
 
 
@@ -338,36 +345,37 @@ def delete_job(job_id):
 
 @app.route('/submit_application/<int:job_id>', methods=['POST'])
 def submit_application(job_id):
+    apply_id = f"{int(time.time())}{random.randint(1000, 9999)}"
 
-    with Session(engine) as session:
-        apply_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+    # Get data from the form
+    name = request.form.get('name')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    previous_job = request.form.get('previous_job')
+    previous_job_location = request.form.get('previous_job_location')
 
-        # Get data from the form
-        name = request.form.get('name')
-        email = request.form.get('email')
-        phone = request.form.get('phone')
-        previous_job = request.form.get('previous_job')
-        previous_job_location = request.form.get('previous_job_location')
-        
-        with Session(engine) as session:
-            # Handle file upload for the resume
-            resume_file = request.files.get('resume')
-            resume_data = resume_file.read() if resume_file else None
+    # Handle file upload for the resume
+    resume_file = request.files.get('resume')
+    resume_data = resume_file.read() if resume_file else None
 
-            # Upload the resume file to Cloudinary
-            if resume_data:
-                cloudinary_response = cloudinary.uploader.upload(resume_data, resource_type="raw")
-                resume_url = cloudinary.CloudinaryResource(cloudinary_response['public_id'])
+    # Upload the resume file to Cloudinary
+    if resume_data:
+        cloudinary_response = cloudinary.uploader.upload(resume_data, resource_type="raw")
+        resume_url = cloudinary_response['url']  # Use the URL, not the CloudinaryResource
 
-                # Update the Applicant model with the Cloudinary URL
-                new_applicant = Applicant(id=apply_id, name=name, email=email, phone=phone, job_id=job_id,
-                                        previous_job=previous_job, previous_job_location=previous_job_location,
-                                        resume=resume_url)
-                db.session.add(new_applicant)
-                db.session.commit()
+        # Update the Applicant model with the Cloudinary URL
+        new_applicant = Applicant(id=apply_id, name=name, email=email, phone=phone, job_id=job_id,
+                                  previous_job=previous_job, previous_job_location=previous_job_location,
+                                  resume=resume_url)
+        db.session.add(new_applicant)
+        db.session.commit()
 
-    # Redirect to a confirmation page or any other desired page
-    return render_template('application_confirmation.html', job_id=job_id)
+        # Redirect to a confirmation page or any other desired page
+        return redirect(url_for('application_confirmation', job_id=job_id))
+
+    # Handle the case when no resume file is provided
+    # Redirect or display an error message as needed
+    return render_template('error.html', message='No resume file provided')
 
 
 

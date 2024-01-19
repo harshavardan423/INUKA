@@ -62,7 +62,6 @@ def unauthorized():
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if not current_user.is_authenticated:
         if request.method == 'POST':
             username = request.form['username']
             password = request.form['password']
@@ -78,7 +77,6 @@ def login():
 
 
         return render_template('login.html')
-    return redirect(url_for('dashboard'))
 
 
 @app.route('/logout')

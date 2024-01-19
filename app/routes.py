@@ -18,7 +18,6 @@ import cloudinary.api
 from functools import wraps
 from flask import abort
 
-
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -57,7 +56,6 @@ app.jinja_env.filters['b64encode'] = b64encode_filter
 
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
 
 # Initialize Flask-Login
 login_manager.init_app(app)
@@ -75,60 +73,41 @@ def unauthorized():
     flash('You must be logged in to access this page.', 'warning')
     return redirect(url_for('login'))
 
-# # Login route
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     with Session(engine) as session:
-#         if not current_user.is_authenticated:
-#             if request.method == 'POST':
-#                 username = request.form['username']
-#                 password = request.form['password']
-            
-#                 user = User.query.filter_by(username=username).first()
-
-#                 if user and user.password == password:
-#                     # login_user(user)
-
-#                     # Add the session ID to the user's active sessions
-#                     user.is_active = True
-#                     db.session.commit()
-
-#                     print(f"User {user.username} logged in successfully.")
-
-#                     return redirect(url_for('dashboard'))
-
-#             return render_template('login.html')
-#         return redirect(url_for('dashboard'))
-
-
-
+# Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if not current_user.is_authenticated:
-        if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
+    with Session(engine) as session:
+        if not current_user.is_authenticated:
+            if request.method == 'POST':
+                username = request.form['username']
+                password = request.form['password']
+            
+                user = User.query.filter_by(username=username).first()
 
-            user = User.query.filter_by(username=username).first()
+                if user and user.password == password:
+                    # login_user(user)
 
-            if user and user.password == password:
-                login_user(user)
-                print(f"User {user.username} logged in successfully.")
-                return redirect(url_for('dashboard'))
+                    # Add the session ID to the user's active sessions
+                    user.is_active = True
+                    db.session.commit()
 
-        return render_template('login.html')
-    
-    return redirect(url_for('dashboard'))
+                    print(f"User {user.username} logged in successfully.")
+
+                    return redirect(url_for('dashboard'))
+
+            return render_template('login.html')
+        return redirect(url_for('dashboard'))
+
 
 @app.route('/logout')
-@login_required
+# @admin_required
 def logout():
     with Session(engine) as session:
-        # user = User.query.filter_by(id=1).first()
-        # user.is_active = 0
+        user = User.query.filter_by(id=1).first()
+        user.is_active = 0
 
-        # db.session.commit()
-        logout_user()
+        db.session.commit()
+        # logout_user()
         return redirect(url_for('login'))
 
 

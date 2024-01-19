@@ -69,7 +69,7 @@ def login():
                 user = User.query.filter_by(username=username).first()
 
                 if user and user.password == password:
-                    login_user(user)
+                    # login_user(user)
 
                     # Add the session ID to the user's active sessions
                     user.is_active = True
@@ -88,11 +88,10 @@ def login():
 def logout():
     with Session(engine) as session:
         user = User.query.filter_by(id=1).first()
-        user.is_active = False
-        current_user.is_active = False
+        user.is_active = 0
 
         db.session.commit()
-        logout_user()
+        # logout_user()
         return redirect(url_for('login'))
 
 

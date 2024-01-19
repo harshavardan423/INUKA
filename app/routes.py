@@ -60,24 +60,21 @@ def unauthorized():
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    with Session(engine) as session:
+    
         if not current_user.is_authenticated:
             if request.method == 'POST':
                 username = request.form['username']
                 password = request.form['password']
-                user = User.query.filter_by(username=username).first()
+                with Session(engine) as session:
+                    user = User.query.filter_by(username=username).first()
 
-                if user and user.password == password:
-                    login_user(user)
+                    if user and user.password == password:
+                        login_user(user)
 
-                    # Storing user information in session
-                    session['user_id'] = user.id
-                    
+                        # Add the session ID to the user's active sessions
+                        user.activate_user()
 
-                    # Add the session ID to the user's active sessions
-                    user.activate_user()
-
-                    return redirect(url_for('dashboard'))
+                        return redirect(url_for('dashboard'))
 
             return render_template('login.html')
         return redirect(url_for('dashboard'))

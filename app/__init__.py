@@ -9,7 +9,7 @@ username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWORD")
 
 # Generate a random hex string of 24 bytes (48 characters)
-secret_key = secrets.token_hex(24)
+secret_key = "9ef90a696c47aea69b2f35de9be1f3b3588cfc59518972a0"
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ else:
     app.config['DEBUG'] = False
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = secret_key  # Set a strong and secure secret key
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")  # Set a strong and secure secret key
 db.init_app(app)
 
 # Import your routes after initializing the app

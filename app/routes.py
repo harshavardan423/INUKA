@@ -86,11 +86,11 @@ def login():
                 user = User.query.filter_by(username=username).first()
 
                 if user and user.password == password:
-                    # login_user(user)
+                    login_user(user)
 
                     # Add the session ID to the user's active sessions
-                    user.is_active = True
-                    db.session.commit()
+                    # user.is_active = True
+                    # db.session.commit()
 
                     print(f"User {user.username} logged in successfully.")
 
@@ -104,11 +104,11 @@ def login():
 # @admin_required
 def logout():
     with Session(engine) as session:
-        user = User.query.filter_by(id=1).first()
-        user.is_active = 0
+        # user = User.query.filter_by(id=1).first()
+        # user.is_active = 0
 
-        db.session.commit()
-        # logout_user()
+        # db.session.commit()
+        logout_user()
         return redirect(url_for('login'))
 
 
@@ -165,8 +165,8 @@ def dashboard():
         
         user = User.query.filter_by(id=1).first()
         # Check if the current user is active
-        if user.is_active == 1:
-            print(f"Current User: {user.username} is active")
+        if current_user.is_authenticated :
+            print(f"Current User: {current_user.username} is active")
 
             # Add any additional logic for an active user
 

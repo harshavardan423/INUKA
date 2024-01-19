@@ -133,7 +133,7 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-# @login_required
+@login_required
 def dashboard():
     sid = request.args.get('sid')
     print("Reached the dashboard route")

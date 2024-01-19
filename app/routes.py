@@ -19,7 +19,6 @@ from functools import wraps
 from flask import abort
 
 
-
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -58,6 +57,7 @@ app.jinja_env.filters['b64encode'] = b64encode_filter
 
 
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 # Initialize Flask-Login
 login_manager.init_app(app)
@@ -75,41 +75,60 @@ def unauthorized():
     flash('You must be logged in to access this page.', 'warning')
     return redirect(url_for('login'))
 
-# Login route
+# # Login route
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     with Session(engine) as session:
+#         if not current_user.is_authenticated:
+#             if request.method == 'POST':
+#                 username = request.form['username']
+#                 password = request.form['password']
+            
+#                 user = User.query.filter_by(username=username).first()
+
+#                 if user and user.password == password:
+#                     # login_user(user)
+
+#                     # Add the session ID to the user's active sessions
+#                     user.is_active = True
+#                     db.session.commit()
+
+#                     print(f"User {user.username} logged in successfully.")
+
+#                     return redirect(url_for('dashboard'))
+
+#             return render_template('login.html')
+#         return redirect(url_for('dashboard'))
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    with Session(engine) as session:
-        if not current_user.is_authenticated:
-            if request.method == 'POST':
-                username = request.form['username']
-                password = request.form['password']
-            
-                user = User.query.filter_by(username=username).first()
+    if not current_user.is_authenticated:
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
 
-                if user and user.password == password:
-                    login_user(user)
+            user = User.query.filter_by(username=username).first()
 
-                    # Add the session ID to the user's active sessions
-                    user.is_active = True
-                    db.session.commit()
+            if user and user.password == password:
+                login_user(user)
+                print(f"User {user.username} logged in successfully.")
+                return redirect(url_for('dashboard'))
 
-                    print(f"User {current_user.username} logged in successfully.")
-
-                    return redirect(url_for('dashboard'))
-
-            return render_template('login.html')
-        return redirect(url_for('dashboard'))
-
+        return render_template('login.html')
+    
+    return redirect(url_for('dashboard'))
 
 @app.route('/logout')
-# @admin_required
+@login_required
 def logout():
     with Session(engine) as session:
-        user = User.query.filter_by(id=1).first()
-        user.is_active = 0
+        # user = User.query.filter_by(id=1).first()
+        # user.is_active = 0
 
-        db.session.commit()
-        # logout_user()
+        # db.session.commit()
+        logout_user()
         return redirect(url_for('login'))
 
 
@@ -160,14 +179,14 @@ def insights_member_page(member_id):
 
 # Protected dashboard route
 @app.route('/dashboard')
-@login_required
+@admin_required
 def dashboard():
     with Session(engine) as session:
         
         user = User.query.filter_by(id=1).first()
         # Check if the current user is active
-        if current_user.is_authenticated:
-            print(f"Current User: {current_user.username} is active")
+        if user.is_active == 1:
+            print(f"Current User: {user.username} is active")
 
             # Add any additional logic for an active user
 
@@ -178,7 +197,7 @@ def dashboard():
     
 
 @app.route('/dashboard/jobs')
-@login_required
+@admin_required
 def jobs_dashboard():
     search_query = request.args.get('search_query', '')
 

@@ -74,7 +74,6 @@ def login():
                 
 
                 # Add the session ID to the user's active sessions
-                user.add_active_session(session['_id'])
                 user.activate_user()
 
                 return redirect(url_for('dashboard'))

@@ -60,32 +60,33 @@ def unauthorized():
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if not current_user.is_authenticated:
-        if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
-            user = User.query.filter_by(username=username).first()
+    with Session(engine) as session:
+        if not current_user.is_authenticated:
+            if request.method == 'POST':
+                username = request.form['username']
+                password = request.form['password']
+                user = User.query.filter_by(username=username).first()
 
-            if user.username == username and user.password == password:
-                login_user(user)
+                if user and user.password == password:
+                    login_user(user)
 
-                # Storing user information in session
-                session['user_id'] = user.id
-                
+                    # Storing user information in session
+                    session['user_id'] = user.id
+                    
 
-                # Add the session ID to the user's active sessions
-                user.activate_user()
+                    # Add the session ID to the user's active sessions
+                    user.activate_user()
 
-                return redirect(url_for('dashboard'))
+                    return redirect(url_for('dashboard'))
 
-        return render_template('login.html')
-    return redirect(url_for('dashboard'))
+            return render_template('login.html')
+        return redirect(url_for('dashboard'))
 
 
 @app.route('/logout')
 @login_required
 def logout():
-    
+
     current_user.deactivate_user()
     logout_user()
     return redirect(url_for('login'))
@@ -140,19 +141,20 @@ def insights_member_page(member_id):
 @app.route('/dashboard')
 # @login_required
 def dashboard():
-    sid = request.args.get('sid')
-    print("Reached the dashboard route")
+    with Session(engine) as session:
+        sid = request.args.get('sid')
+        print("Reached the dashboard route")
 
-    # Check if the current user is active
-    if current_user.is_active:
-        print(f"Current User: {current_user.username} is active")
+        # Check if the current user is active
+        if current_user.is_active:
+            print(f"Current User: {current_user.username} is active")
 
-        # Add any additional logic for an active user
+            # Add any additional logic for an active user
 
-        return render_template('main_dashboard.html', sid=sid, user=current_user)
-    else:
-        flash("Your account is not active.")
-        return redirect(url_for('login'))  # Redirect to logout or another appropriate route
+            return render_template('main_dashboard.html', sid=sid, user=current_user)
+        else:
+            flash("Your account is not active.")
+            return redirect(url_for('login'))  # Redirect to logout or another appropriate route
     
 
 @app.route('/dashboard/jobs')

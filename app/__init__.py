@@ -3,6 +3,8 @@ from .models import db  # Use a relative import
 import json
 import secrets
 import os
+from flask_session import Session
+
 
 # Replace [USERNAME] and [PASSWORD] with your actual environment variable names
 username = os.environ.get("DB_USERNAME")
@@ -23,7 +25,11 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key  # Set a strong and secure secret key
+app.config['SESSION_TYPE'] = 'sqlalchemy'  # Use SQLAlchemy for session management
+
 db.init_app(app)
+Session(app)
+
 
 # Import your routes after initializing the app
 from . import routes  # Use a relative import

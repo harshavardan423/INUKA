@@ -9,7 +9,7 @@ username = os.environ.get("DB_USERNAME")
 password = os.environ.get("DB_PASSWORD")
 
 # Generate a random hex string of 24 bytes (48 characters)
-secret_key = secrets.token_hex(24)
+secret_key = os.environ.get("SECRET_KEY")
 
 app = Flask(__name__)
 

@@ -5,6 +5,7 @@ from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answ
 from . import app
 import os
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
 from base64 import b64encode
 from sqlalchemy import func
 from sqlalchemy.orm import Session
@@ -55,8 +56,10 @@ hardcoded_password = "inuka_admin"
 # hardcoded_user = User(id=1, username='admin', password='inuka_admin')
         
 # Create a single user with hardcoded credentials
-user = User(1, hardcoded_username, hardcoded_password)
-
+# A sample user
+# A sample user with updated username and password
+hashed_password = generate_password_hash("inuka_admin", method='pbkdf2:sha256', salt_length=8)
+user = User(1, 'admin', hashed_password)
 
 # Login manager configuration
 @login_manager.user_loader

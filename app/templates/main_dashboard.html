@@ -18,7 +18,7 @@
 </nav>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Inuka Dashboard Dev</h2>
+        <h2 class="text-center">Inuka Dashboard Dev {{current_user.username}}</h2>
         <div class="list-group">
             <a href="{{ url_for('jobs_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center text-white">Jobs</a>
             <a href="{{ url_for('team_members_dashboard') }}" class="list-group-item d-flex justify-content-between align-items-center text-white">Team Members</a>

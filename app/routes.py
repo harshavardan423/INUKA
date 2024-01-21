@@ -1,7 +1,7 @@
 from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash
 from flask_wtf.csrf import generate_csrf
 import json
-from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
+from .models import db, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine,User
 from . import app
 import os
 from werkzeug.utils import secure_filename
@@ -15,6 +15,7 @@ import random
 import cloudinary
 import cloudinary.uploader 
 import cloudinary.api
+from werkzeug.security import check_password_hash
 
           
 cloudinary.config( 
@@ -50,12 +51,6 @@ hardcoded_password = "inuka_admin"
 #         self.username = username
 #         self.password = password
 
-# Hardcoded user for testing purposes
-class User(UserMixin):
-    def __init__(self, user_id, username, password):
-        self.id = user_id
-        self.username = username
-        self.password = password
 # Replace these values with your actual credentials
 # hardcoded_user = User(id=1, username='admin', password='inuka_admin')
         
@@ -67,6 +62,8 @@ user = User(1, hardcoded_username, hardcoded_password)
 @login_manager.user_loader
 def load_user(user_id):
     return user if int(user_id) == user.id else None
+
+
 
 # Handle unauthorized access by redirecting to the login page
 @login_manager.unauthorized_handler
@@ -89,12 +86,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if username == hardcoded_username and password == hardcoded_password:
+
+        # Check if the username exists
+        if username == user.username and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('dashboard'))
+
     return render_template('login.html')
-
-
 
 
 

@@ -10,3 +10,4 @@ Werkzeug==2.3.7
 python-dotenv==0.21.1
 mysql-connector-python==8.2.0
 mysqlclient==2.2.1
+werkzeug>=2.3.7

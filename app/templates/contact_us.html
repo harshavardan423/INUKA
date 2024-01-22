@@ -262,6 +262,30 @@ https://templatemo.com/tm-583-festava-live
 .preserve-formatting {
         white-space: pre-line;
     }
+
+
+    .job-content {
+        max-height: 400px;
+        overflow-y: auto;
+        scrollbar-width: thin; /* For Firefox */
+        scrollbar-color: #4a4a4a #333; /* For Firefox */
+        border-radius: 6px;
+        margin: 10px;
+    }
+
+    .job-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .job-content::-webkit-scrollbar-thumb {
+        background-color: var(--inuka-blue);
+        border-radius: 6px;
+    }
+
+    .job-content::-webkit-scrollbar-track {
+        background-color: #4a4a4a;
+        border-radius: 6px;
+    }
 </style>
 <script>
 const observerOptions = {
@@ -365,27 +389,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         <div class="job-opening-card">
                                             <h6 style="color: white;">{{ job.title }}</h6>
                                             <h6 style="color: #efd181;">{{ job.title_2 }}</h6>
-                                            <p class="preserve-formatting">
-                                                <strong style="color: white; font-size: medium;">{{ job.short_description }}</strong>
-                                            </p>
-                                            <p style="color: white; font-size: medium;">
-                                                <strong style="color: white;">Required Skills :</strong>
-                                                <br>
-                                                {% if job.skills %}
-                                                    {% for skill in job.skills.split(',') %}
-                                                        - {{ skill }}
-                                                        <br>
-                                                    {% endfor %}
-                                                {% else %}
-                                                    No skills specified
-                                                {% endif %}
-                                                <br>
-                                                <a href="{{ url_for('view_job', job_id=job.id) }}">
-                                                    <button class="btn" style="background-color: #67909d;color: black; border-radius: 20px; font-weight: bold;">
-                                                        View
-                                                    </button>
-                                                </a>
-                                            </p>
+                                            <div class="job-content">
+                                                <p class="preserve-formatting">
+                                                    <strong style="color: white; font-size: medium;">{{ job.short_description }}</strong>
+                                                </p>
+                                                <p style="color: white; font-size: medium;">
+                                                    <strong style="color: white;">Required Skills :</strong>
+                                                    <br>
+                                                    {% if job.skills %}
+                                                        {% for skill in job.skills.split(',') %}
+                                                            - {{ skill }}
+                                                            <br>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        No skills specified
+                                                    {% endif %}
+                                                    <br>
+                                                </p>
+                                            </div>
+                                            
+                                            <a href="{{ url_for('view_job', job_id=job.id) }}">
+                                                <button class="btn" style="background-color: #67909d;color: black; border-radius: 20px; font-weight: bold;">
+                                                    View
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

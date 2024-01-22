@@ -82,7 +82,7 @@
             <p style="font-size: 1rem;">
                 <strong>Required Skills :</strong><br>
                 {% if job.skills %}
-                    {% for skill in job.skills.split(',') %}
+                    {% for skill in job.skills.split('.') %}
                         - {{ skill }}<br>
                     {% endfor %}
                 {% else %}

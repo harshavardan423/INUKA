@@ -76,8 +76,8 @@ class Job(db.Model):
     id = db.Column(db.String(500), primary_key=True)
     title = db.Column(db.String(100))
     title_2 = db.Column(db.String(100))
-    description = db.Column(db.String(2000))
-    short_description = db.Column(db.String(1500))
+    description = db.Column(db.String(3000))
+    short_description = db.Column(db.String(2500))
     skills = db.Column(db.String(1000))
 
 class Question(db.Model):

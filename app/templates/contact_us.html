@@ -397,7 +397,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     <strong style="color: white;">Required Skills :</strong>
                                                     <br>
                                                     {% if job.skills %}
-                                                        {% for skill in job.skills.split(',') %}
+                                                        {% for skill in job.skills.split('.') %}
                                                             - {{ skill }}
                                                             <br>
                                                         {% endfor %}

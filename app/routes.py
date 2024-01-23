@@ -300,7 +300,6 @@ def jobs_dashboard():
 def create_job():
 
     if request.method == 'POST':
-        job_id = f"{int(time.time())}{random.randint(1000, 9999)}"
 
         # Get data from the form
         title = request.form.get('title')
@@ -314,14 +313,13 @@ def create_job():
         with Session(engine) as session:
 
             # Create a new job
-            new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description,id=job_id)
+            new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description)
             db.session.add(new_job)
             db.session.commit()
 
-            question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
             # Save questions and default answers to the database
             for question_text, default_answer_text in zip(questions, default_answers):
-                new_question = Question(text=question_text, job_id=job_id,default_answer=default_answer_text,id=question_id)
+                new_question = Question(text=question_text,default_answer=default_answer_text)
                 db.session.add(new_question)
 
             db.session.commit()

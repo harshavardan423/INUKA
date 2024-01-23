@@ -17,7 +17,7 @@ import cloudinary.uploader
 import cloudinary.api
 from functools import wraps
 from flask import abort
-from sqlalchemy import update
+from sqlalchemy import update,func
 
 def admin_required(f):
     @wraps(f)
@@ -310,16 +310,31 @@ def create_job():
 
         questions = request.form.getlist('questions[]')  # Get a list of questions from the form
         default_answers = request.form.getlist('default_answers[]')  # Get a list of default answers from the form
+
         with Session(engine) as session:
 
-            # Create a new job
-            new_job = Job(title=title, title_2=title_2, skills=skills, description=description, short_description=short_description)
+            # Find the last created id for Job
+            last_job_id = session.query(func.max(Job.id)).scalar()
+
+            # Increment the last id by 1
+            new_job_id = last_job_id + 1 if last_job_id is not None else 1
+
+            # Create a new job with the manually generated id
+            new_job = Job(id=str(new_job_id), title=title, title_2=title_2, skills=skills, description=description, short_description=short_description)
             db.session.add(new_job)
             db.session.commit()
 
             # Save questions and default answers to the database
             for question_text, default_answer_text in zip(questions, default_answers):
-                new_question = Question(text=question_text,default_answer=default_answer_text)
+
+                # Find the last created id for Question
+                last_question_id = session.query(func.max(Question.id)).scalar()
+
+                # Increment the last id by 1
+                new_question_id = last_question_id + 1 if last_question_id is not None else 1
+
+                # Create a new question with the manually generated id
+                new_question = Question(id=str(new_question_id), text=question_text, default_answer=default_answer_text)
                 db.session.add(new_question)
 
             db.session.commit()
@@ -329,7 +344,6 @@ def create_job():
 
     # Render the create job form for GET requests
     return render_template('create_job.html')
-
 
 @app.route('/edit_job/<string:job_id>', methods=['GET', 'POST'])
 @admin_required

@@ -73,7 +73,7 @@ class TeamMember(db.Model):
 class Job(db.Model):
     __tablename__ = 'job'
 
-    id = db.Column(db.String(500), primary_key=True,autoincrement=True)
+    id = db.Column(db.String(500), primary_key=True)
     title = db.Column(db.String(100))
     title_2 = db.Column(db.String(100))
     description = db.Column(db.String(3000))

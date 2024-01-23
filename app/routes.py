@@ -317,7 +317,8 @@ def create_job():
             last_job_id = session.query(func.max(Job.id)).scalar()
 
             # Increment the last id by 1
-            new_job_id = last_job_id + 1 if last_job_id is not None else 1
+            new_job_id = str(int(last_job_id) + 1) if last_job_id is not None else '1'
+
 
             # Create a new job with the manually generated id
             new_job = Job(id=str(new_job_id), title=title, title_2=title_2, skills=skills, description=description, short_description=short_description)
@@ -331,7 +332,7 @@ def create_job():
                 last_question_id = session.query(func.max(Question.id)).scalar()
 
                 # Increment the last id by 1
-                new_question_id = last_question_id + 1 if last_question_id is not None else 1
+                new_question_id = str(int(last_question_id) + 1) if last_question_id is not None else '1'
 
                 # Create a new question with the manually generated id
                 new_question = Question(id=str(new_question_id), text=question_text, default_answer=default_answer_text)

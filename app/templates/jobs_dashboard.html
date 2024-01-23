@@ -5,6 +5,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/dashboard.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Jobs Dashboard</title>
@@ -28,31 +32,120 @@
         </form>
 
         <ul class="list-group">
-            {% for job in jobs %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        {{ job.title }}
-                        <span class="badge bg-primary rounded-pill">{{ job.applicants|length }} Applicants</span>
-                        
-                        {% if job.active %}
-                            <span class="badge bg-success rounded-pill">Active</span>
-                        {% else %}
-                            <span class="badge bg-danger rounded-pill">Inactive</span>
+            {% if order %}
+                {% for job_id in order %}
+                    {% for job in jobs %}
+                        {% if job.id == job_id %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center" data-job-id="{{ job.id }}">
+                                <div>
+                                    {{ job.title }}
+                                    <span class="badge bg-primary rounded-pill">{{ job.applicants|length }} Applicants</span>
+                                    
+                                    {% if job.active %}
+                                        <span class="badge bg-success rounded-pill">Active</span>
+                                    {% else %}
+                                        <span class="badge bg-danger rounded-pill">Inactive</span>
+                                    {% endif %}
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-warning" href="{{ url_for('edit_job', job_id=job.id) }}">Edit</a>
+                                    <a class="btn btn-danger" href="{{ url_for('delete_job', job_id=job.id) }}">Delete</a>
+                                    <a class="btn btn-info" href="{{ url_for('view_applicants', job_id=job.id) }}">View Applicants</a>
+                                </div>
+                            </li>
                         {% endif %}
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-warning" href="{{ url_for('edit_job', job_id=job.id) }}">Edit</a>
-                        <a class="btn btn-danger" href="{{ url_for('delete_job', job_id=job.id) }}">Delete</a>
-                        <a class="btn btn-info" href="{{ url_for('view_applicants', job_id=job.id) }}">View Applicants</a>
-                    </div>
-                </li>
-            {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                {# If there's no order, display jobs in their default order based on job IDs #}
+                {% for job in jobs %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center" data-job-id="{{ job.id }}">
+                        <div>
+                            {{ job.title }}
+                            <span class="badge bg-primary rounded-pill">{{ job.applicants|length }} Applicants</span>
+                            
+                            {% if job.active %}
+                                <span class="badge bg-success rounded-pill">Active</span>
+                            {% else %}
+                                <span class="badge bg-danger rounded-pill">Inactive</span>
+                            {% endif %}
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-warning" href="{{ url_for('edit_job', job_id=job.id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ url_for('delete_job', job_id=job.id) }}">Delete</a>
+                            <a class="btn btn-info" href="{{ url_for('view_applicants', job_id=job.id) }}">View Applicants</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% endif %}
         </ul>
-
+        
+        
         <a class="btn btn-success mt-3 btn-block" href="{{ url_for('create_job') }}">Create New Job</a>
         <a class="btn btn-info mt-3 btn-block" href="{{ url_for('view_all_applicants') }}">View All Applicants</a>
-    </div>
+        <button class="btn btn-primary mt-3 btn-block" id="saveOrderButton">Save Order</button>
+        <button class="btn btn-primary mt-3 btn-block" id="resetOrderButton">Reset Order</button>
 
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var jobList = document.querySelector('.list-group');
+            var sortable = new Sortable(jobList, {
+                animation: 150,
+                onEnd: function (evt) {
+                    console.log('Job order changed', evt.newIndex, evt.oldIndex);
+                }
+            });
+    
+            function handleSaveOrderButtonClick() {
+                console.log('Clicked')
+                var jobOrder = Array.from(jobList.children).map(function (li, index) {
+                    var jobId = li.getAttribute('data-job-id');
+                    li.setAttribute('data-job-id', index + 1);
+                    return jobId;
+                });
+    
+                $.ajax({
+                    url: '/update_job_order',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ order: jobOrder }),
+                    success: function (data) {
+                        console.log('Job order updated successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error updating job order:', error);
+                    }
+                });
+            }
+    
+            var saveOrderButton = document.getElementById('saveOrderButton');
+            saveOrderButton.addEventListener('click', handleSaveOrderButtonClick);
+            
+        });
+
+        // Add this code to handle the Reset Order button click
+document.getElementById('resetOrderButton').addEventListener('click', function() {
+    $.ajax({
+        type: 'POST',
+        url: '/reset_job_order',
+        contentType: 'application/json;charset=UTF-8',
+        success: function(response) {
+            // Reload the page or update the job list as needed
+            location.reload(); // This will refresh the page
+        },
+        error: function(error) {
+            console.error('Error resetting job order:', error.responseText);
+        }
+    });
+});
+    </script>
+    
+    
+
+    <!-- Include Bootstrap JS and Popper.js (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Include Bootstrap JS and Popper.js (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -80,6 +80,11 @@ class Job(db.Model):
     short_description = db.Column(db.String(2500))
     skills = db.Column(db.String(1000))
 
+class SortedJobs(db.Model):
+    __tablename__ = 'sorted_jobs'
+    id = db.Column(db.Integer, primary_key=True)
+    job_order = db.Column(db.String(500))
+
 class Question(db.Model):
     __tablename__ = 'question'
 

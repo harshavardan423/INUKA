@@ -1,7 +1,7 @@
 from flask import Flask, render_template,request,jsonify,redirect,url_for,send_file,flash,session
 from flask_wtf.csrf import generate_csrf
 import json
-from .models import db,User, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine
+from .models import db,User, InsightsPost, Job, Applicant, TeamMember, Question, Answer,engine,SortedJobs
 from . import app
 import os
 from werkzeug.utils import secure_filename
@@ -17,6 +17,7 @@ import cloudinary.uploader
 import cloudinary.api
 from functools import wraps
 from flask import abort
+from sqlalchemy import update
 
 def admin_required(f):
     @wraps(f)
@@ -140,7 +141,15 @@ def inuka_insights():
 def contact():
     with Session(engine) as session:
         jobs = Job.query.all()
-    return render_template('contact_us.html', jobs = jobs)
+
+        # Retrieve the order from the SortedJobs table
+        sorted_jobs = SortedJobs.query.first()
+        if sorted_jobs:
+            # Convert the string representation of list to an actual list
+            order = eval(sorted_jobs.job_order)
+        else:
+            order = []
+    return render_template('contact_us.html', jobs = jobs,order=order,sorted_jobs=sorted_jobs)
 
 @app.route('/insights_member_page.html/<int:member_id>')
 def insights_member_page(member_id):
@@ -173,8 +182,41 @@ def dashboard():
         # else:
         #     flash("Your account is not active.")
         #     return redirect(url_for('login'))  # Redirect to logout or another appropriate route
-    
 
+# Your existing route
+@app.route('/update_job_order', methods=['POST'])
+def update_job_order():
+    try:
+        order = request.json.get('order')
+
+        # Convert the order list to a string and store it in the SortedJobs table
+        sorted_jobs = SortedJobs.query.first()
+        if sorted_jobs is None:
+            sorted_jobs = SortedJobs(job_order=str(order))
+            db.session.add(sorted_jobs)
+        else:
+            sorted_jobs.job_order = str(order)
+
+        db.session.commit()
+
+        return jsonify({'message': 'Job order updated successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/reset_job_order', methods=['POST'])
+def reset_job_order():
+    try:
+        # Reset the order in the SortedJobs table (you need to add this logic)
+        sorted_jobs = SortedJobs.query.first()
+        if sorted_jobs:
+            db.session.delete(sorted_jobs)
+            db.session.commit()
+
+        return jsonify({'message': 'Job order reset successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    
 @app.route('/dashboard/jobs')
 @admin_required
 def jobs_dashboard():
@@ -194,11 +236,19 @@ def jobs_dashboard():
         .all()
     )
 
+    # Retrieve the order from the SortedJobs table
+    sorted_jobs = SortedJobs.query.first()
+    if sorted_jobs:
+        # Convert the string representation of list to an actual list
+        order = eval(sorted_jobs.job_order)
+    else:
+        order = []
+
     # Create a dictionary to store the count of applicants for each job
     job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
-    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict,user=current_user)
-    
+    return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict, user=current_user, order=order, sorted_jobs=sorted_jobs)
+
 
 
 # Use the app context

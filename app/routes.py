@@ -233,6 +233,7 @@ def jobs_dashboard():
         .group_by(Applicant.job_id)
         .all()
     )
+    job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
     # Retrieve the order from the SortedJobs table
     sorted_jobs = SortedJobs.query.first()
@@ -246,7 +247,6 @@ def jobs_dashboard():
     job_applicants_count_dict = {job_id: count for job_id, count in job_applicants_count}
 
     return render_template('jobs_dashboard.html', jobs=jobs, job_applicants_count=job_applicants_count_dict, user=current_user, order=order, sorted_jobs=sorted_jobs)
-
 
 
 # Use the app context

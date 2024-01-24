@@ -448,7 +448,7 @@ def delete_job(job_id):
 
 @app.route('/submit_application/<int:job_id>', methods=['POST'])
 def submit_application(job_id):
-    last_apply_id = session.query(func.max(Applicant.id)).scalar()
+    last_apply_id = db.session.query(func.max(Applicant.id)).scalar()
 
     # Increment the last id by 1
     new_apply_id = str(int(last_apply_id) + 1) if last_apply_id is not None else '1'

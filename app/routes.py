@@ -492,7 +492,7 @@ def submit_application(job_id):
 
 # Add this route to your Flask application
 @app.route('/application_confirmation/<int:job_id>')
-def application_form(job_id):
+def application_confirmation(job_id):
     job = Job.query.get(job_id)
 
     return render_template('application_confirmation.html', job=job)

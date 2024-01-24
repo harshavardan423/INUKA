@@ -135,8 +135,6 @@ def inuka_insights():
         # Return a generic error page or handle it as per your application's requirements
         return render_template('error.html'), 500
 
-
-
 @app.route('/contact')
 def contact():
     with Session(engine) as session:
@@ -384,7 +382,20 @@ def edit_job(job_id):
             # Add new questions and default answers
             new_questions = request.form.getlist('questions[]')
             new_default_answers = request.form.getlist('new_default_answers_1[]')
-            question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+            # question_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+
+             # Find the last created id for Question
+            last_question_id = session.query(func.max(Question.id)).scalar()
+
+            # Increment the last id by 1
+            new_question_id = str(int(last_question_id) + 1) if last_question_id is not None else '1'
+
+            # Create a new question with the manually generated id
+            new_question = Question(id=str(new_question_id), text=question_text, default_answer=default_answer_text)
+            question_id = new_question_id
+
+
+
             for question_text, default_answer_text in zip(new_questions, new_default_answers):
                 new_question = Question(text=question_text, id=question_id, default_answer=default_answer_text, job_id=job.id)
                 db.session.add(new_question)
@@ -437,7 +448,15 @@ def delete_job(job_id):
 
 @app.route('/submit_application/<int:job_id>', methods=['POST'])
 def submit_application(job_id):
-    apply_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+    last_apply_id = session.query(func.max(Applicant.id)).scalar()
+
+    # Increment the last id by 1
+    new_apply_id = str(int(last_apply_id) + 1) if last_apply_id is not None else '1'
+
+    # Create a new question with the manually generated id
+    
+    # apply_id = f"{int(time.time())}{random.randint(1000, 9999)}"
+    apply_id = new_apply_id
 
     # Get data from the form
     name = request.form.get('name')
@@ -469,6 +488,14 @@ def submit_application(job_id):
     # Redirect or display an error message as needed
     return render_template('error.html', message='No resume file provided')
 
+
+
+# Add this route to your Flask application
+@app.route('/application_confirmation/<int:job_id>')
+def application_form(job_id):
+    job = Job.query.get(job_id)
+
+    return render_template('application_confirmation.html', job=job)
 
 
 # Add this route to your Flask application

@@ -18,9 +18,9 @@ import cloudinary.api
 
           
 cloudinary.config( 
-  cloud_name = "dhkcm3uf7", 
-  api_key = "164591798326994", 
-  api_secret = "dFKTMhOH76tleFb2N4sAGludOrE" 
+  cloud_name = "dabkg5ksa", 
+  api_key = "578261944295792", 
+  api_secret = "0S8B9HJt_TS8tfA4_8YB9r--dNE" 
 )
 
 
